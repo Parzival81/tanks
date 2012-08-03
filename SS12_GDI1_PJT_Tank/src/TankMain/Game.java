@@ -34,7 +34,7 @@ public class Game extends BasicGameState{
 		//Hintergrund
     	Entity background = new Entity("menu");	
     	background.setPosition(new Vector2f(400,300));
-    	background.addComponent(new ImageRenderComponent(new Image("/assets/gamebg.png")));    	    	
+    	background.addComponent(new ImageRenderComponent(new Image("/assets/expl01.png")));    	    	
     	entityManager.addEntity(stateID, background);
     	
     	//Escape Taste
