@@ -1,0 +1,11 @@
+Map "/assets/sandTexture.jpg" "correcte1" "null" 0 9788 6
+Tank "PlayerOne" 1000 998 10 4 3 3 30 5 155 10 441 211
+Tank "OpponentTank0" 30 30 1 0 0 0 1 5 12 10 371 473
+Border 400 0 800 0
+Border 0 300 0 600
+Wall 100 100 0 10 100 100
+Explosion 40 40 1 408 191
+Shot 30 155 5 595 547
+Shot 30 155 5 517 377
+Shot 30 155 5 478 291
+Explosion 40 40 1 408 191

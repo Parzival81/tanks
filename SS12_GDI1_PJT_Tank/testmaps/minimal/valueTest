@@ -1,0 +1,7 @@
+Map "/assets/sandTexture.jpg" "valueTest" "/maps/map00" 100 10 5
+Tank "PlayerOne" 1000 875 10 5 3 2 30 5 0 10 300 200
+Tank "OpponentTank0" 30 11 1 1 0 0 1 4 270 10 100 200
+Border 400 0 800 0
+Wall 100 33 0 10 100 100
+Shot 5 280 10 50 50
+Explosion 25 40 1 10 7
