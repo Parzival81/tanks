@@ -30,7 +30,6 @@ public class Game extends BasicGameState{
 	private int stateID; 						
 	private StateBasedEntityManager entityManager;
 	private Level gamelevel;
-	private String path = "/assets/sandTexture.jpg";
 	
 	public Game(int id){
 		stateID = id;
