@@ -1,5 +1,10 @@
 package TankMain;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.LinkedList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,7 +15,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import Elements.Level;
+import Elements.*;
 
 
 import eea.engine.action.Action;
@@ -25,7 +30,7 @@ public class Game extends BasicGameState{
 	private int stateID; 						
 	private StateBasedEntityManager entityManager;
 	private Level gamelevel;
-	private String assetspath = "/assets/";
+	private String path = "/assets/sandTexture.jpg";
 	
 	public Game(int id){
 		stateID = id;
@@ -35,10 +40,56 @@ public class Game extends BasicGameState{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
+		// EINLESEN VON DATEI
+		// Hier wird eine Karte eingelesen und alle Attribute die fuer die Darstellung der
+		// Karte gebraucht werden, werden hier gesetzt.
+		try {
+    		BufferedReader br = new BufferedReader(new FileReader("maps/map00"));
+    		String line;
+    		while ((line = br.readLine()) != null) {
+    			if (line.contains("Map")){
+    				LinkedList <String> ll = new LinkedList<String>();
+    				for (int i=0; i < line.length();i++){
+    						StringBuffer sb = new StringBuffer();
+    						while (i < line.length() && line.charAt(i) != ' '){
+    							sb.append(line.charAt(i));
+    							i++;
+    						}
+    						ll.add(sb.toString());    					
+    				}
+    				System.out.println(ll.toString());
+    				Map m = new Map (ll.get(1), ll.get(2), ll.get(3), 
+    						Integer.valueOf(ll.get(4)), Integer.valueOf(ll.get(5)), Integer.valueOf(ll.get(6)));
+    				
+    				
+    			}else if (line.contains("Border")){
+    				System.out.println(line);
+    			}else if (line.contains("Tank")){
+    				System.out.println(line);
+    			}else if (line.contains("Wall")){
+    				System.out.println(line);
+    			}else if (line.contains("Shot")){
+    				System.out.println(line);
+    			}else if (line.contains("Pickup")){
+    				System.out.println(line);
+    			}else if (line.contains("Border")){
+    				System.out.println(line);
+    			}
+    		}
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
+		
+		
+		// DARSTELLUNG (DISPLAY)
+		// Hier werden alle Attribute auf dem Bildschirm dargestellt
+		
+		
+		
 		//Hintergrund
     	Entity background = new Entity("menu");	
     	background.setPosition(new Vector2f(400,300));
-    	background.addComponent(new ImageRenderComponent(new Image(assetspath + gamelevel.getGameMap().getBackground())));    	    	
+    	background.addComponent(new ImageRenderComponent(new Image(path)));    	    	
     	entityManager.addEntity(stateID, background);
     	
     	//Escape Taste
@@ -47,6 +98,10 @@ public class Game extends BasicGameState{
     	esc_pressed.addAction(new ChangeStateAction(Launch.MENU));
     	esc_Listener.addComponent(esc_pressed);    	
     	entityManager.addEntity(stateID, esc_Listener);
+    	
+    	
+    	
+    	
 		
 	}
 
