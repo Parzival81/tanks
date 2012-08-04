@@ -7,7 +7,7 @@ public class Level {
 	private Tank[] gameTankO; // Gegner
 	private Wall[] gameWall;
 	
-	Level(Map m, Border[] b, Tank p, Tank[] o, Wall[] w) {
+	public Level(Map m, Border[] b, Tank p, Tank[] o, Wall[] w) {
 		this.gameBorder = b;
 		this.gameMap = m;
 		this.gameTankO = o;
