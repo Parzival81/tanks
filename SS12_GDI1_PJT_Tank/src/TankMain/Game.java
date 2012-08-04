@@ -10,6 +10,8 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import Elements.Level;
+
 
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.*;
@@ -22,6 +24,8 @@ public class Game extends BasicGameState{
 	
 	private int stateID; 						
 	private StateBasedEntityManager entityManager;
+	private Level gamelevel;
+	private String assetspath = "/assets/";
 	
 	public Game(int id){
 		stateID = id;
@@ -34,7 +38,7 @@ public class Game extends BasicGameState{
 		//Hintergrund
     	Entity background = new Entity("menu");	
     	background.setPosition(new Vector2f(400,300));
-    	background.addComponent(new ImageRenderComponent(new Image("/assets/expl01.png")));    	    	
+    	background.addComponent(new ImageRenderComponent(new Image(assetspath + gamelevel.getGameMap().getBackground())));    	    	
     	entityManager.addEntity(stateID, background);
     	
     	//Escape Taste

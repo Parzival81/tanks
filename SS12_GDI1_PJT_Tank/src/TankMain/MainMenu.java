@@ -57,46 +57,46 @@ public class MainMenu extends BasicGameState{
     	// Erstelle das Ausloese-Event und die zugehoerige Action
     	ANDEvent mainEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
     	Action new_Game_Action = new ChangeStateInitAction(Launch.GAME);
-
+  
     	new_Game_Entity.addComponent(mainEvents);
     	
-    	Action loading = new Action(){
-
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1,
-					int arg2, Component arg3) {
-				File datei= this.getFile(".txt",JFileChooser.OPEN_DIALOG);
-			}
-
-			public File getFile(String typ,int mode){
-				final String t = typ;
-				JFileChooser auswahl= new JFileChooser();
-				auswahl.setDialogType(mode);
-				auswahl.setAcceptAllFileFilterUsed(false);
-				auswahl.setFileFilter(new FileFilter()
-				{
-					public boolean accept(File datei){
-						return datei.isDirectory()|| datei.getName().toLowerCase().endsWith(t);
-					}
-					
-					public String getDescription(){
-						if(t.equals(".txt"))
-							return ".tanks";
-						else return t;
-					}
-				});
-				int antwort;
-				if(mode==JFileChooser.OPEN_DIALOG)
-					antwort= auswahl.showOpenDialog(null);
-				else antwort=auswahl.showSaveDialog(null);
-				if(antwort==JFileChooser.APPROVE_OPTION)
-					return auswahl.getSelectedFile();
-				else return null;
-			}
-    		
-    	};
-    	mainEvents.addAction(loading);
-    	
+//    	Action loading = new Action(){
+//
+//			@Override
+//			public void update(GameContainer arg0, StateBasedGame arg1,
+//					int arg2, Component arg3) {
+//				File datei= this.getFile(".txt",JFileChooser.OPEN_DIALOG);
+//			}
+//
+//			public File getFile(String typ,int mode){
+//				final String t = typ;
+//				JFileChooser auswahl= new JFileChooser();
+//				auswahl.setDialogType(mode);
+//				auswahl.setAcceptAllFileFilterUsed(false);
+//				auswahl.setFileFilter(new FileFilter()
+//				{
+//					public boolean accept(File datei){
+//						return datei.isDirectory()|| datei.getName().toLowerCase().endsWith(t);
+//					}
+//					
+//					public String getDescription(){
+//						if(t.equals(".txt"))
+//							return ".tanks";
+//						else return t;
+//					}
+//				});
+//				int antwort;
+//				if(mode==JFileChooser.OPEN_DIALOG)
+//					antwort= auswahl.showOpenDialog(null);
+//				else antwort=auswahl.showSaveDialog(null);
+//				if(antwort==JFileChooser.APPROVE_OPTION)
+//					return auswahl.getSelectedFile();
+//				else return null;
+//			}
+//    		
+//    	};
+   	mainEvents.addAction(new_Game_Action);
+//    	
     	
     	
     	// Fuege die Entity zum StateBasedEntityManager hinzu
