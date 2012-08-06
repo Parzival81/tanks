@@ -132,12 +132,12 @@ public class Game extends BasicGameState {
 
                 Tank p = null;
                 // TODO: Error in implementation, has to be fixed
-//                for (Tank tan : tanklist) {
-//                    if (tan.getName().equals("PlayerOne")) {
-//                        p = new Tank(tan.getName(), tan.getMaxlife(), tan.getLife(), tan.getMaxshot(), tan.getShot(), tan.getMaxmine(), tan.getMine(), tan.getStrength(), tan.getSpeed(), tan.getRotation(), tan.getScale(), tan.getX(), tan.getY());
-//                        tanklist.remove(tan);
-//                    }
-//                }
+                for (Tank tan : tanklist) {
+                    if (tan.getName().equals("PlayerOne")) {
+                        p = new Tank(tan.getName(), tan.getMaxlife(), tan.getLife(), tan.getMaxshot(), tan.getShot(), tan.getMaxmine(), tan.getMine(), tan.getStrength(), tan.getSpeed(), tan.getRotation(), tan.getScale(), tan.getX(), tan.getY());
+                        tanklist.remove(tan);
+                    }
+                }
 
                 Tank[] o = tanklist.toArray(new Tank[tanklist.size()]);
                 Wall[] w = walllist.toArray(new Wall[walllist.size()]);
