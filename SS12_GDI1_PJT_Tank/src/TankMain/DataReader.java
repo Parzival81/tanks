@@ -21,9 +21,7 @@ public class DataReader {
 	}
 
 	/**
-	 * Accessing the file, and returns an instance of the level-class, which
-	 * represents the file
-	 * 
+	 * Accessing the file, and returning an instance of the level-class
 	 * @return
 	 */
 	public Level getLevel() {
