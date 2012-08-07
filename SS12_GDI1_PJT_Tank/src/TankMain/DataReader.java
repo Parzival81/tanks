@@ -119,6 +119,7 @@ public class DataReader {
 			Wall[] w = walllist.toArray(new Wall[walllist.size()]);
 			Border[] b = borderlist.toArray(new Border[borderlist.size()]);
 			
+			
 			// Das Objekt der Klasse Level instanziiert werden kann
 			toReturn = new Level(m, b, p, o, w);
 		} catch (IOException e) {
