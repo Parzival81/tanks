@@ -51,6 +51,9 @@ public class Game extends BasicGameState {
         esc_pressed.addAction(new ChangeStateAction(Launch.MENU));
         esc_Listener.addComponent(esc_pressed);
         entityManager.addEntity(stateID, esc_Listener);
+        
+        
+
 
     }
 
@@ -129,7 +132,6 @@ public class Game extends BasicGameState {
                 } else if (line.contains("Pickup")) {
                     //TODO muss noch implementiert werden
                 }
-
                 Tank p = null;
                 // TODO: Error in implementation, has to be fixed
                 for (Tank tan : tanklist) {
@@ -138,13 +140,9 @@ public class Game extends BasicGameState {
                         tanklist.remove(tan);
                     }
                 }
-
                 Tank[] o = tanklist.toArray(new Tank[tanklist.size()]);
                 Wall[] w = walllist.toArray(new Wall[walllist.size()]);
                 Border[] b = borderlist.toArray(new Border[borderlist.size()]);
-
-
-
                 gamelevel = new Level(m, b, p, o, w);
             }
         } catch (IOException e) {
