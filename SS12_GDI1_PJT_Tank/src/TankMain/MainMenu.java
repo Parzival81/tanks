@@ -2,14 +2,17 @@ package TankMain;
 
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.*;
+import eea.engine.component.Component;
 import eea.engine.component.render.*;
 import eea.engine.entity.*;
 import eea.engine.event.*;
 import eea.engine.event.basicevents.*;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
@@ -51,43 +54,8 @@ public class MainMenu extends BasicGameState {
 
         new_Game_Entity.addComponent(mainEvents);
 
-//    	Action loading = new Action(){
-//
-//			@Override
-//			public void update(GameContainer arg0, StateBasedGame arg1,
-//					int arg2, Component arg3) {
-//				File datei= this.getFile(".txt",JFileChooser.OPEN_DIALOG);
-//			}
-//
-//			public File getFile(String typ,int mode){
-//				final String t = typ;
-//				JFileChooser auswahl= new JFileChooser();
-//				auswahl.setDialogType(mode);
-//				auswahl.setAcceptAllFileFilterUsed(false);
-//				auswahl.setFileFilter(new FileFilter()
-//				{
-//					public boolean accept(File datei){
-//						return datei.isDirectory()|| datei.getName().toLowerCase().endsWith(t);
-//					}
-//
-//					public String getDescription(){
-//						if(t.equals(".txt"))
-//							return ".tanks";
-//						else return t;
-//					}
-//				});
-//				int antwort;
-//				if(mode==JFileChooser.OPEN_DIALOG)
-//					antwort= auswahl.showOpenDialog(null);
-//				else antwort=auswahl.showSaveDialog(null);
-//				if(antwort==JFileChooser.APPROVE_OPTION)
-//					return auswahl.getSelectedFile();
-//				else return null;
-//			}
-//
-//    	};
         mainEvents.addAction(new_Game_Action);
-//
+
 
 
         // Fuege die Entity zum StateBasedEntityManager hinzu
@@ -107,6 +75,31 @@ public class MainMenu extends BasicGameState {
 
         // Fuege die Entity zum StateBasedEntityManager hinzu
         entityManager.addEntity(this.stateID, quit_Entity);
+        
+        
+        //N Taste fuer "Neues Spiel"
+        Entity n_Listener = new Entity("N_Listener");
+        KeyPressedEvent n_pressed = new KeyPressedEvent(Input.KEY_N);
+        Action loadFirstLevel = new Action(){
+
+			@Override
+			public void update(GameContainer arg0, StateBasedGame arg1,
+					int arg2, Component arg3) {
+				//TODO level muss auf "maps/map00.tanks" gesetzt werden; Zugang zu Attributen der Klasse Game noch unbekannt
+			}
+        	
+        };
+        n_pressed.addAction(loadFirstLevel);
+        n_pressed.addAction(new ChangeStateAction(Launch.GAME));
+        n_Listener.addComponent(n_pressed);
+        entityManager.addEntity(stateID, n_Listener);
+        
+        //ESC taste fuer "back to game"
+        Entity esc_Listener = new Entity("ESC_Listener");
+        KeyPressedEvent esc_pressed = new KeyPressedEvent (Input.KEY_ESCAPE);
+        esc_pressed.addAction(new ChangeStateAction(Launch.GAME));
+        esc_Listener.addComponent(esc_pressed);
+        entityManager.addEntity(stateID, esc_Listener);
 
     }
 

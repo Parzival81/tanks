@@ -55,6 +55,58 @@ public class Tank {
 		return strength;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setMaxlife(int maxlife) {
+		this.maxlife = maxlife;
+	}
+
+	public void setLife(int life) {
+		this.life = life;
+	}
+
+	public void setMaxshot(int maxshot) {
+		this.maxshot = maxshot;
+	}
+
+	public void setShot(int shot) {
+		this.shot = shot;
+	}
+
+	public void setMaxmine(int maxmine) {
+		this.maxmine = maxmine;
+	}
+
+	public void setMine(int mine) {
+		this.mine = mine;
+	}
+
+	public void setStrength(int strength) {
+		this.strength = strength;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
+	public void setRotation(int rotation) {
+		this.rotation = rotation;
+	}
+
+	public void setScale(int scale) {
+		this.scale = scale;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
 	public int getSpeed() {
 		return speed;
 	}
