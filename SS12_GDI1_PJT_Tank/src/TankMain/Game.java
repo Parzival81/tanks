@@ -7,10 +7,6 @@ import eea.engine.component.Component;
 import eea.engine.component.render.*;
 import eea.engine.entity.*;
 import eea.engine.event.basicevents.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.LinkedList;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -27,7 +23,9 @@ public class Game extends BasicGameState {
 	private Level gamelevel;
 
 	// Die Paths werden hier eingebunden
-	private String playerTank = "assets/tankPlayer.png";;
+	private String playerTankImage = "assets/tankPlayer.png";
+    // The current map. Should be set via a GUI
+    private String currentMap = "maps/BattleOfTheSeelowHeights.tanks";
 
 	public Game(int id) {
 		stateID = id;
@@ -42,7 +40,7 @@ public class Game extends BasicGameState {
 		// Hier wird eine Karte eingelesen und alle Attribute die fuer die
 		// Darstellung der
 		// Karte gebraucht werden, werden hier gesetzt.
-		DataReader dr = new DataReader("maps/BattleOfTheSeelowHeights.tanks");
+		DataReader dr = new DataReader(currentMap);
 		gamelevel = dr.getLevel();
 
 		// DARSTELLUNG (DISPLAY)
@@ -64,10 +62,9 @@ public class Game extends BasicGameState {
 
 		// Tankdarstellung
 		Entity tank = new Entity("playerTank");
-		tank.addComponent(new ImageRenderComponent(new Image(playerTank)));
-		tank.setScale(0.2f);
-		tank.setPosition(new Vector2f(gamelevel.getGameTankP().getX(),
-				gamelevel.getGameTankP().getY()));
+		tank.addComponent(new ImageRenderComponent(new Image(playerTankImage)));
+		tank.setScale(0.3f);
+		tank.setPosition(new Vector2f(400, 320));
 
 		// Steuerung
 		KeyDownEvent down_pressed = new KeyDownEvent(Input.KEY_DOWN);
