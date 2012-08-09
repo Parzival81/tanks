@@ -42,7 +42,7 @@ public class Game extends BasicGameState {
 		// Hier wird eine Karte eingelesen und alle Attribute die fuer die
 		// Darstellung der
 		// Karte gebraucht werden, werden hier gesetzt.
-		DataReader dr = new DataReader("maps/map00.tanks");
+		DataReader dr = new DataReader("maps/BattleOfTheSeelowHeights.tanks");
 		gamelevel = dr.getLevel();
 
 		// DARSTELLUNG (DISPLAY)

@@ -1,0 +1,23 @@
+Map "/assets/mapBg/sandTexture.jpg" "Sand" "maps/Sand.tanks" 0 0 0
+
+Border 400 0 800 0
+Border 0 300 0 600
+Border 400 600 800 0
+Border 800 300 0 600
+
+
+	Tank "PlayerOne" 1000 1000 10 10 3 3 30 5 0 10 300 200
+
+	Tank "OpponentTank0" 30  30  1  1  0  0  1 5  270  10  100  200
+	Tank "OpponentTank1" 30  30  1  1  0  0  1 5  270  10  100  400
+
+	Tank "OpponentTank3" 30  30  1  1  0  0  1 5  270  10  500  200
+	Tank "OpponentTank4" 30  30  1  1  0  0  1 5  270  10  200  400
+
+	Tower 30 30  1 1 10 5  75 10 400 400
+
+	Wall 30 30 0 10 25 25
+	Shot	1	5	14	292	132
+
+Pickup "Healthpack" 10 0 30 100 100
+Pickup "Ammopack" 10 0 30 200 100
