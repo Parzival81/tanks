@@ -81,7 +81,7 @@ public class Game extends BasicGameState {
 			}
 		});
 
-		down_pressed.addAction(new MoveDownAction(0.1f));
+		down_pressed.addAction(new MoveDownAction(0.05f));
 
 		KeyDownEvent up_pressed = new KeyDownEvent(Input.KEY_UP);
 		up_pressed.addAction(new Action() {
@@ -111,7 +111,7 @@ public class Game extends BasicGameState {
 						+ gamelevel.getGameTankP().getX());
 			}
 		});
-		right_pressed.addAction(new MoveRightAction(0.1f));
+		right_pressed.addAction(new RotateRightAction(0.1f));
 
 		KeyDownEvent left_pressed = new KeyDownEvent(Input.KEY_LEFT);
 		left_pressed.addAction(new Action() {
@@ -126,7 +126,7 @@ public class Game extends BasicGameState {
 						+ gamelevel.getGameTankP().getX());
 			}
 		});
-		left_pressed.addAction(new MoveLeftAction(0.1f));
+		left_pressed.addAction(new RotateLeftAction(0.1f));
 
 		tank.addComponent(down_pressed);
 		tank.addComponent(up_pressed);
