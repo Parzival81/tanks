@@ -60,80 +60,17 @@ public class Game extends BasicGameState {
 		esc_Listener.addComponent(esc_pressed);
 		entityManager.addEntity(stateID, esc_Listener);
 
-		// Tankdarstellung
-		Entity tank = new Entity("playerTank");
-		tank.addComponent(new ImageRenderComponent(new Image(playerTankImage)));
-		tank.setScale(0.3f);
-		tank.setPosition(new Vector2f(400, 320));
+                // Create a new tank object
+                Tank PlayerTank = new Tank(playerTankImage);
 
-		// Steuerung
-		KeyDownEvent down_pressed = new KeyDownEvent(Input.KEY_DOWN);
-		down_pressed.addAction(new Action() {
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1,
-					int arg2, Component arg3) {
-				gamelevel.getGameTankP().setY(
-						gamelevel.getGameTankP().getY() - 1);
-				System.out.println("Tank Y-coordinate: "
-						+ gamelevel.getGameTankP().getY()
-						+ " Tank X-coordinate: "
-						+ gamelevel.getGameTankP().getX());
-			}
-		});
-
-		down_pressed.addAction(new MoveDownAction(0.05f));
-
-		KeyDownEvent up_pressed = new KeyDownEvent(Input.KEY_UP);
-		up_pressed.addAction(new Action() {
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1,
-					int arg2, Component arg3) {
-				gamelevel.getGameTankP().setY(
-						gamelevel.getGameTankP().getY() + 1);
-				System.out.println("Tank Y-coordinate: "
-						+ gamelevel.getGameTankP().getY()
-						+ " Tank X-coordinate: "
-						+ gamelevel.getGameTankP().getX());
-			}
-		});
-		up_pressed.addAction(new MoveUpAction(0.1f));
-
-		KeyDownEvent right_pressed = new KeyDownEvent(Input.KEY_RIGHT);
-		right_pressed.addAction(new Action() {
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1,
-					int arg2, Component arg3) {
-				gamelevel.getGameTankP().setX(
-						gamelevel.getGameTankP().getX() + 1);
-				System.out.println("Tank Y-coordinate: "
-						+ gamelevel.getGameTankP().getY()
-						+ " Tank X-coordinate: "
-						+ gamelevel.getGameTankP().getX());
-			}
-		});
-		right_pressed.addAction(new RotateRightAction(0.1f));
-
-		KeyDownEvent left_pressed = new KeyDownEvent(Input.KEY_LEFT);
-		left_pressed.addAction(new Action() {
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1,
-					int arg2, Component arg3) {
-				gamelevel.getGameTankP().setX(
-						gamelevel.getGameTankP().getX() - 1);
-				System.out.println("Tank Y-coordinate: "
-						+ gamelevel.getGameTankP().getY()
-						+ " Tank X-coordinate: "
-						+ gamelevel.getGameTankP().getX());
-			}
-		});
-		left_pressed.addAction(new RotateLeftAction(0.1f));
-
-		tank.addComponent(down_pressed);
-		tank.addComponent(up_pressed);
-		tank.addComponent(right_pressed);
-		tank.addComponent(left_pressed);
-
-		entityManager.addEntity(stateID, tank);
+		// Tank controlls
+                // Pass the event listners to the tank obejct
+                PlayerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
+                PlayerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
+		PlayerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
+		PlayerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
+                
+		entityManager.addEntity(stateID, PlayerTank.getTank());
 
 	}
 
