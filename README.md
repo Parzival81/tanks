@@ -17,3 +17,8 @@ Enthält alle .jar Dateien die für das Projekt benötigt werden
 * [Wiki zum Projekt](Wiki)
 	* [Aufgaben](https://github.com/Parzival81/tanks/wiki/Aufgaben)
 	* [Zeitplan](https://github.com/Parzival81/tanks/wiki/Zeitplan)
+	
+## Api Dokumentation
+
+* [Slick 2D](http://slick.cokeandcode.com/javadoc/)
+* [EEE Framework](https://moodle.informatik.tu-darmstadt.de/mod/forum/discuss.php?d=16449)
