@@ -16,8 +16,8 @@ public class TankEnemy {
     private String name;
     private int maxlife, life, maxshot, shot, maxmine, mine, strength, speed,
             rotation, scale, x, y;
-    private String texture = "assets/tankBg/tankOppenent.png";    // The tanks texture
-    private Entity tank;                                   // The tank as game entity
+    private String texture = "assets/tankBg/tankOppenent.png";      // The tanks texture
+    private Entity tank;                                            // The tank as game entity
 
     public TankEnemy(String name, int maxlife, int life, int maxshot, int shot,
             int maxmine, int mine, int strength, int speed, int rotation,

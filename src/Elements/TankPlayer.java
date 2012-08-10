@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 /**
- * Represents the players tank
+ * Represents the players tank in the game
  *
  * @author patrick
  */
@@ -26,7 +26,7 @@ public class TankPlayer {
     private Entity tank;        // The tank as game entity
     
     /**
-     * Second constructor
+     * Constructor for the tank class. Gets all parameters from the level object.
      * 
      * @param name
      * @param maxlife
@@ -58,8 +58,8 @@ public class TankPlayer {
         this.scale = scale;
         this.x = x;
         this.y = y;
-        
         this.tank = new Entity("playerTank");
+        
         try {
             this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
         } catch (SlickException ex) {
@@ -68,29 +68,49 @@ public class TankPlayer {
         tank.setScale(0.3f);
         tank.setPosition(new Vector2f(400, 320));
     }
-
+    
+    /**
+     * Steers the tank backwards
+     * 
+     * @param downPressed 
+     */
     public void steerBack(KeyDownEvent downPressed) {
         downPressed.addAction(new MoveDownAction(0.05f));
         tank.addComponent(downPressed);
     }
-
+    
+    /**
+     * Steers the tank entity forwards
+     * 
+     * @param upPressed 
+     */
     public void steerForward(KeyDownEvent upPressed) {
         upPressed.addAction(new MoveUpAction(0.1f));
         tank.addComponent(upPressed);
     }
-
+    
+    /**
+     * Steers the tank entity to the right
+     * 
+     * @param rightPressed 
+     */
     public void steerRight(KeyDownEvent rightPressed) {
         rightPressed.addAction(new RotateRightAction(0.1f));
         tank.addComponent(rightPressed);
     }
 
+    /**
+     * Steers the tank entity to the left
+     * 
+     * @param leftPressed 
+     */
     public void steerLeft(KeyDownEvent leftPressed) {
         leftPressed.addAction(new RotateLeftAction(0.1f));
         tank.addComponent(leftPressed);
     }
 
     /**
-     * Return the tank as entity
+     * Return the tank entity
      *
      * @return
      */
