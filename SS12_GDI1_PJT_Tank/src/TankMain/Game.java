@@ -18,84 +18,96 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Game extends BasicGameState {
 
-	private int stateID;
-	private StateBasedEntityManager entityManager;
-	private Level gamelevel;
-
-	// Die Paths werden hier eingebunden
-	private String playerTankImage = "assets/tankPlayer.png";
+    private int stateID;
+    private StateBasedEntityManager entityManager;
+    private Level gamelevel;
+    // Die Paths werden hier eingebunden
     // The current map. Should be set via a GUI
     private String currentMap = "maps/BattleOfTheSeelowHeights.tanks";
 
-	public Game(int id) {
-		stateID = id;
-		entityManager = StateBasedEntityManager.getInstance();
+    public Game(int id) {
+        stateID = id;
+        entityManager = StateBasedEntityManager.getInstance();
 
-	}
+    }
 
-	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1)
-			throws SlickException {
-		// EINLESEN VON DATEI
-		// Hier wird eine Karte eingelesen und alle Attribute die fuer die
-		// Darstellung der
-		// Karte gebraucht werden, werden hier gesetzt.
-		DataReader dr = new DataReader(currentMap);
-		gamelevel = dr.getLevel();
+    @Override
+    public void init(GameContainer arg0, StateBasedGame arg1)
+            throws SlickException {
+        // EINLESEN VON DATEI
+        // Hier wird eine Karte eingelesen und alle Attribute die fuer die
+        // Darstellung der
+        // Karte gebraucht werden, werden hier gesetzt.
+        DataReader dr = new DataReader(currentMap);
+        gamelevel = dr.getLevel();
 
-		// DARSTELLUNG (DISPLAY)
-		// Hier werden alle Attribute auf dem Bildschirm dargestellt
+        // DARSTELLUNG (DISPLAY)
+        // Hier werden alle Attribute auf dem Bildschirm dargestellt
 
-		// Hintergrund
-		Entity background = new Entity("menu");
-		background.setPosition(new Vector2f(400, 300));
-		background.addComponent(new ImageRenderComponent(new Image(gamelevel
-				.getGameMap().getBackground())));
-		entityManager.addEntity(stateID, background);
+        // Hintergrund
+        Entity background = new Entity("menu");
+        background.setPosition(new Vector2f(400, 300));
+        background.addComponent(new ImageRenderComponent(new Image(gamelevel
+                .getGameMap().getBackground())));
+        entityManager.addEntity(stateID, background);
 
-		// Escape Taste
-		Entity esc_Listener = new Entity("ESC_Listener");
-		KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
-		esc_pressed.addAction(new ChangeStateAction(Launch.MENU));
-		esc_Listener.addComponent(esc_pressed);
-		entityManager.addEntity(stateID, esc_Listener);
+        // Escape Taste
+        Entity esc_Listener = new Entity("ESC_Listener");
+        KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
+        esc_pressed.addAction(new ChangeStateAction(Launch.MENU));
+        esc_Listener.addComponent(esc_pressed);
+        entityManager.addEntity(stateID, esc_Listener);
 
-                // Create a new tank object
-                Tank PlayerTank = new Tank(playerTankImage);
+        // Create a new tank object
+        // TODO pass all data to the constructor
+        TankPlayer PlayerTank = new TankPlayer(
+                gamelevel.getGameTankP().getName(),
+                gamelevel.getGameTankP().getMaxLife(),
+                gamelevel.getGameTankP().getLife(),
+                gamelevel.getGameTankP().getMaxShot(),
+                gamelevel.getGameTankP().getShot(),
+                gamelevel.getGameTankP().getMaxMine(),
+                gamelevel.getGameTankP().getMine(),
+                gamelevel.getGameTankP().getStrength(),
+                gamelevel.getGameTankP().getSpeed(),
+                gamelevel.getGameTankP().getRotation(),
+                gamelevel.getGameTankP().getScale(),
+                gamelevel.getGameTankP().getX(),
+                gamelevel.getGameTankP().getY());
 
-		// Tank controlls
-                // Pass the event listners to the tank obejct
-                PlayerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
-                PlayerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
-		PlayerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
-		PlayerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
-                
-		entityManager.addEntity(stateID, PlayerTank.getTank());
+        // TankPlayer controlls
+        // Pass the event listners to the tank obejct
+        PlayerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
+        PlayerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
+        PlayerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
+        PlayerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
 
-	}
+        entityManager.addEntity(stateID, PlayerTank.getTank());
 
-	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
+    }
 
-		// alle Entities werden gerendert
-		entityManager.renderEntities(container, game, g);
+    @Override
+    public void render(GameContainer container, StateBasedGame game, Graphics g)
+            throws SlickException {
 
-		// g.drawImage(new Image(playerTank), gamelevel.getGameTankP().getX(),
-		// gamelevel.getGameTankP().getY());
+        // alle Entities werden gerendert
+        entityManager.renderEntities(container, game, g);
 
-	}
+        // g.drawImage(new Image(playerTank), gamelevel.getGameTankP().getX(),
+        // gamelevel.getGameTankP().getY());
 
-	@Override
-	public void update(GameContainer container, StateBasedGame game, int delta)
-			throws SlickException {
+    }
 
-		// alle Entities werden geupdated
-		entityManager.updateEntities(container, game, delta);
-	}
+    @Override
+    public void update(GameContainer container, StateBasedGame game, int delta)
+            throws SlickException {
 
-	@Override
-	public int getID() {
-		return stateID;
-	}
+        // alle Entities werden geupdated
+        entityManager.updateEntities(container, game, delta);
+    }
+
+    @Override
+    public int getID() {
+        return stateID;
+    }
 }

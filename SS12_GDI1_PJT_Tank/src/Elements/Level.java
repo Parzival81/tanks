@@ -3,11 +3,11 @@ package Elements;
 public class Level {
 	private Map gameMap;
 	private Border[] gameBorder;
-	private Tank gameTankP; // Spieler
-	private Tank[] gameTankO; // Gegner
+	private TankPlayer gameTankP; // Spieler
+	private TankPlayer[] gameTankO; // Gegner
 	private Wall[] gameWall;
 	
-	public Level(Map m, Border[] b, Tank p, Tank[] o, Wall[] w) {
+	public Level(Map m, Border[] b, TankPlayer p, TankPlayer[] o, Wall[] w) {
 		this.gameBorder = b;
 		this.gameMap = m;
 		this.gameTankO = o;
@@ -32,19 +32,19 @@ public class Level {
 		this.gameBorder = gameBorder;
 	}
 
-	public Tank getGameTankP() {
+	public TankPlayer getGameTankP() {
 		return gameTankP;
 	}
 
-	public void setGameTankP(Tank gameTankP) {
+	public void setGameTankP(TankPlayer gameTankP) {
 		this.gameTankP = gameTankP;
 	}
 
-	public Tank[] getGameTankO() {
+	public TankPlayer[] getGameTankO() {
 		return gameTankO;
 	}
 
-	public void setGameTankO(Tank[] gameTankO) {
+	public void setGameTankO(TankPlayer[] gameTankO) {
 		this.gameTankO = gameTankO;
 	}
 

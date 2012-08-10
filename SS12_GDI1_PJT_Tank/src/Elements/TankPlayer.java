@@ -17,32 +17,13 @@ import org.newdawn.slick.geom.Vector2f;
  *
  * @author patrick
  */
-public class Tank {
+public class TankPlayer {
 
     private String name;
     private int maxlife, life, maxshot, shot, maxmine, mine, strength, speed,
             rotation, scale, x, y;
-    private String texture;     // The tanks texture
+    private String texture = "assets/tankBg/tankPlayer.png";    // The tanks texture
     private Entity tank;        // The tank as game entity
-
-    /**
-     * First constructor
-     *
-     * @param texture
-     */
-    public Tank(String texture) {
-
-        this.texture = texture;
-        this.tank = new Entity("playerTank");
-        try {
-            this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
-        } catch (SlickException ex) {
-            Logger.getLogger(Tank.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        tank.setScale(0.3f);
-        tank.setPosition(new Vector2f(400, 320));
-
-    }
     
     /**
      * Second constructor
@@ -61,7 +42,7 @@ public class Tank {
      * @param x
      * @param y 
      */
-    public Tank(String name, int maxlife, int life, int maxshot, int shot,
+    public TankPlayer(String name, int maxlife, int life, int maxshot, int shot,
             int maxmine, int mine, int strength, int speed, int rotation,
             int scale, int x, int y) {
         this.name = name;
@@ -77,6 +58,15 @@ public class Tank {
         this.scale = scale;
         this.x = x;
         this.y = y;
+        
+        this.tank = new Entity("playerTank");
+        try {
+            this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
+        } catch (SlickException ex) {
+            Logger.getLogger(TankPlayer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        tank.setScale(0.3f);
+        tank.setPosition(new Vector2f(400, 320));
     }
 
     public void steerBack(KeyDownEvent downPressed) {
@@ -112,7 +102,7 @@ public class Tank {
         return name;
     }
 
-    public int getMaxlife() {
+    public int getMaxLife() {
         return maxlife;
     }
 
@@ -120,7 +110,7 @@ public class Tank {
         return life;
     }
 
-    public int getMaxshot() {
+    public int getMaxShot() {
         return maxshot;
     }
 
@@ -128,7 +118,7 @@ public class Tank {
         return shot;
     }
 
-    public int getMaxmine() {
+    public int getMaxMine() {
         return maxmine;
     }
 
