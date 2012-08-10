@@ -15,7 +15,7 @@ import org.newdawn.slick.geom.Vector2f;
 /**
  * Represents the players tank in the game
  *
- * @author patrick
+ * @author Patrick Dorrington
  */
 public class TankPlayer {
 
@@ -23,11 +23,13 @@ public class TankPlayer {
     private int maxlife, life, maxshot, shot, maxmine, mine, strength, speed,
             rotation, scale, x, y;
     private String texture = "assets/tankBg/tankPlayer.png";    // The tanks texture
-    private Entity tank;        // The tank as game entity
-    
+    private Entity tank;            // The tank as game Entity
+    private Vector2f tankVector;    // The tank as entity
+
     /**
-     * Constructor for the tank class. Gets all parameters from the level object.
-     * 
+     * Constructor for the tank class. Gets all parameters from the level
+     * object.
+     *
      * @param name
      * @param maxlife
      * @param life
@@ -40,11 +42,13 @@ public class TankPlayer {
      * @param rotation
      * @param scale
      * @param x
-     * @param y 
+     * @param y
      */
     public TankPlayer(String name, int maxlife, int life, int maxshot, int shot,
             int maxmine, int mine, int strength, int speed, int rotation,
-            int scale, int x, int y) {
+            int scale, int x, int y) throws SlickException {
+
+        // Set the tanks properties
         this.name = name;
         this.maxlife = maxlife;
         this.life = life;
@@ -58,41 +62,40 @@ public class TankPlayer {
         this.scale = scale;
         this.x = x;
         this.y = y;
+
         this.tank = new Entity("playerTank");
-        
-        try {
-            this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
-        } catch (SlickException ex) {
-            Logger.getLogger(TankPlayer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        this.tankVector = new Vector2f(400, 320);
+
+        // Create the tank entity
+        this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
         tank.setScale(0.3f);
-        tank.setPosition(new Vector2f(400, 320));
+        tank.setPosition(tankVector);
     }
-    
-    /**
-     * Steers the tank backwards
-     * 
-     * @param downPressed 
-     */
-    public void steerBack(KeyDownEvent downPressed) {
-        downPressed.addAction(new MoveDownAction(0.05f));
-        tank.addComponent(downPressed);
-    }
-    
+
     /**
      * Steers the tank entity forwards
-     * 
-     * @param upPressed 
+     *
+     * @param upPressed
      */
     public void steerForward(KeyDownEvent upPressed) {
         upPressed.addAction(new MoveUpAction(0.1f));
         tank.addComponent(upPressed);
     }
-    
+
+    /**
+     * Steers the tank backwards
+     *
+     * @param downPressed
+     */
+    public void steerBack(KeyDownEvent downPressed) {
+        downPressed.addAction(new MoveDownAction(0.05f));
+        tank.addComponent(downPressed);
+    }
+
     /**
      * Steers the tank entity to the right
-     * 
-     * @param rightPressed 
+     *
+     * @param rightPressed
      */
     public void steerRight(KeyDownEvent rightPressed) {
         rightPressed.addAction(new RotateRightAction(0.1f));
@@ -101,8 +104,8 @@ public class TankPlayer {
 
     /**
      * Steers the tank entity to the left
-     * 
-     * @param leftPressed 
+     *
+     * @param leftPressed
      */
     public void steerLeft(KeyDownEvent leftPressed) {
         leftPressed.addAction(new RotateLeftAction(0.1f));
