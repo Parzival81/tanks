@@ -11,6 +11,7 @@ public class Launch extends StateBasedGame {
     // Game states (menu and game)
     public static final int MENU = 0;
     public static final int GAME = 1;
+    public static final int CONTROL = 2;
 
     public Launch() {
         // Set the name of the game
@@ -41,9 +42,11 @@ public class Launch extends StateBasedGame {
         // The first state is run first (so menu has to come first)
         addState(new MainMenu(MENU));
         addState(new Game(GAME));
+        addState (new Control(CONTROL));
 
         // Add the states
         StateBasedEntityManager.getInstance().addState(MENU);
         StateBasedEntityManager.getInstance().addState(GAME);
+        StateBasedEntityManager.getInstance().addState(CONTROL);
     }
 }

@@ -51,19 +51,34 @@ public class MainMenu extends BasicGameState {
         // Erstelle das Ausloese-Event und die zugehoerige Action
         ANDEvent mainEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
         Action new_Game_Action = new ChangeStateInitAction(Launch.GAME);
-
         new_Game_Entity.addComponent(mainEvents);
-
         mainEvents.addAction(new_Game_Action);
-
-
-
         // Fuege die Entity zum StateBasedEntityManager hinzu
         entityManager.addEntity(this.stateID, new_Game_Entity);
+        
+        
+        
+        // Control
+        Entity control_Entity = new Entity("Steuerung");
+        control_Entity.setPosition(new Vector2f(700, 290));
+        control_Entity.setScale(0.15f);
+        control_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
+
+        // Erstelle das Ausloese-Event und die zugehoerige Action
+        ANDEvent controlEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+        Action control_Action = new ChangeStateInitAction(Launch.CONTROL);
+        control_Entity.addComponent(controlEvents);
+        controlEvents.addAction(control_Action);
+        // Fuege die Entity zum StateBasedEntityManager hinzu
+        entityManager.addEntity(this.stateID, control_Entity);
+        
+        
+        
+        
 
         // Beenden
         Entity quit_Entity = new Entity("Beenden");
-        quit_Entity.setPosition(new Vector2f(700, 290));
+        quit_Entity.setPosition(new Vector2f(700, 330));
         quit_Entity.setScale(0.15f);
         quit_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
 
@@ -123,6 +138,8 @@ public class MainMenu extends BasicGameState {
         int counter = 0;
         g.setColor(Color.black);
         g.drawString("Neues Spiel", 620, start_Position + counter * distance);
+        counter++;
+        g.drawString("Steuerung", 620, start_Position + counter * distance);
         counter++;
         g.drawString("Beenden", 620, start_Position + counter * distance);
         counter++;
