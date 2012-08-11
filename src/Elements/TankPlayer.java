@@ -1,12 +1,10 @@
 package Elements;
 
-import eea.engine.action.basicactions.MoveDownAction;
-import eea.engine.action.basicactions.MoveUpAction;
-import eea.engine.action.basicactions.RotateLeftAction;
-import eea.engine.action.basicactions.RotateRightAction;
+import eea.engine.action.basicactions.*;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.basicevents.KeyDownEvent;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -25,6 +23,10 @@ public class TankPlayer {
     private String texture = "assets/tankBg/tankPlayer.png";    // The tanks texture
     private Entity tank;            // The tank as game Entity
     private Vector2f tankVector;    // The tank as entity
+    private float speedForwards;    // The tanks speed forwards
+    private float speedBackwards;   // The tanks speed backwards
+    private float speedRight;       // The tanks speed to the right
+    private float speedLeft;        // The tanks speed to the left
 
     /**
      * Constructor for the tank class. Gets all parameters from the level
@@ -46,7 +48,7 @@ public class TankPlayer {
      */
     public TankPlayer(String name, int maxlife, int life, int maxshot, int shot,
             int maxmine, int mine, int strength, int speed, int rotation,
-            int scale, int x, int y) throws SlickException {
+            int scale, int x, int y) {
 
         // Set the tanks properties
         this.name = name;
@@ -65,11 +67,15 @@ public class TankPlayer {
 
         this.tank = new Entity("playerTank");
         this.tankVector = new Vector2f(400, 320);
-
-        // Create the tank entity
-        this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
+        try {
+            // Create the tank entity
+            this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
+        } catch (SlickException ex) {
+            Logger.getLogger(TankPlayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
         tank.setScale(0.3f);
         tank.setPosition(tankVector);
+        tank.setRotation(90f);
     }
 
     /**
@@ -78,7 +84,65 @@ public class TankPlayer {
      * @param upPressed
      */
     public void steerForward(KeyDownEvent upPressed) {
-        upPressed.addAction(new MoveUpAction(0.1f));
+        // No switch, because switch can can't be used with float
+
+        // Full up (0)
+        if (tank.getRotation() == 0f) {
+            upPressed.addAction(new MoveUpAction(0.1f));
+        }
+        // Up and right (1-89)
+        else if (tank.getRotation() < 90f) {
+
+            this.speedForwards = (tank.getRotation()/100f)/100;
+            this.speedRight = (tank.getRotation()/100f)/100;
+
+            upPressed.addAction(new MoveUpAction(0.1f));
+            upPressed.addAction(new MoveRightAction(0.1f));
+        }
+        // Right (90)
+        else if (tank.getRotation() == 90f) {
+            upPressed.addAction(new MoveRightAction(0.1f));
+        }
+        // Down and right (91-179)
+        else if (tank.getRotation() < 180f) {
+
+            this.speedForwards = (tank.getRotation()/100f)/100;
+            this.speedRight = (tank.getRotation()/100f)/100;
+
+            upPressed.addAction(new MoveUpAction(0.1f));
+            upPressed.addAction(new MoveRightAction(0.1f));
+        }
+        // Down (180)
+        else if (tank.getRotation() == 180f) {
+            upPressed.addAction(new MoveDownAction(0.1f));
+        }
+        // Down and left (181 - 269)
+        else if (tank.getRotation() < 270f) {
+
+            this.speedForwards = (tank.getRotation()/100f)/100;
+            this.speedRight = (tank.getRotation()/100f)/100;
+
+            upPressed.addAction(new MoveUpAction(0.1f));
+            upPressed.addAction(new MoveRightAction(0.1f));
+        }
+        // Left (270)
+        else if (tank.getRotation() == 270f) {
+            upPressed.addAction(new MoveLeftAction(0.1f));
+        }
+        //Up and left (271 - 359)
+        else if (tank.getRotation() < 360) {
+
+            this.speedForwards = (tank.getRotation()/100f)/100;
+            this.speedRight = (tank.getRotation()/100f)/100;
+
+            upPressed.addAction(new MoveUpAction(0.1f));
+            upPressed.addAction(new MoveRightAction(0.1f));
+        }
+        // (360)
+        else if (tank.getRotation() == 360f) {
+            upPressed.addAction(new MoveUpAction(0.1f));
+        }
+        System.out.println(tank.getRotation());
         tank.addComponent(upPressed);
     }
 
