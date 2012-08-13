@@ -11,6 +11,14 @@ public class Wall {
 		this.x = x;
 		this.y = y;
 	}
+	
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("Wall ").append(this.maxlife).append(" ").append(this.life).append(" ").append(this.rotation)
+		.append(" ").append(this.scale).append(" ").append(this.x).append(" ").append(this.y);
+		
+		return sb.toString();
+	}
 
 	public int getMaxlife() {
 		return maxlife;
