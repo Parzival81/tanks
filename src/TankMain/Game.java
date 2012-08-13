@@ -59,8 +59,7 @@ public class Game extends BasicGameState {
         entityManager.addEntity(stateID, esc_Listener);
 
         // Create a new tank object
-        // TODO pass all data to the constructor
-        TankPlayer PlayerTank = new TankPlayer(
+        Tank PlayerTank = new Tank(
                 gamelevel.getGameTankP().getName(),
                 gamelevel.getGameTankP().getMaxLife(),
                 gamelevel.getGameTankP().getLife(),
@@ -75,7 +74,7 @@ public class Game extends BasicGameState {
                 gamelevel.getGameTankP().getX(),
                 gamelevel.getGameTankP().getY());
 
-        // TankPlayer controlls
+        // Tank controlls
         // Pass the event listners to the tank obejct
         PlayerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
         PlayerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));

@@ -36,13 +36,13 @@ public class DataReader {
 			// Es gibt mehrere Borders, Tanks und Walls, weshalb hier LinkedList
 			// verwendet wird um zu speichern
 			LinkedList<Border> borderlist = new LinkedList<Border>();
-			LinkedList<TankPlayer> tanklist = new LinkedList<TankPlayer>();
+			LinkedList<Tank> tanklist = new LinkedList<Tank>();
 			LinkedList<Wall> walllist = new LinkedList<Wall>();
 
 			// File darf nur 1 Map und 1 TankPlayerOne enthalten, weshalb hier keine
 			// LinkedList verwendet wurde
 			Map m = null;
-			TankPlayer p = null;
+			Tank p = null;
 
 			
 			// ---------- ITERATION UEBER TUPELS -----------
@@ -61,7 +61,7 @@ public class DataReader {
 					ll.add(sb.toString().replaceAll("\"", ""));
 				}
 
-				// Ab hier werden die Tupels unterschieden, ob TankPlayer, Wall oder... 
+				// Ab hier werden die Tupels unterschieden, ob Tank, Wall oder... 
 				if (line.contains("Map")) {
 
 					System.out.println(ll.toString());
@@ -80,7 +80,7 @@ public class DataReader {
 					
 					// Hier wird ueberprueft ob es ein Player ist oder Opponent
 					if (line.contains("PlayerOne")) {
-						p = new TankPlayer(ll.get(1), Integer.valueOf(2),
+						p = new Tank(ll.get(1), Integer.valueOf(2),
 								Integer.valueOf(3), Integer.valueOf(4),
 								Integer.valueOf(5), Integer.valueOf(6),
 								Integer.valueOf(7), Integer.valueOf(8),
@@ -88,7 +88,7 @@ public class DataReader {
 								Integer.valueOf(11), Integer.valueOf(12),
 								Integer.valueOf(13));
 					} else {
-						TankPlayer ta = new TankPlayer(ll.get(1), Integer.valueOf(2),
+						Tank ta = new Tank(ll.get(1), Integer.valueOf(2),
 								Integer.valueOf(3), Integer.valueOf(4),
 								Integer.valueOf(5), Integer.valueOf(6),
 								Integer.valueOf(7), Integer.valueOf(8),
@@ -113,7 +113,7 @@ public class DataReader {
 
 			}
 			// Die Listen werden hier in Arrays konvertiert damit...
-			TankPlayer[] o = tanklist.toArray(new TankPlayer[tanklist.size()]);
+			Tank[] o = tanklist.toArray(new Tank[tanklist.size()]);
 			Wall[] w = walllist.toArray(new Wall[walllist.size()]);
 			Border[] b = borderlist.toArray(new Border[borderlist.size()]);
 			
