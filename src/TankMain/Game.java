@@ -30,6 +30,10 @@ public class Game extends BasicGameState {
         entityManager = StateBasedEntityManager.getInstance();
 
     }
+    
+    public String toString(){
+    	return gamelevel.toString();
+    }
 
     @Override
     public void init(GameContainer arg0, StateBasedGame arg1)
@@ -59,6 +63,7 @@ public class Game extends BasicGameState {
         entityManager.addEntity(stateID, esc_Listener);
 
         // Create a new tank object
+        // TODO pass all data to the constructor
         Tank PlayerTank = new Tank(
                 gamelevel.getGameTankP().getName(),
                 gamelevel.getGameTankP().getMaxLife(),
@@ -74,7 +79,7 @@ public class Game extends BasicGameState {
                 gamelevel.getGameTankP().getX(),
                 gamelevel.getGameTankP().getY());
 
-        // Tank controlls
+        // TankPlayer controlls
         // Pass the event listners to the tank obejct
         PlayerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
         PlayerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
@@ -83,6 +88,8 @@ public class Game extends BasicGameState {
 
         entityManager.addEntity(stateID, PlayerTank.getTank());
 
+        
+        System.out.println(gamelevel.toString());
     }
 
     @Override
