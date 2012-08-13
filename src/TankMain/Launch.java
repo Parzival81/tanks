@@ -15,7 +15,7 @@ public class Launch extends StateBasedGame {
 
     public Launch() {
         // Set the name of the game
-        super("TANKS");
+        super("Tanks ~beyond infinity~");
     }
 
     public static void main(String[] args) throws SlickException {

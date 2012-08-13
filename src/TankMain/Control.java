@@ -1,5 +1,6 @@
 package TankMain;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -8,9 +9,14 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import eea.engine.action.Action;
+import eea.engine.action.basicactions.ChangeStateInitAction;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.entity.StateBasedEntityManager;
+import eea.engine.event.ANDEvent;
+import eea.engine.event.basicevents.MouseClickedEvent;
+import eea.engine.event.basicevents.MouseEnteredEvent;
 
 public class Control  extends BasicGameState{
     private int stateID; 							// Identifier von diesem BasicGameState
@@ -30,13 +36,34 @@ public class Control  extends BasicGameState{
         background.setPosition(new Vector2f(400, 300));
         background.addComponent(new ImageRenderComponent(new Image("/assets/menu-control.png")));
         entityManager.addEntity(stateID, background);
+        
+        
+        
+        // Back-Button
+        Entity backEntity = new Entity("Back");
+        backEntity.setPosition(new Vector2f(145, 550));
+        backEntity.setScale(0.15f);
+        backEntity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
+        // Erstelle das Ausloese-Event und die zugehoerige Action
+        ANDEvent backEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+        Action backAction = new ChangeStateInitAction(Launch.MENU);
+        backEntity.addComponent(backEvents);
+        backEvents.addAction(backAction);
+        // Fuege die Entity zum StateBasedEntityManager hinzu
+        entityManager.addEntity(this.stateID, backEntity);
+
+        
 		
 	}
 
 	@Override
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2)
+	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
-		entityManager.renderEntities(arg0, arg1, arg2);
+		entityManager.renderEntities(arg0, arg1, g);
+		
+
+        g.setColor(Color.black);
+        g.drawString("Menu", 125, 540);
 		
 	}
 
