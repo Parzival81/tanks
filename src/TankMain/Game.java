@@ -61,7 +61,7 @@ public class Game extends BasicGameState {
         esc_pressed.addAction(new ChangeStateAction(Launch.MENU));
         esc_Listener.addComponent(esc_pressed);
         entityManager.addEntity(stateID, esc_Listener);
-
+        
         for (Tank opponents: gamelevel.getGameTankO()){
         	Tank opponentTank = new Tank(
                     opponents.getName(),
@@ -79,7 +79,7 @@ public class Game extends BasicGameState {
                     opponents.getY()
         			
         			);
-
+            opponentTank.setTexture("assets/tankBg/tankOppenent.png");
             entityManager.addEntity(stateID, opponentTank.getTank());
         }
         

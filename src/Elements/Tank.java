@@ -143,7 +143,7 @@ public class Tank {
             upPressed.addAction(new MoveUpAction(speedX));
             upPressed.addAction(new MoveLeftAction(speedY));
         }
-
+                        
         tank.addComponent(upPressed);
     }
 
@@ -175,6 +175,15 @@ public class Tank {
     public void steerLeft(KeyDownEvent leftPressed) {
         leftPressed.addAction(new RotateLeftAction(0.1f));
         tank.addComponent(leftPressed);
+    }
+    
+    public void setTexture (String texture) {
+        this.texture = texture;
+        try {
+            this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
+        } catch (SlickException ex) {
+            Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
