@@ -103,13 +103,10 @@ public class MainMenu extends BasicGameState {
         // Fuege die Entity zum StateBasedEntityManager hinzu
         entityManager.addEntity(this.stateID, about_Entity);
         
-        
-        
-        
 
         // Beenden
         Entity quit_Entity = new Entity("Beenden");
-        quit_Entity.setPosition(new Vector2f(700, 370));
+        quit_Entity.setPosition(new Vector2f(700, 410));
         quit_Entity.setScale(0.15f);
         quit_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
 
@@ -173,6 +170,8 @@ public class MainMenu extends BasicGameState {
         g.drawString("Steuerung", 620, start_Position + counter * distance);
         counter++;
         g.drawString("Highscore", 620, start_Position + counter * distance);
+        counter++;
+        g.drawString("About", 620, start_Position + counter * distance);
         counter++;
         g.drawString("Beenden", 620, start_Position + counter * distance);
         counter++;
