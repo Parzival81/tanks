@@ -1,12 +1,15 @@
 package Elements;
 
+import eea.engine.action.Action;
 import eea.engine.action.basicactions.*;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
+import eea.engine.event.Event;
 import eea.engine.event.basicevents.KeyDownEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -77,11 +80,12 @@ public class Tank {
         tank.setPosition(tankVector);
         // TODO: Remove, should be set by this.rotation
         tank.setRotation(360f);
+        
+
     }
 
-    @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         sb.append(this.name).append(" ").append(this.maxlife).append(" ").append(this.life).append(" ").append(this.maxshot)
                 .append(" ").append(this.shot).append(" ").append(this.maxmine).append(" ").append(this.mine).append(" ").append(this.strength).append(" ").append(this.speed)
                 .append(" ").append(this.rotation).append(" ").append(this.scale).append(" ").append(this.x).append(" ").append(this.y);
@@ -94,51 +98,7 @@ public class Tank {
      * @param upPressed
      */
     public void steerForward(KeyDownEvent upPressed) {
-
-        float speedX = 0f;
-        float speedY;
-
-        // Subtract the values so we always have a degree rang from 0 to 90
-        // TODO: tank.getRotation is not updated
-        if (tank.getRotation() <= 90f) {
-            speedX = tank.getRotation();
-        } else if (tank.getRotation() <= 180f) {
-            speedX = tank.getRotation() - 90f;
-        } else if (tank.getRotation() <= 270f) {
-            speedX = tank.getRotation() - 180f;
-        } else if (tank.getRotation() <= 360) {
-            speedX = tank.getRotation() - 270f;
-        }
-
-        // First, we dived by 100 (because we need speed from 0-10)
-        speedX = speedX / 100f;
-
-        // Then multiply it by (100/90) (because 90 is our absolute value)
-        speedX = speedX * (100f / 90f);
-
-        // The speed to the left is always the complement to the up value
-        // E.g. 0.3 -> 0.7; 0.4 -> 0.6
-        speedY = 1f - speedX;
-
-        // Devide the resulting value through 100, because the speed is still
-        // much to fast
-        speedY = speedY * 0.1f;
-        speedX = speedX * 0.1f;
-
-        if (tank.getRotation() <= 90f) {
-            upPressed.addAction(new MoveUpAction(speedY));
-            upPressed.addAction(new MoveRightAction(speedX));
-        } else if (tank.getRotation() <= 180f) {
-            upPressed.addAction(new MoveDownAction(speedX));
-            upPressed.addAction(new MoveRightAction(speedY));
-        } else if (tank.getRotation() <= 270f) {
-            upPressed.addAction(new MoveDownAction(speedY));
-            upPressed.addAction(new MoveLeftAction(speedX));
-        } else if (tank.getRotation() <= 360) {
-            upPressed.addAction(new MoveUpAction(speedX));
-            upPressed.addAction(new MoveLeftAction(speedY));
-        }
-
+        upPressed.addAction(new MoveForwardAction(0.05f));
         tank.addComponent(upPressed);
     }
 
@@ -148,7 +108,7 @@ public class Tank {
      * @param downPressed
      */
     public void steerBack(KeyDownEvent downPressed) {
-        downPressed.addAction(new MoveDownAction(0.05f));
+        downPressed.addAction(new MoveBackwardAction(0.05f));
         tank.addComponent(downPressed);
     }
 
@@ -171,7 +131,7 @@ public class Tank {
         leftPressed.addAction(new RotateLeftAction(0.1f));
         tank.addComponent(leftPressed);
     }
-
+    
     public void setTexture (String texture) {
         this.texture = texture;
         try {
@@ -179,10 +139,6 @@ public class Tank {
         } catch (SlickException ex) {
             Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void fireShot (KeyDownEvent fPressed) {
-        System.out.println("Shot fired!");
     }
 
     /**
