@@ -62,6 +62,27 @@ public class Game extends BasicGameState {
         esc_Listener.addComponent(esc_pressed);
         entityManager.addEntity(stateID, esc_Listener);
 
+        for (Tank opponents: gamelevel.getGameTankO()){
+        	Tank opponentTank = new Tank(
+                    opponents.getName(),
+                    opponents.getMaxLife(),
+                    opponents.getLife(),
+                    opponents.getMaxShot(),
+                    opponents.getShot(),
+                    opponents.getMaxMine(),
+                    opponents.getMine(),
+                    opponents.getStrength(),
+                    opponents.getSpeed(),
+                    opponents.getRotation(),
+                    opponents.getScale(),
+                    opponents.getX(),
+                    opponents.getY()
+        			
+        			);
+
+            entityManager.addEntity(stateID, opponentTank.getTank());
+        }
+        
         // Create a new tank object
         // TODO pass all data to the constructor
         Tank PlayerTank = new Tank(
@@ -78,6 +99,8 @@ public class Game extends BasicGameState {
                 gamelevel.getGameTankP().getScale(),
                 gamelevel.getGameTankP().getX(),
                 gamelevel.getGameTankP().getY());
+        
+        
 
         // TankPlayer controlls
         // Pass the event listners to the tank obejct
