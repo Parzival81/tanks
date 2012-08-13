@@ -89,6 +89,20 @@ public class MainMenu extends BasicGameState {
         // Fuege die Entity zum StateBasedEntityManager hinzu
         entityManager.addEntity(this.stateID, control_Entity);
         
+     // About
+        Entity about_Entity = new Entity("About");
+        about_Entity.setPosition(new Vector2f(700, 370));
+        about_Entity.setScale(0.15f);
+        about_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
+
+        // Erstelle das Ausloese-Event und die zugehoerige Action
+        ANDEvent aboutEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+        Action about_Action = new ChangeStateInitAction(Launch.About);
+        about_Entity.addComponent(aboutEvents);
+        aboutEvents.addAction(about_Action);
+        // Fuege die Entity zum StateBasedEntityManager hinzu
+        entityManager.addEntity(this.stateID, about_Entity);
+        
         
         
         

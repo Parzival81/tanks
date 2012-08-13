@@ -13,6 +13,7 @@ public class Launch extends StateBasedGame {
     public static final int GAME = 1;
     public static final int CONTROL = 2;
     public static final int HIGHSCORE = 3;
+    public static final int About = 4;
 
     public Launch() {
         // Set the name of the game
@@ -45,12 +46,14 @@ public class Launch extends StateBasedGame {
         addState(new Game(GAME));
         addState (new Control(CONTROL));
         addState (new Highscore(HIGHSCORE));
+        addState (new About(About));
 
         // Add the states
         StateBasedEntityManager.getInstance().addState(MENU);
         StateBasedEntityManager.getInstance().addState(GAME);
         StateBasedEntityManager.getInstance().addState(CONTROL);
         StateBasedEntityManager.getInstance().addState(HIGHSCORE);
+        StateBasedEntityManager.getInstance().addState(About);
 
     }
 }
