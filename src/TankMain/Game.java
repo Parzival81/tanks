@@ -110,9 +110,6 @@ public class Game extends BasicGameState {
         PlayerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
 
         entityManager.addEntity(stateID, PlayerTank.getTank());
-
-        
-        System.out.println(gamelevel.toString());
     }
 
     @Override
