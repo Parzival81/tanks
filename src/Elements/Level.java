@@ -15,6 +15,26 @@ public class Level {
 		this.gameWall = w;
 		
 	}
+	
+	public String toString(){
+		StringBuffer sb = new StringBuffer ();
+		
+		sb.append(this.gameMap.toString());
+		
+		for (Border b : this.gameBorder){
+			sb.append("\n").append(b.toString());
+		}
+		sb.append("\n").append(this.gameTankP.toString());
+		
+		for (Tank t : this.gameTankO){
+			sb.append("\n").append(t.toString());
+		}
+		for (Wall w : this.gameWall){
+			sb.append("\n").append(w.toString());
+		}
+		
+		return sb.toString();
+	}
 
 	public Map getGameMap() {
 		return gameMap;
