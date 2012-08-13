@@ -67,8 +67,6 @@ public class Tank {
 
         this.tank = new Entity("playerTank");
         this.tankVector = new Vector2f(this.x, this.y);
-        System.out.println("X value: " + this.x);
-        System.out.println("Y value: " + this.y);
         try {
             // Create the tank entity
             this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
