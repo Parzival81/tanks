@@ -13,6 +13,16 @@ public class Map {
 		this.elapsedTime = elapsedTime;
 		this.shots = shots;
 	}
+	
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("Map").append(" ").append("\"").append(this.background).append("\"").append(" ")
+		.append("\"").append(this.actualmap).append("\"").append(" ").append("\"").append(this.nextmap)
+		.append("\"").append(" ").append(this.maxduration).append(" ").append(this.elapsedTime).append(" ")
+		.append(this.shots);
+		
+		return sb.toString();
+	}
 
 	public String getBackground() {
 		return background;

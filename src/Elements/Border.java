@@ -9,6 +9,14 @@ public class Border {
 		this.width = width;
 		this.height = height;
 	}
+	
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("Border").append(" ").append(this.x0).append(" ").append(this.y0).append(" ").append(this.width)
+		.append(" ").append(this.height);
+		
+		return sb.toString();
+	}
 
 	public int getX0() {
 		return x0;

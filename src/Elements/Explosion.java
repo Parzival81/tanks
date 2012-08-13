@@ -9,6 +9,14 @@ public class Explosion {
 		this.x = x;
 		this.y = y;
 	}
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("Explosion ").append(this.width).append(" ").append(this.height).append(" ").append(this.speed)
+		.append(" ").append(this.x).append(" ").append(this.y);
+		
+		return sb.toString();
+	}
+	
 	public int getWidth() {
 		return width;
 	}
