@@ -75,7 +75,7 @@ public class Tank {
         }
         tank.setScale(0.3f);
         tank.setPosition(tankVector);
-        tank.setRotation(0f);
+        tank.setRotation(90f);
     }
 
     /**
@@ -85,71 +85,77 @@ public class Tank {
      */
     public void steerForward(KeyDownEvent upPressed) {
         // No switch, because switch can can't be used with float
-        
-        // Up and right (0-90)
-        if (tank.getRotation() < 90f) {
-            
-            // Calculate the tanks speed to the left and the right
+
+        // Up and right (0-90 degrees)
+        if (tank.getRotation() <= 90f) {
             
             // First, we dived by 100 (because we need speed from 0-10)
-            this.speedRight = tank.getRotation()/100f;
-            
+            this.speedRight = tank.getRotation() / 100f;
+
             // Then multiply it by (100/90) (because 90 is our absolute value)
-            this.speedRight = this.speedRight*(100f/90);
-            
+            this.speedRight = this.speedRight * (100f / 90f);
+
             // The speed to the left is always the complement to the up value
             // E.g. 0.3 -> 0.7; 0.4 -> 0.6
-            this.speedForwards = 1-this.speedRight;
-            
+            this.speedForwards = 1f - this.speedRight;
 
+            // Devide the resulting value through 100, because the speed is still
+            // much to fast
+            this.speedRight = this.speedRight * 0.1f;
+            this.speedForwards = this.speedForwards * 0.1f;
+
+            // Debug output
             System.out.println(this.speedRight);
             System.out.println(this.speedForwards);
-
+            
+            // Move the entity with teh calculated speed
             upPressed.addAction(new MoveUpAction(speedForwards));
             upPressed.addAction(new MoveRightAction(speedRight));
         }
-        // Right (90)
-        else if (tank.getRotation() == 90f) {
-            upPressed.addAction(new MoveRightAction(0.1f));
-        }
-        // Down and right (91-179)
-        else if (tank.getRotation() < 180f) {
+         // Down and right (91-180)
+        else if (tank.getRotation() <= 180f) {
+            
+            // 
+            
+            // First, we dived by 100 (because we need speed from 0-10)
+            this.speedRight = tank.getRotation() / 100f;
 
-            this.speedForwards = (tank.getRotation()/100f)/100;
-            this.speedRight = (tank.getRotation()/100f)/100;
+            // Then multiply it by (100/90) (because 90 is our absolute value)
+            this.speedRight = this.speedRight * (100f / 90f);
 
-            upPressed.addAction(new MoveUpAction(0.1f));
-            upPressed.addAction(new MoveRightAction(0.1f));
-        }
-        // Down (180)
-        else if (tank.getRotation() == 180f) {
-            upPressed.addAction(new MoveDownAction(0.1f));
-        }
-        // Down and left (181 - 269)
-        else if (tank.getRotation() < 270f) {
+            // The speed to the left is always the complement to the up value
+            // E.g. 0.3 -> 0.7; 0.4 -> 0.6
+            this.speedBackwards = 1f - this.speedRight;
 
-            this.speedForwards = (tank.getRotation()/100f)/100;
-            this.speedRight = (tank.getRotation()/100f)/100;
+            // Devide the resulting value through 100, because the speed is still
+            // much to fast
+            this.speedRight = this.speedRight * 0.1f;
+            this.speedBackwards = this.speedBackwards * 0.1f;
 
-            upPressed.addAction(new MoveUpAction(0.1f));
-            upPressed.addAction(new MoveRightAction(0.1f));
+            // Debug output
+            System.out.println(this.speedRight);
+            System.out.println(this.speedForwards);
+            
+            // Move the entity with teh calculated speed
+            upPressed.addAction(new MoveUpAction(speedForwards));
+            upPressed.addAction(new MoveRightAction(speedRight));
         }
-        // Left (270)
-        else if (tank.getRotation() == 270f) {
-            upPressed.addAction(new MoveLeftAction(0.1f));
-        }
-        //Up and left (271 - 359)
-        else if (tank.getRotation() < 360) {
+        // Down and left (181 - 270)
+        else if (tank.getRotation() <= 270f) {
 
-            this.speedForwards = (tank.getRotation()/100f)/100;
-            this.speedRight = (tank.getRotation()/100f)/100;
+            this.speedForwards = (tank.getRotation() / 100f) / 100;
+            this.speedRight = (tank.getRotation() / 100f) / 100;
 
             upPressed.addAction(new MoveUpAction(0.1f));
             upPressed.addAction(new MoveRightAction(0.1f));
-        }
-        // (360)
-        else if (tank.getRotation() == 360f) {
+        } //Up and left (271 - 360)
+        else if (tank.getRotation() <= 360) {
+
+            this.speedForwards = (tank.getRotation() / 100f) / 100;
+            this.speedRight = (tank.getRotation() / 100f) / 100;
+
             upPressed.addAction(new MoveUpAction(0.1f));
+            upPressed.addAction(new MoveRightAction(0.1f));
         }
         tank.addComponent(upPressed);
     }
@@ -165,8 +171,7 @@ public class Tank {
     }
 
     /**
-     * Steers the tank entity to the right
-     * Rotates the entity to right
+     * Steers the tank entity to the right Rotates the entity to right
      *
      * @param rightPressed
      */
@@ -176,8 +181,7 @@ public class Tank {
     }
 
     /**
-     * Steers the tank entity to the left
-     * Rotates the entity to the left
+     * Steers the tank entity to the left Rotates the entity to the left
      *
      * @param leftPressed
      */
