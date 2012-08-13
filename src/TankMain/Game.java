@@ -79,7 +79,7 @@ public class Game extends BasicGameState {
                     opponents.getY()
         			
         			);
-
+            opponentTank.setTexture("assets/tankBg/tankOppenent.png");
             entityManager.addEntity(stateID, opponentTank.getTank());
         }
         
