@@ -79,8 +79,9 @@ public class Tank {
         tank.setRotation(360f);
     }
 
+    @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append(this.name).append(" ").append(this.maxlife).append(" ").append(this.life).append(" ").append(this.maxshot)
                 .append(" ").append(this.shot).append(" ").append(this.maxmine).append(" ").append(this.mine).append(" ").append(this.strength).append(" ").append(this.speed)
                 .append(" ").append(this.rotation).append(" ").append(this.scale).append(" ").append(this.x).append(" ").append(this.y);
@@ -93,7 +94,7 @@ public class Tank {
      * @param upPressed
      */
     public void steerForward(KeyDownEvent upPressed) {
-        
+
         float speedX = 0f;
         float speedY;
 
@@ -137,7 +138,7 @@ public class Tank {
             upPressed.addAction(new MoveUpAction(speedX));
             upPressed.addAction(new MoveLeftAction(speedY));
         }
-                        
+
         tank.addComponent(upPressed);
     }
 
@@ -170,7 +171,7 @@ public class Tank {
         leftPressed.addAction(new RotateLeftAction(0.1f));
         tank.addComponent(leftPressed);
     }
-    
+
     public void setTexture (String texture) {
         this.texture = texture;
         try {
@@ -178,6 +179,10 @@ public class Tank {
         } catch (SlickException ex) {
             Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void fireShot (KeyDownEvent fPressed) {
+        System.out.println("Shot fired!");
     }
 
     /**

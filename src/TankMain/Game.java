@@ -30,7 +30,7 @@ public class Game extends BasicGameState {
         entityManager = StateBasedEntityManager.getInstance();
 
     }
-    
+
     public String toString(){
     	return gamelevel.toString();
     }
@@ -44,7 +44,7 @@ public class Game extends BasicGameState {
         // Karte gebraucht werden, werden hier gesetzt.
         DataReader dr = new DataReader(currentMap);
         gamelevel = dr.getLevel();
-        
+
         // DARSTELLUNG (DISPLAY)
         // Hier werden alle Attribute auf dem Bildschirm dargestellt
 
@@ -77,12 +77,12 @@ public class Game extends BasicGameState {
                     opponents.getScale(),
                     opponents.getX(),
                     opponents.getY()
-        			
+
         			);
             opponentTank.setTexture("assets/tankBg/tankOppenent.png");
             entityManager.addEntity(stateID, opponentTank.getTank());
         }
-        
+
         // Create a new tank object
         // TODO pass all data to the constructor
         Tank PlayerTank = new Tank(
@@ -99,8 +99,8 @@ public class Game extends BasicGameState {
                 gamelevel.getGameTankP().getScale(),
                 gamelevel.getGameTankP().getX(),
                 gamelevel.getGameTankP().getY());
-        
-        
+
+
 
         // TankPlayer controlls
         // Pass the event listners to the tank obejct
@@ -108,6 +108,7 @@ public class Game extends BasicGameState {
         PlayerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
         PlayerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
         PlayerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
+        PlayerTank.fireShot(new KeyDownEvent(Input.KEY_F));
 
         entityManager.addEntity(stateID, PlayerTank.getTank());
     }
