@@ -77,6 +77,14 @@ public class Tank {
         tank.setPosition(tankVector);
         tank.setRotation(90f);
     }
+    
+    public String toString(){
+    	StringBuffer sb = new StringBuffer();
+    	sb.append(this.name).append(" ").append(this.maxlife).append(" ").append(this.life).append(" ").append(this.maxshot)
+    	.append(" ").append(this.shot).append(" ").append(this.maxmine).append(" ").append(this.mine).append(" ").append(this.strength).append(" ").append(this.speed)
+    	.append(" ").append(this.rotation).append(" ").append(this.scale).append(" ").append(this.x).append(" ").append(this.y);
+    	return sb.toString();
+    }
 
     /**
      * Steers the tank entity forwards
