@@ -66,7 +66,9 @@ public class Tank {
         this.y = y;
 
         this.tank = new Entity("playerTank");
-        this.tankVector = new Vector2f(400, 320);
+        this.tankVector = new Vector2f(this.x, this.y);
+        System.out.println("X value: " + this.x);
+        System.out.println("Y value: " + this.y);
         try {
             // Create the tank entity
             this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
@@ -109,8 +111,6 @@ public class Tank {
             speedX = tank.getRotation() - 270f;
         }
 
-        System.out.println("speed X after if: " + speedX);
-
         // First, we dived by 100 (because we need speed from 0-10)
         speedX = speedX / 100f;
 
@@ -125,10 +125,6 @@ public class Tank {
         // much to fast
         speedY = speedY * 0.1f;
         speedX = speedX * 0.1f;
-
-        // Debug output
-        System.out.println(speedY);
-        System.out.println(speedX);
 
         if (tank.getRotation() <= 90f) {
             upPressed.addAction(new MoveUpAction(speedY));
