@@ -75,7 +75,7 @@ public class Tank {
         }
         tank.setScale(0.3f);
         tank.setPosition(tankVector);
-        tank.setRotation(90f);
+        tank.setRotation(135f);
     }
     
     public String toString(){
@@ -99,7 +99,7 @@ public class Tank {
             
             // First, we dived by 100 (because we need speed from 0-10)
             this.speedRight = tank.getRotation() / 100f;
-
+            
             // Then multiply it by (100/90) (because 90 is our absolute value)
             this.speedRight = this.speedRight * (100f / 90f);
 
@@ -123,10 +123,12 @@ public class Tank {
          // Down and right (91-180)
         else if (tank.getRotation() <= 180f) {
             
-            // 
+            // First, subtract 90 degrees form the value so we have values form
+            // 0 to 90
+            this.speedRight = tank.getRotation()-90;
             
             // First, we dived by 100 (because we need speed from 0-10)
-            this.speedRight = tank.getRotation() / 100f;
+            this.speedRight = this.speedRight / 100f;
 
             // Then multiply it by (100/90) (because 90 is our absolute value)
             this.speedRight = this.speedRight * (100f / 90f);
@@ -145,7 +147,7 @@ public class Tank {
             System.out.println(this.speedForwards);
             
             // Move the entity with teh calculated speed
-            upPressed.addAction(new MoveUpAction(speedForwards));
+            upPressed.addAction(new MoveDownAction(speedBackwards));
             upPressed.addAction(new MoveRightAction(speedRight));
         }
         // Down and left (181 - 270)

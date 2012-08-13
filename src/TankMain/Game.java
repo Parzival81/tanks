@@ -44,7 +44,7 @@ public class Game extends BasicGameState {
         // Karte gebraucht werden, werden hier gesetzt.
         DataReader dr = new DataReader(currentMap);
         gamelevel = dr.getLevel();
-
+        
         // DARSTELLUNG (DISPLAY)
         // Hier werden alle Attribute auf dem Bildschirm dargestellt
 
