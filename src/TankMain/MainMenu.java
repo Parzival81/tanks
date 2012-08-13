@@ -57,6 +57,23 @@ public class MainMenu extends BasicGameState {
         entityManager.addEntity(this.stateID, new_Game_Entity);
         
         
+        // HIGHSCORE
+        String highscore = "Highscore";
+        Entity scoreEntity = new Entity(highscore);
+        scoreEntity.setPosition(new Vector2f(700, 330));
+        scoreEntity.setScale(0.15f);
+        scoreEntity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
+
+        // Erstelle das Ausloese-Event und die zugehoerige Action
+        ANDEvent scoreEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+        Action scoreAction = new ChangeStateInitAction(Launch.HIGHSCORE);
+        scoreEntity.addComponent(scoreEvents);
+        scoreEvents.addAction(scoreAction);
+        // Fuege die Entity zum StateBasedEntityManager hinzu
+        entityManager.addEntity(this.stateID, scoreEntity);
+        
+        
+        
         
         // Control
         Entity control_Entity = new Entity("Steuerung");
@@ -78,7 +95,7 @@ public class MainMenu extends BasicGameState {
 
         // Beenden
         Entity quit_Entity = new Entity("Beenden");
-        quit_Entity.setPosition(new Vector2f(700, 330));
+        quit_Entity.setPosition(new Vector2f(700, 370));
         quit_Entity.setScale(0.15f);
         quit_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
 
@@ -140,6 +157,8 @@ public class MainMenu extends BasicGameState {
         g.drawString("Neues Spiel", 620, start_Position + counter * distance);
         counter++;
         g.drawString("Steuerung", 620, start_Position + counter * distance);
+        counter++;
+        g.drawString("Highscore", 620, start_Position + counter * distance);
         counter++;
         g.drawString("Beenden", 620, start_Position + counter * distance);
         counter++;
