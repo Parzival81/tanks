@@ -20,8 +20,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class MainMenu extends BasicGameState {
 
-    private int stateID; 							// Identifier von diesem BasicGameState
-    private StateBasedEntityManager entityManager; 	// zugehoeriger entityManager
+    private int stateID; 							
+    private StateBasedEntityManager entityManager; 	
     private final int distance = 40;
     private final int start_Position = 240;
 
@@ -35,109 +35,91 @@ public class MainMenu extends BasicGameState {
      */
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
-        // Hintergrund
+    	
+        /* ---- Background Entity ---- */
         Entity background = new Entity("menu");
         background.setPosition(new Vector2f(400, 300));
         background.addComponent(new ImageRenderComponent(new Image("/assets/menu.png")));
         entityManager.addEntity(stateID, background);
 
-        // New Game
+        /* ---- New Game Button Entity ---- */
         String new_Game = "Neues Spiel starten";
         Entity new_Game_Entity = new Entity(new_Game);
         new_Game_Entity.setPosition(new Vector2f(700, 250));
         new_Game_Entity.setScale(0.15f);
         new_Game_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
-
-        // Erstelle das Ausloese-Event und die zugehoerige Action
         ANDEvent mainEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
         Action new_Game_Action = new ChangeStateInitAction(Launch.GAME);
         new_Game_Entity.addComponent(mainEvents);
         mainEvents.addAction(new_Game_Action);
-        // Fuege die Entity zum StateBasedEntityManager hinzu
         entityManager.addEntity(this.stateID, new_Game_Entity);
         
         
-        // HIGHSCORE
+        /* ---- Highscore Button Entity ---- */
         String highscore = "Highscore";
         Entity scoreEntity = new Entity(highscore);
         scoreEntity.setPosition(new Vector2f(700, 330));
         scoreEntity.setScale(0.15f);
         scoreEntity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
-
-        // Erstelle das Ausloese-Event und die zugehoerige Action
         ANDEvent scoreEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
         Action scoreAction = new ChangeStateInitAction(Launch.HIGHSCORE);
         scoreEntity.addComponent(scoreEvents);
         scoreEvents.addAction(scoreAction);
-        // Fuege die Entity zum StateBasedEntityManager hinzu
         entityManager.addEntity(this.stateID, scoreEntity);
         
-        
-        
-        
-        // Control
+                
+        /* ---- Control Button Entity ---- */
         Entity control_Entity = new Entity("Steuerung");
         control_Entity.setPosition(new Vector2f(700, 290));
         control_Entity.setScale(0.15f);
         control_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
-
-        // Erstelle das Ausloese-Event und die zugehoerige Action
         ANDEvent controlEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
         Action control_Action = new ChangeStateInitAction(Launch.CONTROL);
         control_Entity.addComponent(controlEvents);
         controlEvents.addAction(control_Action);
-        // Fuege die Entity zum StateBasedEntityManager hinzu
         entityManager.addEntity(this.stateID, control_Entity);
         
-     // About
+        /* ---- About Button Entity ---- */
         Entity about_Entity = new Entity("About");
         about_Entity.setPosition(new Vector2f(700, 370));
         about_Entity.setScale(0.15f);
         about_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
-
-        // Erstelle das Ausloese-Event und die zugehoerige Action
         ANDEvent aboutEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
         Action about_Action = new ChangeStateInitAction(Launch.About);
         about_Entity.addComponent(aboutEvents);
         aboutEvents.addAction(about_Action);
-        // Fuege die Entity zum StateBasedEntityManager hinzu
         entityManager.addEntity(this.stateID, about_Entity);
         
 
-        // Beenden
+        /* ---- Quit Button Entity ---- */
         Entity quit_Entity = new Entity("Beenden");
         quit_Entity.setPosition(new Vector2f(700, 410));
         quit_Entity.setScale(0.15f);
         quit_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
-
-        // Erstelle das Ausloese-Event und die zugehoerige Action
         ANDEvent mainEvents_q = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
         Action quit_Action = new QuitAction();
         mainEvents_q.addAction(quit_Action);
         quit_Entity.addComponent(mainEvents_q);
-
-        // Fuege die Entity zum StateBasedEntityManager hinzu
         entityManager.addEntity(this.stateID, quit_Entity);
         
         
-        //N Taste fuer "Neues Spiel"
+        /* ---- N Listener Entity ---- */
         Entity n_Listener = new Entity("N_Listener");
         KeyPressedEvent n_pressed = new KeyPressedEvent(Input.KEY_N);
         Action loadFirstLevel = new Action(){
-
 			@Override
 			public void update(GameContainer arg0, StateBasedGame arg1,
 					int arg2, Component arg3) {
-				//TODO level muss auf "maps/map00.tanks" gesetzt werden; Zugang zu Attributen der Klasse Game noch unbekannt
-			}
-        	
+				//TODO Launch.game.setCurrentMap(...) -> "maps/map00.tanks" 
+			}       	
         };
         n_pressed.addAction(loadFirstLevel);
         n_pressed.addAction(new ChangeStateAction(Launch.GAME));
         n_Listener.addComponent(n_pressed);
         entityManager.addEntity(stateID, n_Listener);
         
-        //ESC taste fuer "back to game"
+        
+        /* ---- Escape Listener Entity ---- */
         Entity esc_Listener = new Entity("ESC_Listener");
         KeyPressedEvent esc_pressed = new KeyPressedEvent (Input.KEY_ESCAPE);
         esc_pressed.addAction(new ChangeStateAction(Launch.GAME));

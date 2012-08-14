@@ -21,7 +21,7 @@ public class Game extends BasicGameState {
     private int stateID;
     private StateBasedEntityManager entityManager;
     private Level gamelevel;
-    // Die Paths werden hier eingebunden
+
     // The current map. Should be set via a GUI
     private String currentMap = "maps/BattleOfTheSeelowHeights.tanks";
 
@@ -30,62 +30,58 @@ public class Game extends BasicGameState {
         entityManager = StateBasedEntityManager.getInstance();
 
     }
-
+    
+    /* ---- toString method ---- */
     public String toString(){
     	return gamelevel.toString();
     }
+    
+    
+    /* ---- Getter + Setter for currentMap ---- */
+	public String getCurrentMap() {
+		return currentMap;
+	}
+	public void setCurrentMap(String currentMap) {
+		this.currentMap = currentMap;
+	}
 
-    @Override
+	@Override
     public void init(GameContainer arg0, StateBasedGame arg1)
             throws SlickException {
-        // EINLESEN VON DATEI
-        // Hier wird eine Karte eingelesen und alle Attribute die fuer die
-        // Darstellung der
-        // Karte gebraucht werden, werden hier gesetzt.
+		
+        // DataReader reads a data and converts the String into a level object
         DataReader dr = new DataReader(currentMap);
         gamelevel = dr.getLevel();
 
-        // DARSTELLUNG (DISPLAY)
-        // Hier werden alle Attribute auf dem Bildschirm dargestellt
 
-        // Hintergrund
+        /* ---- Background Entity ---- */
         Entity background = new Entity("menu");
         background.setPosition(new Vector2f(400, 300));
         background.addComponent(new ImageRenderComponent(new Image(gamelevel
                 .getGameMap().getBackground())));
         entityManager.addEntity(stateID, background);
 
-        // Escape Taste
+        /* ---- Escape Listener ---- */
         Entity esc_Listener = new Entity("ESC_Listener");
         KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
         esc_pressed.addAction(new ChangeStateAction(Launch.MENU));
         esc_Listener.addComponent(esc_pressed);
         entityManager.addEntity(stateID, esc_Listener);
 
+        /* ---- Opponents Entity ---- */
         for (Tank opponents: gamelevel.getGameTankO()){
         	Tank opponentTank = new Tank(
-                    opponents.getName(),
-                    opponents.getMaxLife(),
-                    opponents.getLife(),
-                    opponents.getMaxShot(),
-                    opponents.getShot(),
-                    opponents.getMaxMine(),
-                    opponents.getMine(),
-                    opponents.getStrength(),
-                    opponents.getSpeed(),
-                    opponents.getRotation(),
-                    opponents.getScale(),
-                    opponents.getX(),
+                    opponents.getName(),opponents.getMaxLife(),opponents.getLife(),opponents.getMaxShot(),
+                    opponents.getShot(),opponents.getMaxMine(),opponents.getMine(),opponents.getStrength(),
+                    opponents.getSpeed(),opponents.getRotation(),opponents.getScale(),opponents.getX(),
                     opponents.getY()
-
         			);
             opponentTank.setTexture("assets/tankBg/tankOppenent.png");
             entityManager.addEntity(stateID, opponentTank.getTank());
         }
 
-        // Create a new tank object
-        // TODO pass all data to the constructor
-        Tank PlayerTank = new Tank(
+        /* ---- Player Tank Entity ---- */
+        Tank playerTank = new Tank(
                 gamelevel.getGameTankP().getName(),
                 gamelevel.getGameTankP().getMaxLife(),
                 gamelevel.getGameTankP().getLife(),
@@ -99,37 +95,25 @@ public class Game extends BasicGameState {
                 gamelevel.getGameTankP().getScale(),
                 gamelevel.getGameTankP().getX(),
                 gamelevel.getGameTankP().getY());
+        
+        		// controls
+		        playerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
+		        playerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
+		        playerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
+		        playerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
 
-
-
-        // TankPlayer controlls
-        // Pass the event listners to the tank obejct
-        PlayerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
-        PlayerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
-        PlayerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
-        PlayerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
-        PlayerTank.fireShot(new KeyDownEvent(Input.KEY_F));
-
-        entityManager.addEntity(stateID, PlayerTank.getTank());
+        entityManager.addEntity(stateID, playerTank.getTank());
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g)
             throws SlickException {
-
-        // alle Entities werden gerendert
         entityManager.renderEntities(container, game, g);
-
-        // g.drawImage(new Image(playerTank), gamelevel.getGameTankP().getX(),
-        // gamelevel.getGameTankP().getY());
-
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
-
-        // alle Entities werden geupdated
         entityManager.updateEntities(container, game, delta);
     }
 

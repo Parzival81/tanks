@@ -14,6 +14,7 @@ public class Launch extends StateBasedGame {
     public static final int CONTROL = 2;
     public static final int HIGHSCORE = 3;
     public static final int About = 4;
+    
 
     public Launch() {
         // Set the name of the game
@@ -39,9 +40,10 @@ public class Launch extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer arg0) throws SlickException {
-        // Add the states (menu and game) to the StateBasedGame
-        // The two states are set in there own classes (MainMenu and Game)
-        // The first state is run first (so menu has to come first)
+        /* Add the states (menu and game) to the StateBasedGame
+        The two states are set in there own classes (MainMenu and Game)
+        The first state is run first (so menu has to come first) */
+ 
         addState(new MainMenu(MENU));
         addState(new Game(GAME));
         addState (new Control(CONTROL));
