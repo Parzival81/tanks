@@ -31,25 +31,22 @@ public class Control  extends BasicGameState{
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-        // Hintergrund
+		
+        /* ---- Background Entity ---- */
         Entity background = new Entity("menu");
         background.setPosition(new Vector2f(400, 300));
         background.addComponent(new ImageRenderComponent(new Image("/assets/menu-control.png")));
         entityManager.addEntity(stateID, background);
         
-        
-        
-        // Back-Button
+        /* ---- Back Button Entity ---- */
         Entity backEntity = new Entity("Back");
         backEntity.setPosition(new Vector2f(145, 550));
         backEntity.setScale(0.15f);
         backEntity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
-        // Erstelle das Ausloese-Event und die zugehoerige Action
         ANDEvent backEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
         Action backAction = new ChangeStateInitAction(Launch.MENU);
         backEntity.addComponent(backEvents);
         backEvents.addAction(backAction);
-        // Fuege die Entity zum StateBasedEntityManager hinzu
         entityManager.addEntity(this.stateID, backEntity);
 
         
@@ -60,11 +57,8 @@ public class Control  extends BasicGameState{
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		entityManager.renderEntities(arg0, arg1, g);
-		
-
         g.setColor(Color.black);
         g.drawString("Menu", 125, 540);
-		
 	}
 
 	@Override
