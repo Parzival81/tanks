@@ -27,58 +27,40 @@ public class DataReader {
 	public Level getLevel() {
 		Level toReturn = null;
 		try {
-			// hier wird file gelesen
 			BufferedReader br = new BufferedReader(new FileReader(path));
-			
-			// line representiert 1 Absatz. Es wird immer bis "\n" gelesen
-			String line;
+			String line; // representing a line in the file
 
-			// Es gibt mehrere Borders, Tanks und Walls, weshalb hier LinkedList
-			// verwendet wird um zu speichern
+			// variable declaration | saving every tuple
 			LinkedList<Border> borderlist = new LinkedList<Border>();
 			LinkedList<Tank> tanklist = new LinkedList<Tank>();
 			LinkedList<Wall> walllist = new LinkedList<Wall>();
-
-			// File darf nur 1 Map und 1 TankPlayerOne enthalten, weshalb hier keine
-			// LinkedList verwendet wurde
 			Map m = null;
 			Tank p = null;
 
-			
-			// ---------- ITERATION UEBER TUPELS -----------
 			while ((line = br.readLine()) != null) {
-				
-				// Alle Attribute eines Tupels werden hier in LinkedList ll gespeichert 
-				LinkedList<String> ll = new LinkedList<String>();
+	
+				LinkedList<String> ll = new LinkedList<String>(); // linked list saves every parameter
 				for (int i = 0; i < line.length(); i++) {
 					StringBuffer sb = new StringBuffer();
 					while (i < line.length() && line.charAt(i) != ' ') {
 						sb.append(line.charAt(i));
 						i++;
 					}
-					
-					// Das Hinzufuegen erfolgt immer nachdem man " entfernt bzw. gefiltert hat
 					ll.add(sb.toString().replaceAll("\"", ""));
-				}
-
-				// Ab hier werden die Tupels unterschieden, ob Tank, Wall oder... 
+				} 
+				
+				// depend on what kind of tuple it is, there will be an instantiation of the respective class
 				if (line.contains("Map")) {
-
 					System.out.println(ll.toString());
 					m = new Map(ll.get(1), ll.get(2), ll.get(3),
 							Integer.valueOf(ll.get(4)), Integer.valueOf(ll
 									.get(5)), Integer.valueOf(ll.get(6)));
-
 				} else if (line.contains("Border")) {
-
 					Border bo = new Border(Integer.valueOf(ll.get(1)),
 							Integer.valueOf(ll.get(2)), Integer.valueOf(ll
 									.get(3)), Integer.valueOf(ll.get(4)));
 					borderlist.add(bo);
-
 				} else if (line.contains("Tank")) {
-					
-					// Hier wird ueberprueft ob es ein Player ist oder Opponent
 					if (line.contains("PlayerOne")) {
 						p = new Tank(ll.get(1), Integer.valueOf(2),
 								Integer.valueOf(3), Integer.valueOf(4),
@@ -98,31 +80,30 @@ public class DataReader {
 						tanklist.add(ta);
 					}
 				} else if (line.contains("Wall")) {
-
 					Wall wa = new Wall(Integer.valueOf(1), Integer.valueOf(2),
 							Integer.valueOf(3), Integer.valueOf(4),
 							Integer.valueOf(5), Integer.valueOf(6));
-
 					walllist.add(wa);
-					
 				} else if (line.contains("Shot")) {
-					// TODO muss noch implementiert werden / noch nicht in der Aufbaustufe 1 vorgesehen
+					// TODO something has to be done here
 				} else if (line.contains("Pickup")) {
-					// TODO muss noch implementiert werden / noch nicht in der Aufbaustufe 1 vorgesehen
+					// TODO something has to be done here
 				}
 
 			}
-			// Die Listen werden hier in Arrays konvertiert damit...
+			// list to array
 			Tank[] o = tanklist.toArray(new Tank[tanklist.size()]);
 			Wall[] w = walllist.toArray(new Wall[walllist.size()]);
 			Border[] b = borderlist.toArray(new Border[borderlist.size()]);
 			
 			
-			// Das Objekt der Klasse Level instanziiert werden kann
+			// instantiation of level
 			toReturn = new Level(m, b, p, o, w);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		// returning the instance
 		return toReturn;
 
 	}
