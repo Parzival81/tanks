@@ -19,8 +19,7 @@ public class Shot extends Entity {
             float strength,
             float rotation,
             float scale,
-            Vector2f position,
-            KeyDownEvent fire) {
+            Vector2f position) {
 
         super(id);
 
@@ -28,15 +27,16 @@ public class Shot extends Entity {
         this.rotation = rotation;
         this.scale = scale;
         this.position = position;
-        this.fire = fire;
 
         // TODO: Override the map set scale
         // this.setScale(this.scale);
         this.setScale(0.1f);
         
+        /* --- Set the shots initial postiton --- */
         this.setPosition(this.position);
 
         /* --- Move the shot in the rotation of the tank --- */
+        /* --- add the texture --- */
         try {
             this.addComponent(new ImageRenderComponent(new Image("assets/ui/shoot.png")));
         } catch (SlickException e) {

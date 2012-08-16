@@ -73,9 +73,8 @@ public class Game extends BasicGameState {
         for (Tank opponents : gamelevel.getGameTankO()) {
             Tank opponentTank = gamelevel.getGameTankO()[i];
             try {
-                opponentTank.setTexture("assets/tankBg/tankOppenent"+i+".png");
-            }
-            catch (Exception e) {
+                opponentTank.setTexture("assets/tankBg/tankOppenent" + i + ".png");
+            } catch (Exception e) {
                 opponentTank.setTexture("assets/tankBg/tankOppenent0.png");
             }
             entityManager.addEntity(stateID, opponentTank);
@@ -89,7 +88,12 @@ public class Game extends BasicGameState {
         playerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
         playerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
         playerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
-        playerTank.fireShot(new KeyDownEvent(Input.KEY_F));
+        
+        Input fireInput = arg0.getInput();
+        
+        if (fireInput.isKeyDown(Input.KEY_F)) {
+            playerTank.fireShot();
+        }
 
         entityManager.addEntity(stateID, playerTank);
         entityManager.addEntity(stateID, playerTank.getShot());
