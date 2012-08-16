@@ -59,6 +59,9 @@ public class Tank extends Entity {
         this.setScale(scale);
         this.setPosition(new Vector2f(x, y));
         
+        // TODO: Currently we set the scale manualy, should be set by map
+        this.setScale(0.3f);
+        
         /* --- Add the default texture --- */
         try {
             this.addComponent(new ImageRenderComponent(new Image(this.texture)));
