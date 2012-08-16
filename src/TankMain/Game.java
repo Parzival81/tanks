@@ -1,6 +1,7 @@
 package TankMain;
 
-import Elements.*;
+import Entity.Tank;
+import Level.Level;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.*;
 import eea.engine.component.Component;
@@ -21,7 +22,6 @@ public class Game extends BasicGameState {
     private int stateID;
     private StateBasedEntityManager entityManager;
     private Level gamelevel;
-
     // The current map. Should be set via a GUI
     private String currentMap = "maps/BattleOfTheSeelowHeights.tanks";
 
@@ -30,25 +30,25 @@ public class Game extends BasicGameState {
         entityManager = StateBasedEntityManager.getInstance();
 
     }
-    
-    /* ---- toString method ---- */
-    public String toString(){
-    	return gamelevel.toString();
-    }
-    
-    
-    /* ---- Getter + Setter for currentMap ---- */
-	public String getCurrentMap() {
-		return currentMap;
-	}
-	public void setCurrentMap(String currentMap) {
-		this.currentMap = currentMap;
-	}
 
-	@Override
+    /* ---- toString method ---- */
+    public String toString() {
+        return gamelevel.toString();
+    }
+
+    /* ---- Getter + Setter for currentMap ---- */
+    public String getCurrentMap() {
+        return currentMap;
+    }
+
+    public void setCurrentMap(String currentMap) {
+        this.currentMap = currentMap;
+    }
+
+    @Override
     public void init(GameContainer arg0, StateBasedGame arg1)
             throws SlickException {
-		
+
         // DataReader reads a data and converts the String into a level object
         DataReader dr = new DataReader(currentMap);
         gamelevel = dr.getLevel();
@@ -69,38 +69,26 @@ public class Game extends BasicGameState {
         entityManager.addEntity(stateID, esc_Listener);
 
         /* ---- Opponents Entity ---- */
-        for (Tank opponents: gamelevel.getGameTankO()){
-        	Tank opponentTank = new Tank(
-                    opponents.getName(),opponents.getMaxLife(),opponents.getLife(),opponents.getMaxShot(),
-                    opponents.getShot(),opponents.getMaxMine(),opponents.getMine(),opponents.getStrength(),
-                    opponents.getSpeed(),opponents.getRotation(),opponents.getScale(),opponents.getX(),
-                    opponents.getY()
-        			);
-            opponentTank.setTexture("assets/tankBg/tankOppenent.png");
+        int i = 0;
+        for (Tank opponents : gamelevel.getGameTankO()) {
+            Tank opponentTank = gamelevel.getGameTankO()[i];
+            try {
+                opponentTank.setTexture("assets/tankBg/tankOppenent"+i+".png");
+            }
+            catch (Exception e) {
+                opponentTank.setTexture("assets/tankBg/tankOppenent0.png");
+            }
             entityManager.addEntity(stateID, opponentTank.getTank());
+            i++;
         }
-
         /* ---- Player Tank Entity ---- */
-        Tank playerTank = new Tank(
-                gamelevel.getGameTankP().getName(),
-                gamelevel.getGameTankP().getMaxLife(),
-                gamelevel.getGameTankP().getLife(),
-                gamelevel.getGameTankP().getMaxShot(),
-                gamelevel.getGameTankP().getShot(),
-                gamelevel.getGameTankP().getMaxMine(),
-                gamelevel.getGameTankP().getMine(),
-                gamelevel.getGameTankP().getStrength(),
-                gamelevel.getGameTankP().getSpeed(),
-                gamelevel.getGameTankP().getRotation(),
-                gamelevel.getGameTankP().getScale(),
-                gamelevel.getGameTankP().getX(),
-                gamelevel.getGameTankP().getY());
-        
-        		// controls
-		        playerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
-		        playerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
-		        playerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
-		        playerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
+        Tank playerTank = gamelevel.getGameTankP();
+
+        /* ---- Controls --- */
+        playerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
+        playerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
+        playerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
+        playerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
 
         entityManager.addEntity(stateID, playerTank.getTank());
     }

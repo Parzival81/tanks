@@ -1,15 +1,12 @@
-package Elements;
+package Entity;
 
-import eea.engine.action.Action;
 import eea.engine.action.basicactions.*;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
-import eea.engine.event.Event;
 import eea.engine.event.basicevents.KeyDownEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -18,8 +15,7 @@ import org.newdawn.slick.geom.Vector2f;
  *
  * @author Patrick Dorrington
  */
-public class Tank {
-
+public class Tank extends Entity {
     private String name;
     private int maxlife, life, maxshot, shot, maxmine, mine, strength, speed,
             rotation, scale, x, y;
@@ -49,10 +45,10 @@ public class Tank {
      * @param x
      * @param y
      */
-    public Tank(String name, int maxlife, int life, int maxshot, int shot,
+    public Tank(String id, String name, int maxlife, int life, int maxshot, int shot,
             int maxmine, int mine, int strength, int speed, int rotation,
             int scale, int x, int y) {
-
+        super(id);
         // Set the tanks properties
         this.name = name;
         this.maxlife = maxlife;
@@ -218,39 +214,7 @@ public class Tank {
         this.speed = speed;
     }
 
-    public void setRotation(int rotation) {
-        this.rotation = rotation;
-    }
-
-    public void setScale(int scale) {
-        this.scale = scale;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
     public int getSpeed() {
         return speed;
-    }
-
-    public int getRotation() {
-        return rotation;
-    }
-
-    public int getScale() {
-        return scale;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 }

@@ -1,8 +1,11 @@
-package Elements;
+package Entity;
 
-public class Explosion {
+import eea.engine.entity.Entity;
+
+public class Explosion extends Entity {
 	private int width, height, speed, x, y;
-	public Explosion(int width, int height, int speed, int x, int y){
+	public Explosion(String id, int width, int height, int speed, int x, int y){
+            super(id);
 		this.width = width;
 		this.height = height;
 		this.speed = speed;

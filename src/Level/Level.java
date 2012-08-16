@@ -1,4 +1,9 @@
-package Elements;
+package Level;
+
+import Entity.Border;
+import Entity.Map;
+import Entity.Tank;
+import Entity.Wall;
 
 public class Level {
 	private Map gameMap;

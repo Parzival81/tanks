@@ -1,11 +1,15 @@
 package TankMain;
 
+import Entity.Wall;
+import Entity.Map;
+import Entity.Border;
+import Entity.Tank;
+import Level.Level;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import Elements.*;
 
 public class DataReader {
 
@@ -36,7 +40,7 @@ public class DataReader {
 			LinkedList<Wall> walllist = new LinkedList<Wall>();
 			Map m = null;
 			Tank p = null;
-
+                        int j = 0;
 			while ((line = br.readLine()) != null) {
 	
 				LinkedList<String> ll = new LinkedList<String>(); // linked list saves every parameter
@@ -52,17 +56,17 @@ public class DataReader {
 				// depend on what kind of tuple it is, there will be an instantiation of the respective class
 				if (line.contains("Map")) {
 					System.out.println(ll.toString());
-					m = new Map(ll.get(1), ll.get(2), ll.get(3),
+					m = new Map("Map"+j, ll.get(1), ll.get(2), ll.get(3),
 							Integer.valueOf(ll.get(4)), Integer.valueOf(ll
 									.get(5)), Integer.valueOf(ll.get(6)));
 				} else if (line.contains("Border")) {
-					Border bo = new Border(Integer.valueOf(ll.get(1)),
+					Border bo = new Border("Boarder"+j, Integer.valueOf(ll.get(1)),
 							Integer.valueOf(ll.get(2)), Integer.valueOf(ll
 									.get(3)), Integer.valueOf(ll.get(4)));
 					borderlist.add(bo);
 				} else if (line.contains("Tank")) {
 					if (line.contains("PlayerOne")) {
-						p = new Tank(ll.get(1), Integer.valueOf(2),
+						p = new Tank("PlayerOne", ll.get(1), Integer.valueOf(2),
 								Integer.valueOf(3), Integer.valueOf(4),
 								Integer.valueOf(5), Integer.valueOf(6),
 								Integer.valueOf(7), Integer.valueOf(8),
@@ -70,7 +74,7 @@ public class DataReader {
 								Integer.valueOf(11), Integer.valueOf(12),
 								Integer.valueOf(13));
 					} else {
-						Tank ta = new Tank(ll.get(1), Integer.valueOf(2),
+						Tank ta = new Tank("Oppenent Tank" + j, ll.get(1), Integer.valueOf(2),
 								Integer.valueOf(3), Integer.valueOf(4),
 								Integer.valueOf(5), Integer.valueOf(6),
 								Integer.valueOf(7), Integer.valueOf(8),
@@ -80,7 +84,7 @@ public class DataReader {
 						tanklist.add(ta);
 					}
 				} else if (line.contains("Wall")) {
-					Wall wa = new Wall(Integer.valueOf(1), Integer.valueOf(2),
+					Wall wa = new Wall("Wall"+j, Integer.valueOf(1), Integer.valueOf(2),
 							Integer.valueOf(3), Integer.valueOf(4),
 							Integer.valueOf(5), Integer.valueOf(6));
 					walllist.add(wa);
@@ -89,7 +93,7 @@ public class DataReader {
 				} else if (line.contains("Pickup")) {
 					// TODO something has to be done here
 				}
-
+                                j++;
 			}
 			// list to array
 			Tank[] o = tanklist.toArray(new Tank[tanklist.size()]);
