@@ -16,16 +16,13 @@ import org.newdawn.slick.geom.Vector2f;
  * @author Patrick Dorrington
  */
 public class Tank extends Entity {
+
     private String name;
     private int maxlife, life, maxshot, shot, maxmine, mine, strength, speed,
             rotation, scale, x, y;
     private String texture = "assets/tankBg/tankPlayer.png";    // The tanks texture
-    private Entity tank;            // The tank as game Entity
     private Vector2f tankVector;    // The tank as entity
-    private float speedForwards;    // The tanks speed forwards
-    private float speedBackwards;   // The tanks speed backwards
-    private float speedRight;       // The tanks speed to the right
-    private float speedLeft;        // The tanks speed to the left
+    private Entity tankShot;        // The tanks shot
 
     /**
      * Constructor for the tank class. Gets all parameters from the level
@@ -63,20 +60,21 @@ public class Tank extends Entity {
         this.scale = scale;
         this.x = x;
         this.y = y;
-
-        this.tank = new Entity("playerTank");
-        this.tankVector = new Vector2f(this.x, this.y);
+        
+        // TODO: Move to map given postition
+        // this.tankVector = new Vector2f(this.x, this.y);
+        this.tankVector = new Vector2f(800f/2f, 600f/2f);
         try {
             // Create the tank entity
-            this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
+            this.addComponent(new ImageRenderComponent(new Image(this.texture)));
         } catch (SlickException ex) {
             Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tank.setScale(0.3f);
-        tank.setPosition(tankVector);
+        this.setScale(0.3f);
+        this.setPosition(tankVector);
         // TODO: Remove, should be set by this.rotation
-        tank.setRotation(360f);
-        
+        this.setRotation(360f);
+
 
     }
 
@@ -95,7 +93,7 @@ public class Tank extends Entity {
      */
     public void steerForward(KeyDownEvent upPressed) {
         upPressed.addAction(new MoveForwardAction(0.05f));
-        tank.addComponent(upPressed);
+        this.addComponent(upPressed);
     }
 
     /**
@@ -105,7 +103,7 @@ public class Tank extends Entity {
      */
     public void steerBack(KeyDownEvent downPressed) {
         downPressed.addAction(new MoveBackwardAction(0.05f));
-        tank.addComponent(downPressed);
+        this.addComponent(downPressed);
     }
 
     /**
@@ -115,7 +113,7 @@ public class Tank extends Entity {
      */
     public void steerRight(KeyDownEvent rightPressed) {
         rightPressed.addAction(new RotateRightAction(0.1f));
-        tank.addComponent(rightPressed);
+        this.addComponent(rightPressed);
     }
 
     /**
@@ -125,25 +123,16 @@ public class Tank extends Entity {
      */
     public void steerLeft(KeyDownEvent leftPressed) {
         leftPressed.addAction(new RotateLeftAction(0.1f));
-        tank.addComponent(leftPressed);
+        this.addComponent(leftPressed);
     }
-    
-    public void setTexture (String texture) {
+
+    public void setTexture(String texture) {
         this.texture = texture;
         try {
-            this.tank.addComponent(new ImageRenderComponent(new Image(this.texture)));
+            this.addComponent(new ImageRenderComponent(new Image(this.texture)));
         } catch (SlickException ex) {
             Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    /**
-     * Return the tank entity
-     *
-     * @return
-     */
-    public Entity getTank() {
-        return this.tank;
     }
 
     public String getName() {
@@ -162,8 +151,8 @@ public class Tank extends Entity {
         return maxshot;
     }
 
-    public int getShot() {
-        return shot;
+    public Entity getShot() {
+        return this.tankShot;
     }
 
     public int getMaxMine() {
@@ -217,4 +206,25 @@ public class Tank extends Entity {
     public int getSpeed() {
         return speed;
     }
+
+    /**
+     * Fire a shot from the tanks position
+     *
+     */
+    public void fireShot(KeyDownEvent fire) {
+        this.tankShot = new Shot(
+                "tankShot",
+                this.getStrength(),
+                this.getRotation(),
+                this.getScale(),
+                this.getPosition(),
+                fire);
+    }
+    public float getX() {
+        return this.getPosition().getX();
+    }
+    public float getY() {
+        return this.getPosition().getY();
+    }
+    
 }

@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import Elements.*;
+import Entity.*;
 
 import de.tu_darmstadt.gdi1.tanks.model.exceptions.SemanticException;
 import de.tu_darmstadt.gdi1.tanks.model.exceptions.SyntaxException;

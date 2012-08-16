@@ -78,7 +78,7 @@ public class Game extends BasicGameState {
             catch (Exception e) {
                 opponentTank.setTexture("assets/tankBg/tankOppenent0.png");
             }
-            entityManager.addEntity(stateID, opponentTank.getTank());
+            entityManager.addEntity(stateID, opponentTank);
             i++;
         }
         /* ---- Player Tank Entity ---- */
@@ -89,8 +89,10 @@ public class Game extends BasicGameState {
         playerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
         playerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
         playerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
+        playerTank.fireShot(new KeyDownEvent(Input.KEY_F));
 
-        entityManager.addEntity(stateID, playerTank.getTank());
+        entityManager.addEntity(stateID, playerTank);
+        entityManager.addEntity(stateID, playerTank.getShot());
     }
 
     @Override
