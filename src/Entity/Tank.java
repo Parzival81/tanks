@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 /**
- * Represents the players tank in the game
+ * Represents the tanks in the game
  *
  * @author Patrick Dorrington
  */
@@ -25,7 +25,8 @@ public class Tank extends Entity {
     /**
      * Constructor for the tank class. Gets all parameters from the level
      * object.
-     *
+     * 
+     * @param id
      * @param name
      * @param maxlife
      * @param life
@@ -38,7 +39,7 @@ public class Tank extends Entity {
      * @param rotation
      * @param scale
      * @param x
-     * @param y
+     * @param y 
      */
     public Tank(String id, String name, int maxlife, int life, int maxshot, int shot,
             int maxmine, int mine, int strength, int speed, int rotation,
