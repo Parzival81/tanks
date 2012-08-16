@@ -18,10 +18,8 @@ import org.newdawn.slick.geom.Vector2f;
 public class Tank extends Entity {
 
     private String name;
-    private int maxlife, life, maxshot, shot, maxmine, mine, strength, speed,
-            rotation, scale, x, y;
+    private int maxlife, life, maxshot, shot, maxmine, mine, strength, speed;
     private String texture = "assets/tankBg/tankPlayer.png";    // The tanks texture
-    private Vector2f tankVector;    // The tank as entity
     private Entity tankShot;        // The tanks shot
 
     /**
@@ -56,33 +54,23 @@ public class Tank extends Entity {
         this.mine = mine;
         this.strength = strength;
         this.speed = speed;
-        this.rotation = rotation;
-        this.scale = scale;
-        this.x = x;
-        this.y = y;
+        this.setRotation(rotation);
+        this.setScale(scale);
+        this.setPosition(new Vector2f(x, y));
         
-        // TODO: Move to map given postition
-        // this.tankVector = new Vector2f(this.x, this.y);
-        this.tankVector = new Vector2f(800f/2f, 600f/2f);
+        /* --- Add the default texture --- */
         try {
-            // Create the tank entity
             this.addComponent(new ImageRenderComponent(new Image(this.texture)));
         } catch (SlickException ex) {
             Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.setScale(0.3f);
-        this.setPosition(tankVector);
-        // TODO: Remove, should be set by this.rotation
-        this.setRotation(360f);
-
-
     }
 
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append(this.name).append(" ").append(this.maxlife).append(" ").append(this.life).append(" ").append(this.maxshot)
                 .append(" ").append(this.shot).append(" ").append(this.maxmine).append(" ").append(this.mine).append(" ").append(this.strength).append(" ").append(this.speed)
-                .append(" ").append(this.rotation).append(" ").append(this.scale).append(" ").append(this.x).append(" ").append(this.y);
+                .append(" ").append(this.getRotation()).append(" ").append(this.getScale()).append(" ").append(this.getPosition().getX()).append(" ").append(this.getPosition().getY());
         return sb.toString();
     }
 

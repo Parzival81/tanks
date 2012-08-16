@@ -102,6 +102,7 @@ public class Game extends BasicGameState {
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
         
+        /* --- Fire tank shot ---*/
         Input fireInput = container.getInput();
 
         if (fireInput.isKeyDown(Input.KEY_F)) {
