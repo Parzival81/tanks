@@ -11,7 +11,6 @@ import org.newdawn.slick.geom.Vector2f;
 public class Shot extends Entity {
 
     float strength, rotation, scale;
-    KeyDownEvent fire;
     Vector2f position;
 
     public Shot(
@@ -42,7 +41,6 @@ public class Shot extends Entity {
         } catch (SlickException e) {
             System.out.println("The asset can't be found!");
         }
-        this.fire.addAction(new MoveForwardAction(0.1f));
 
     }
 

@@ -90,13 +90,6 @@ public class Game extends BasicGameState {
         playerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
 
         entityManager.addEntity(stateID, playerTank);
-
-        Input fireInput = arg0.getInput();
-
-        if (fireInput.isKeyDown(Input.KEY_F)) {
-            playerTank.fireShot();
-            entityManager.addEntity(stateID, playerTank.getShot());
-        }
     }
 
     @Override
@@ -108,6 +101,14 @@ public class Game extends BasicGameState {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
+        
+        Input fireInput = container.getInput();
+
+        if (fireInput.isKeyDown(Input.KEY_F)) {
+            gamelevel.getGameTankP().fireShot();
+            entityManager.addEntity(stateID, gamelevel.getGameTankP().getShot());
+        }
+
         entityManager.updateEntities(container, game, delta);
     }
 
