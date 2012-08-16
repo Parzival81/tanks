@@ -1,10 +1,8 @@
 package TankMain;
 
-import Entity.Tank;
+import Entity.*;
 import Level.Level;
-import eea.engine.action.Action;
 import eea.engine.action.basicactions.*;
-import eea.engine.component.Component;
 import eea.engine.component.render.*;
 import eea.engine.entity.*;
 import eea.engine.event.basicevents.*;
@@ -83,11 +81,19 @@ public class Game extends BasicGameState {
         /* ---- Player Tank Entity ---- */
         Tank playerTank = gamelevel.getGameTankP();
 
-        /* ---- Controls --- */
+        /* ---- Player Tank Controls --- */
         playerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
         playerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
         playerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
         playerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
+
+        /* ---- Wall ---- */
+        int j = 0;
+        for (Wall wall : gamelevel.getGameWall()) {
+            Wall wa = gamelevel.getGameWall()[j];
+            entityManager.addEntity(stateID, wa);
+            j++;
+        }
 
         entityManager.addEntity(stateID, playerTank);
     }
@@ -101,7 +107,7 @@ public class Game extends BasicGameState {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
-        
+
         /* --- Fire tank shot ---*/
         Input fireInput = container.getInput();
 

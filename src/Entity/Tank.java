@@ -25,7 +25,7 @@ public class Tank extends Entity {
     /**
      * Constructor for the tank class. Gets all parameters from the level
      * object.
-     * 
+     *
      * @param id
      * @param name
      * @param maxlife
@@ -39,7 +39,7 @@ public class Tank extends Entity {
      * @param rotation
      * @param scale
      * @param x
-     * @param y 
+     * @param y
      */
     public Tank(String id, String name, int maxlife, int life, int maxshot, int shot,
             int maxmine, int mine, int strength, int speed, int rotation,
@@ -56,15 +56,9 @@ public class Tank extends Entity {
         this.strength = strength;
         this.speed = speed;
         this.setRotation(rotation);
-        this.setScale(scale);
+        this.setScale(scale*0.1f);
         this.setPosition(new Vector2f(x, y));
-        
-        System.out.println(x);
-        System.out.println(y);
-        
-        // TODO: Currently we set the scale manualy, should be set by map
-        this.setScale(0.3f);
-        
+
         /* --- Add the default texture --- */
         try {
             this.addComponent(new ImageRenderComponent(new Image(this.texture)));
@@ -220,5 +214,5 @@ public class Tank extends Entity {
     public float getY() {
         return this.getPosition().getY();
     }
-    
+
 }

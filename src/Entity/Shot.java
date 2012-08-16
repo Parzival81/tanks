@@ -30,18 +30,17 @@ public class Shot extends Entity {
         // TODO: Override the map set scale
         // this.setScale(this.scale);
         this.setScale(0.1f);
-        
+
         /* --- Set the shots initial postiton --- */
         this.setPosition(this.position);
 
         /* --- Move the shot in the rotation of the tank --- */
         /* --- add the texture --- */
         try {
-            this.addComponent(new ImageRenderComponent(new Image("assets/ui/shoot.png")));
+            this.addComponent(new ImageRenderComponent(new Image("assets/fx/TankShot.png")));
         } catch (SlickException e) {
             System.out.println("The asset can't be found!");
         }
-        System.out.println(rotation);
         this.setRotation(rotation);
         LoopEvent loop = new LoopEvent();
         loop.addAction(new MoveForwardAction(1f));
