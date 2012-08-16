@@ -88,15 +88,15 @@ public class Game extends BasicGameState {
         playerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
         playerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
         playerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
-        
-        Input fireInput = arg0.getInput();
-        
-        if (fireInput.isKeyDown(Input.KEY_F)) {
-            playerTank.fireShot();
-        }
 
         entityManager.addEntity(stateID, playerTank);
-        entityManager.addEntity(stateID, playerTank.getShot());
+
+        Input fireInput = arg0.getInput();
+
+        if (fireInput.isKeyDown(Input.KEY_F)) {
+            playerTank.fireShot();
+            entityManager.addEntity(stateID, playerTank.getShot());
+        }
     }
 
     @Override

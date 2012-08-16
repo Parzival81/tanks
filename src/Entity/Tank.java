@@ -218,6 +218,7 @@ public class Tank extends Entity {
                 this.getRotation(),
                 this.getScale(),
                 this.getPosition());
+        System.out.println("Shot created");
     }
     public float getX() {
         return this.getPosition().getX();
