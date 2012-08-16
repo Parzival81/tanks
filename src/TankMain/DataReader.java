@@ -66,27 +66,27 @@ public class DataReader {
                     borderlist.add(bo);
                 } else if (line.contains("Tank")) {
                     if (line.contains("PlayerOne")) {
-                        p = new Tank("PlayerOne", ll.get(1), Integer.valueOf(2),
-                                Integer.valueOf(3), Integer.valueOf(4),
-                                Integer.valueOf(5), Integer.valueOf(6),
-                                Integer.valueOf(7), Integer.valueOf(8),
-                                Integer.valueOf(9), Integer.valueOf(10),
-                                Integer.valueOf(11), Integer.valueOf(12),
-                                Integer.valueOf(13));
+                        p = new Tank("PlayerOne", ll.get(1), Integer.valueOf(ll.get(2)),
+                                Integer.valueOf(ll.get(3)), Integer.valueOf(ll.get(4)),
+                                Integer.valueOf(ll.get(5)), Integer.valueOf(ll.get(6)),
+                                Integer.valueOf(ll.get(7)), Integer.valueOf(ll.get(8)),
+                                Integer.valueOf(ll.get(9)), Integer.valueOf(ll.get(10)),
+                                Integer.valueOf(ll.get(11)), Integer.valueOf(ll.get(12)),
+                                Integer.valueOf(ll.get(13)));
                     } else {
-                        Tank ta = new Tank("Oppenent Tank" + j, ll.get(1), Integer.valueOf(2),
-                                Integer.valueOf(3), Integer.valueOf(4),
-                                Integer.valueOf(5), Integer.valueOf(6),
-                                Integer.valueOf(7), Integer.valueOf(8),
-                                Integer.valueOf(9), Integer.valueOf(10),
-                                Integer.valueOf(11), Integer.valueOf(12),
-                                Integer.valueOf(13));
+                        Tank ta = new Tank("Oppenent Tank" + j, ll.get(1), Integer.valueOf(ll.get(2)),
+                                Integer.valueOf(ll.get(3)), Integer.valueOf(ll.get(4)),
+                                Integer.valueOf(ll.get(5)), Integer.valueOf(ll.get(6)),
+                                Integer.valueOf(ll.get(7)), Integer.valueOf(ll.get(8)),
+                                Integer.valueOf(ll.get(9)), Integer.valueOf(ll.get(10)),
+                                Integer.valueOf(ll.get(11)), Integer.valueOf(ll.get(12)),
+                                Integer.valueOf(ll.get(13)));
                         tanklist.add(ta);
                     }
                 } else if (line.contains("Wall")) {
-                    Wall wa = new Wall("Wall" + j, Integer.valueOf(1), Integer.valueOf(2),
-                            Integer.valueOf(3), Integer.valueOf(4),
-                            Integer.valueOf(5), Integer.valueOf(6));
+                    Wall wa = new Wall("Wall" + j, Integer.valueOf(ll.get(1)), Integer.valueOf(ll.get(2)),
+                            Integer.valueOf(ll.get(3)), Integer.valueOf(ll.get(4)),
+                            Integer.valueOf(ll.get(5)), Integer.valueOf(ll.get(6)));
                     walllist.add(wa);
                 } else if (line.contains("Shot")) {
                     // TODO something has to be done here
