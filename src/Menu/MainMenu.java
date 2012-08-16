@@ -1,5 +1,6 @@
-package TankMain;
+package Menu;
 
+import TankMain.Launch;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.*;
 import eea.engine.component.Component;
@@ -25,7 +26,7 @@ public class MainMenu extends BasicGameState {
     private final int distance = 40;
     private final int start_Position = 240;
 
-    MainMenu(int id) {
+    public MainMenu(int id) {
         stateID = id;
         entityManager = StateBasedEntityManager.getInstance();
     }
