@@ -200,13 +200,14 @@ public class Tank extends Entity {
      * Fire a shot from the tanks position
      *
      */
-    public void fireShot() {
-        this.tankShot = new Shot(
+    public void fireShot(Vector2f position, float rotation) {
+        
+       this.tankShot = new Shot(
                 "tankShot",
                 this.getStrength(),
-                this.getRotation(),
+                rotation,
                 this.getScale(),
-                this.getPosition());
+                position);
     }
     public float getX() {
         return this.getPosition().getX();

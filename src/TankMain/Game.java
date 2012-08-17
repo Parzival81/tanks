@@ -80,6 +80,7 @@ public class Game extends BasicGameState {
         }
         /* ---- Player Tank Entity ---- */
         Tank playerTank = gamelevel.getGameTankP();
+        // playerTank.addComponent(new CollisionEvent().addAction(new MoveUpEvent(2f))));
 
         /* ---- Player Tank Controls --- */
         playerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
@@ -112,7 +113,11 @@ public class Game extends BasicGameState {
         Input fireInput = container.getInput();
 
         if (fireInput.isKeyDown(Input.KEY_F)) {
-            gamelevel.getGameTankP().fireShot();
+            /* ---- Get the current positon of the tank form the StateBasedEntityManager ---- */
+            gamelevel.getGameTankP().fireShot(
+                    entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition(),
+                    entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getRotation()
+                    );
             entityManager.addEntity(stateID, gamelevel.getGameTankP().getShot());
         }
 
