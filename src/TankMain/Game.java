@@ -6,6 +6,8 @@ import eea.engine.action.basicactions.*;
 import eea.engine.component.render.*;
 import eea.engine.entity.*;
 import eea.engine.event.basicevents.*;
+
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -103,6 +105,20 @@ public class Game extends BasicGameState {
     public void render(GameContainer container, StateBasedGame game, Graphics g)
             throws SlickException {
         entityManager.renderEntities(container, game, g);
+        
+        
+        /* ----- PlayerTank Information On-Screen -----*/
+        entityManager.renderEntities(container, game, g);
+        g.setColor(Color.black);
+        g.drawString("Lebenspunkte: " + gamelevel.getGameTankP().getLife() + " / " + gamelevel.getGameTankP().getMaxLife(), 10, 500);
+        g.drawString("Schuesse: " + gamelevel.getGameTankP().getShot() + " / " + gamelevel.getGameTankP().getMaxShot(), 10, 520);
+        
+        g.drawString("Power: " + gamelevel.getGameTankP().getStrength(), 10, 540);
+        g.drawString("X: " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getX() + 
+        		     " Y: " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getY(), 10, 560);
+
+        
+        
     }
 
     @Override
@@ -122,6 +138,10 @@ public class Game extends BasicGameState {
         }
 
         entityManager.updateEntities(container, game, delta);
+        
+
+        
+
     }
 
     @Override
