@@ -107,15 +107,8 @@ public class MainMenu extends BasicGameState {
         /* ---- N Listener Entity ---- */
         Entity n_Listener = new Entity("N_Listener");
         KeyPressedEvent n_pressed = new KeyPressedEvent(Input.KEY_N);
-        Action loadFirstLevel = new Action(){
-			@Override
-			public void update(GameContainer arg0, StateBasedGame arg1,
-					int arg2, Component arg3) {
-				//TODO Launch.game.setCurrentMap(...) -> "maps/map00.tanks" 
-			}       	
-        };
+        Action loadFirstLevel = new ChangeStateInitAction(Launch.GAME);
         n_pressed.addAction(loadFirstLevel);
-        n_pressed.addAction(new ChangeStateAction(Launch.GAME));
         n_Listener.addComponent(n_pressed);
         entityManager.addEntity(stateID, n_Listener);
         
