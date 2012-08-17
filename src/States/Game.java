@@ -7,6 +7,7 @@ import TankMain.Launch;
 import eea.engine.action.basicactions.*;
 import eea.engine.component.render.*;
 import eea.engine.entity.*;
+import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.*;
 
 import org.newdawn.slick.Color;
@@ -87,10 +88,10 @@ public class Game extends BasicGameState {
         // playerTank.addComponent(new CollisionEvent().addAction(new DestroyEntityAction()));
 
         /* ---- Player Tank Controls --- */
-        playerTank.steerForward(new KeyDownEvent(Input.KEY_UP));
-        playerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
-        playerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
-        playerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
+        playerTank.steerForward(new ANDEvent (new KeyDownEvent(Input.KEY_UP), new MovementDoesntCollideEvent(2, new MoveForwardAction(0.05f))));
+        playerTank.steerBack(new ANDEvent (new KeyDownEvent(Input.KEY_DOWN), new MovementDoesntCollideEvent(2,new MoveBackwardAction(0.05f))));
+        playerTank.steerRight(new ANDEvent (new KeyDownEvent(Input.KEY_RIGHT), new MovementDoesntCollideEvent(2, new RotateRightAction(0.1f))));
+        playerTank.steerLeft(new ANDEvent (new KeyDownEvent(Input.KEY_LEFT), new MovementDoesntCollideEvent(2, new RotateLeftAction(0.1f))));
         entityManager.addEntity(stateID, playerTank);
         
         /* ---- Wall ---- */

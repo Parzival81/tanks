@@ -17,6 +17,8 @@ public class Wall extends Entity {
         this.setRotation(rotation);
         this.setScale(scale*0.1f);
         this.setPosition(new Vector2f(x, y));
+        this.setPacable(false);
+        this.setSize(new Vector2f(50,20));
 
         /* --- Set the default texture ---*/
         try {

@@ -3,6 +3,7 @@ package Entity;
 import eea.engine.action.basicactions.*;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
+import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.KeyDownEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,7 +59,7 @@ public class Tank extends Entity {
         this.setRotation(rotation);
         this.setScale(scale * 0.1f);
         this.setPosition(new Vector2f(x, y));
-
+        this.setSize(new Vector2f(20,20));
         /* --- Add the default texture --- */
         try {
             this.addComponent(new ImageRenderComponent(new Image(this.texture)));
@@ -81,7 +82,7 @@ public class Tank extends Entity {
      *
      * @param upPressed
      */
-    public void steerForward(KeyDownEvent upPressed) {
+    public void steerForward(ANDEvent upPressed) {
         upPressed.addAction(new MoveForwardAction(0.05f));
         this.addComponent(upPressed);
     }
@@ -91,7 +92,7 @@ public class Tank extends Entity {
      *
      * @param downPressed
      */
-    public void steerBack(KeyDownEvent downPressed) {
+    public void steerBack(ANDEvent downPressed) {
         downPressed.addAction(new MoveBackwardAction(0.05f));
         this.addComponent(downPressed);
     }
@@ -101,7 +102,7 @@ public class Tank extends Entity {
      *
      * @param rightPressed
      */
-    public void steerRight(KeyDownEvent rightPressed) {
+    public void steerRight(ANDEvent rightPressed) {
         rightPressed.addAction(new RotateRightAction(0.1f));
         this.addComponent(rightPressed);
     }
@@ -111,7 +112,7 @@ public class Tank extends Entity {
      *
      * @param leftPressed
      */
-    public void steerLeft(KeyDownEvent leftPressed) {
+    public void steerLeft(ANDEvent leftPressed) {
         leftPressed.addAction(new RotateLeftAction(0.1f));
         this.addComponent(leftPressed);
     }
