@@ -100,9 +100,9 @@ public class Game extends BasicGameState {
         }
 
         /* ---- Border ---- */
-        for (Border border : gamelevel.getGameBorder()){
-        	entityManager.addEntity(stateID, border);
-        }
+//        for (Border border : gamelevel.getGameBorder()){
+//        	entityManager.addEntity(stateID, border);
+//        }
     }
 
     @Override

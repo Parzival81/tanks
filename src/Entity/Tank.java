@@ -59,7 +59,7 @@ public class Tank extends Entity {
         this.setRotation(rotation);
         this.setScale(scale * 0.1f);
         this.setPosition(new Vector2f(x, y));
-        this.setSize(new Vector2f(20,20));
+        this.setSize(new Vector2f(40,80));
         /* --- Add the default texture --- */
         try {
             this.addComponent(new ImageRenderComponent(new Image(this.texture)));

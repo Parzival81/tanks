@@ -23,8 +23,9 @@ public class Border extends Entity {
         this.width = width;
         this.height = height;
         this.setScale(1f);
-        this.setPacable(false);
-        this.setSize(new Vector2f(width,height));
+        
+        this.setPacable(true);
+        this.setSize(new Vector2f(0,0));
         
         try {
             this.addComponent(new ImageRenderComponent(new Image("assets/ui/munipack.png")));
