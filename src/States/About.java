@@ -63,8 +63,18 @@ public class About  extends BasicGameState{
     public void render(GameContainer container, StateBasedGame game, Graphics g)
             throws SlickException {
         entityManager.renderEntities(container, game, g);
+        String description = "Tank ~out of infinity~ ist ein Projekt der Veranstaltung Grundlage der \n" +
+        					  "Informatik 1 in der TU-Darmstadt, das von der Gruppe 50 erstellt wurde. \n" +
+        					  "\n" +
+        					  "\n" +
+        					  "Version: pre-Alpha";
+        
         g.setColor(Color.black);
         g.drawString("Menu", 125, 540);
+        
+
+        g.setColor(Color.white);
+        g.drawString(description, 80, 150);
     }
 
     @Override

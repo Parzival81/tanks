@@ -36,7 +36,7 @@ public class Control  extends BasicGameState{
         /* ---- Background Entity ---- */
         Entity background = new Entity("menu");
         background.setPosition(new Vector2f(400, 300));
-        background.addComponent(new ImageRenderComponent(new Image("/assets/menu-control.png")));
+        background.addComponent(new ImageRenderComponent(new Image("/assets/ui/menu-control.png")));
         entityManager.addEntity(stateID, background);
         
         /* ---- Back Button Entity ---- */
@@ -58,8 +58,19 @@ public class Control  extends BasicGameState{
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		entityManager.renderEntities(arg0, arg1, g);
+		
+		String description = " K - Feuer \n " +
+				"Up - vorwaerts fahren \n " +
+				"Down - rueckwaerts fahren \n " +
+				"Left - nach links drehen \n " +
+				"Right - nach rechts drehen";
+		
+		
         g.setColor(Color.black);
         g.drawString("Menu", 125, 540);
+        
+        g.setColor(Color.white);
+        g.drawString(description, 80, 150);
 	}
 
 	@Override
