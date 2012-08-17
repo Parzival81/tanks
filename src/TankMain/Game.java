@@ -89,16 +89,17 @@ public class Game extends BasicGameState {
         playerTank.steerBack(new KeyDownEvent(Input.KEY_DOWN));
         playerTank.steerRight(new KeyDownEvent(Input.KEY_RIGHT));
         playerTank.steerLeft(new KeyDownEvent(Input.KEY_LEFT));
-
+        entityManager.addEntity(stateID, playerTank);
+        
         /* ---- Wall ---- */
-        int j = 0;
-        for (Wall wall : gamelevel.getGameWall()) {
-            Wall wa = gamelevel.getGameWall()[j];
-            entityManager.addEntity(stateID, wa);
-            j++;
+        for (Wall wall : gamelevel.getGameWall()) {            
+            entityManager.addEntity(stateID, wall);
         }
 
-        entityManager.addEntity(stateID, playerTank);
+        /* ---- Border ---- */
+        for (Border border : gamelevel.getGameBorder()){
+        	entityManager.addEntity(stateID, border);
+        }
     }
 
     @Override
@@ -117,6 +118,7 @@ public class Game extends BasicGameState {
         g.drawString("X: " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getX() + 
         		     " Y: " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getY(), 10, 560);
 
+        
         
         
     }
