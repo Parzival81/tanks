@@ -109,17 +109,21 @@ public class Game extends BasicGameState {
             throws SlickException {
         entityManager.renderEntities(container, game, g);
         
-        
-        /* ----- PlayerTank Information On-Screen -----*/
-        entityManager.renderEntities(container, game, g);
-        g.setColor(Color.black);
-        g.drawString("Lebenspunkte: " + gamelevel.getGameTankP().getLife() + " / " + gamelevel.getGameTankP().getMaxLife(), 10, 500);
-        g.drawString("Schuesse: " + gamelevel.getGameTankP().getShot() + " / " + gamelevel.getGameTankP().getMaxShot(), 10, 520);
-        
-        g.drawString("Power: " + gamelevel.getGameTankP().getStrength(), 10, 540);
-        g.drawString("X: " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getX() + 
-        		     " Y: " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getY(), 10, 560);
 
+        /* ----- PlayerTank Information On-Screen -----*/
+        g.drawImage(new Image ("assets/entry.png"), 0, 500);
+        g.setColor(Color.black);
+        g.drawString("Lebenspunkte: " + gamelevel.getGameTankP().getLife() + " / " + gamelevel.getGameTankP().getMaxLife(), 10, 510);
+        g.drawString("Schuesse: " + gamelevel.getGameTankP().getShot() + " / " + gamelevel.getGameTankP().getMaxShot(), 10, 530);
+        g.drawString("Mine: " + gamelevel.getGameTankP().getMine() + " / " + gamelevel.getGameTankP().getMaxMine(), 10, 550);
+        g.drawString("Power: " + gamelevel.getGameTankP().getStrength(), 10, 570);
+     
+
+        g.drawString("Map: " + gamelevel.getGameMap().getActualmap(), 450, 510);
+        g.drawString("Anzahl der Gegner: "+ gamelevel.getGameTankO().length, 450, 530);
+        g.drawString("Verbleibende Zeit: " + gamelevel.getGameMap().getElapsedTime() + " / " + gamelevel.getGameMap().getMaxduration(), 450, 550);
+        g.drawString("Position: " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getX() + 
+   		     " / " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getY(), 450, 570);
         
         
         
