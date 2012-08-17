@@ -5,9 +5,13 @@ import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.basicevents.*;
 import eea.engine.action.basicactions.DestroyEntityAction;
+import eea.engine.*;
+import eea.engine.component.Component;
+import org.newdawn.slick.*;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.StateBasedGame;
 
 public class Shot extends Entity {
 
@@ -27,6 +31,8 @@ public class Shot extends Entity {
         this.rotation = rotation;
         this.scale = scale;
         this.position = position;
+
+        this.setPacable(false);
 
         // TODO: Override the map set scale
         // this.setScale(this.scale);
@@ -51,12 +57,8 @@ public class Shot extends Entity {
 
         DestroyEntityAction dea = new DestroyEntityAction();
         CollisionEvent ce = new CollisionEvent();
-
-        if (!ce.getColidedEntity().getId().equals("PlayerOne")) {
-            System.out.println("Shot destroyed");
-            ce.addAction(dea);
-            this.addComponent(ce);
-        }
+        ce.addAction(dea);
+        this.addComponent(ce);
     }
 
     public String toString() {

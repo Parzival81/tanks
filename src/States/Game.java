@@ -132,7 +132,7 @@ public class Game extends BasicGameState {
         /* --- Fire tank shot ---*/
         Input fireInput = container.getInput();
 
-        if (fireInput.isKeyDown(Input.KEY_F)) {
+        if (fireInput.isKeyPressed(Input.KEY_F)) {
             /* ---- Get the current positon of the tank form the StateBasedEntityManager ---- */
             gamelevel.getGameTankP().fireShot(
                     entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition(),

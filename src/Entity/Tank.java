@@ -56,7 +56,7 @@ public class Tank extends Entity {
         this.strength = strength;
         this.speed = speed;
         this.setRotation(rotation);
-        this.setScale(scale*0.1f);
+        this.setScale(scale * 0.1f);
         this.setPosition(new Vector2f(x, y));
 
         /* --- Add the default texture --- */
@@ -65,6 +65,7 @@ public class Tank extends Entity {
         } catch (SlickException ex) {
             Logger.getLogger(Tank.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.setPacable(false);
     }
 
     public String toString() {
@@ -201,22 +202,26 @@ public class Tank extends Entity {
      *
      */
     public void fireShot(Vector2f position, float rotation) {
-        
-       this.tankShot = new Shot(
-                "tankShot",
-                this.getStrength(),
-                rotation,
-                this.getScale(),
-                position);
+        if (this.shot > 0) {
+            this.shot--;
+            this.tankShot = new Shot(
+                    "tankShot",
+                    this.getStrength(),
+                    rotation,
+                    this.getScale(),
+                    position);
+        }
     }
+
     public float getX() {
         return this.getPosition().getX();
     }
+
     public float getY() {
         return this.getPosition().getY();
     }
+
     public Entity getTankShot() {
         return this.tankShot;
     }
-
 }
