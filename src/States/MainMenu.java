@@ -1,4 +1,4 @@
-package Menu;
+package States;
 
 import TankMain.Launch;
 import eea.engine.action.Action;

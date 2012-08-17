@@ -1,9 +1,10 @@
 package TankMain;
 
-import Menu.About;
-import Menu.Control;
-import Menu.Highscore;
-import Menu.MainMenu;
+import States.Game;
+import States.About;
+import States.Control;
+import States.Highscore;
+import States.MainMenu;
 import eea.engine.entity.StateBasedEntityManager;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;

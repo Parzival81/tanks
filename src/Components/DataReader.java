@@ -1,4 +1,4 @@
-package TankMain;
+package Components;
 
 import Entity.Border;
 import Entity.Map;
