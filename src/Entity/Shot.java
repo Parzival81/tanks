@@ -34,8 +34,6 @@ public class Shot extends Entity {
         /* --- Set the shots initial postiton --- */
         this.setPosition(this.position);
 
-        System.out.println("Shot fired at X: " + this.position.getX() + " - Y: " + this.position.getY());
-        
         /* --- Move the shot in the rotation of the tank --- */
         /* --- add the texture --- */
         try {

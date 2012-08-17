@@ -140,8 +140,8 @@ public class Tank extends Entity {
         return maxshot;
     }
 
-    public Entity getShot() {
-        return this.tankShot;
+    public int getShot() {
+        return this.shot;
     }
 
     public int getMaxMine() {
@@ -214,6 +214,9 @@ public class Tank extends Entity {
     }
     public float getY() {
         return this.getPosition().getY();
+    }
+    public Entity getTankShot() {
+        return this.tankShot;
     }
 
 }
