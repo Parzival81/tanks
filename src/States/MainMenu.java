@@ -86,7 +86,7 @@ public class MainMenu extends BasicGameState {
         about_Entity.setScale(0.15f);
         about_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent aboutEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
-        Action about_Action = new ChangeStateInitAction(Launch.About);
+        Action about_Action = new ChangeStateInitAction(Launch.ABOUT);
         about_Entity.addComponent(aboutEvents);
         aboutEvents.addAction(about_Action);
         entityManager.addEntity(this.stateID, about_Entity);
@@ -119,7 +119,41 @@ public class MainMenu extends BasicGameState {
         esc_pressed.addAction(new ChangeStateAction(Launch.GAME));
         esc_Listener.addComponent(esc_pressed);
         entityManager.addEntity(stateID, esc_Listener);
-
+        
+        
+        /* ---- S Listener Entity ---- */
+        Entity s_Listener = new Entity("S_Listener");
+        KeyPressedEvent s_pressed = new KeyPressedEvent(Input.KEY_S);
+        Action s = new ChangeStateInitAction(Launch.CONTROL);
+        s_pressed.addAction(s);
+        s_Listener.addComponent(s_pressed);
+        entityManager.addEntity(stateID, s_Listener);
+        
+        /* ---- A Listener Entity ---- */
+        Entity a_Listener = new Entity("A_Listener");
+        KeyPressedEvent a_pressed = new KeyPressedEvent(Input.KEY_A);
+        Action a = new ChangeStateInitAction(Launch.ABOUT);
+        a_pressed.addAction(a);
+        a_Listener.addComponent(a_pressed);
+        entityManager.addEntity(stateID, a_Listener);
+        
+        /* ---- H Listener Entity ---- */
+        Entity h_Listener = new Entity("H_Listener");
+        KeyPressedEvent h_pressed = new KeyPressedEvent(Input.KEY_H);
+        Action h = new ChangeStateInitAction(Launch.HIGHSCORE);
+        h_pressed.addAction(h);
+        h_Listener.addComponent(h_pressed);
+        entityManager.addEntity(stateID, h_Listener);
+        
+        /* ---- Q Listener Entity ---- */
+        Entity q_Listener = new Entity("Q_Listener");
+        KeyPressedEvent q_pressed = new KeyPressedEvent(Input.KEY_Q);
+        Action q = new QuitAction();
+        q_pressed.addAction(q);
+        q_Listener.addComponent(q_pressed);
+        entityManager.addEntity(stateID, q_Listener);
+        
+        
     }
 
     /**
@@ -141,15 +175,15 @@ public class MainMenu extends BasicGameState {
 
         int counter = 0;
         g.setColor(Color.black);
-        g.drawString("Neues Spiel", 620, start_Position + counter * distance);
+        g.drawString("Neues Spiel [N]", 620, start_Position + counter * distance);
         counter++;
-        g.drawString("Steuerung", 620, start_Position + counter * distance);
+        g.drawString("Steuerung [S]", 620, start_Position + counter * distance);
         counter++;
-        g.drawString("Highscore", 620, start_Position + counter * distance);
+        g.drawString("Highscore [H]", 620, start_Position + counter * distance);
         counter++;
-        g.drawString("About", 620, start_Position + counter * distance);
+        g.drawString("About [A]", 620, start_Position + counter * distance);
         counter++;
-        g.drawString("Beenden", 620, start_Position + counter * distance);
+        g.drawString("Beenden [Q]", 620, start_Position + counter * distance);
         counter++;
     }
 

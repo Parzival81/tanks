@@ -5,17 +5,20 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import eea.engine.action.Action;
+import eea.engine.action.basicactions.ChangeStateAction;
 import eea.engine.action.basicactions.ChangeStateInitAction;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.entity.StateBasedEntityManager;
 import eea.engine.event.ANDEvent;
+import eea.engine.event.basicevents.KeyPressedEvent;
 import eea.engine.event.basicevents.MouseClickedEvent;
 import eea.engine.event.basicevents.MouseEnteredEvent;
 
@@ -50,7 +53,12 @@ public class Control  extends BasicGameState{
         backEvents.addAction(backAction);
         entityManager.addEntity(this.stateID, backEntity);
 
-        
+        /* ---- Escape Listener ---- */
+        Entity esc_Listener = new Entity("ESC_Listener");
+        KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
+        esc_pressed.addAction(new ChangeStateAction(Launch.MENU));
+        esc_Listener.addComponent(esc_pressed);
+        entityManager.addEntity(stateID, esc_Listener);
 		
 	}
 
@@ -59,15 +67,24 @@ public class Control  extends BasicGameState{
 			throws SlickException {
 		entityManager.renderEntities(arg0, arg1, g);
 		
-		String description = " K - Feuer \n " +
-				"Up - vorwaerts fahren \n " +
-				"Down - rueckwaerts fahren \n " +
-				"Left - nach links drehen \n " +
-				"Right - nach rechts drehen";
+		String description = "In Game: \n" +
+				"K - Feuer \n" +
+				"Up - vorwaerts fahren \n" +
+				"Down - rueckwaerts fahren \n" +
+				"Left - nach links drehen \n" +
+				"Right - nach rechts drehen \n" +
+				"ESC - Menu" +
+				"\n \n" +
+				"Menu: \n" +
+				"N - Neues Spiel \n" +
+				"A - About \n" +
+				"S - Steuerung \n" +
+				"H - Highscore \n" +
+				"Q - Beenden";
 		
 		
         g.setColor(Color.black);
-        g.drawString("Menu", 125, 540);
+        g.drawString("Menu [ESC]", 105, 540);
         
         g.setColor(Color.white);
         g.drawString(description, 80, 150);

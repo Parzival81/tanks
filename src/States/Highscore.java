@@ -57,6 +57,13 @@ public class Highscore  extends BasicGameState{
         backEntity.addComponent(backEvents);
         backEvents.addAction(backAction);
         entityManager.addEntity(this.stateID, backEntity);
+        
+        /* ---- Escape Listener ---- */
+        Entity esc_Listener = new Entity("ESC_Listener");
+        KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
+        esc_pressed.addAction(new ChangeStateAction(Launch.MENU));
+        esc_Listener.addComponent(esc_pressed);
+        entityManager.addEntity(stateID, esc_Listener);
     }
 
     @Override
@@ -64,7 +71,7 @@ public class Highscore  extends BasicGameState{
             throws SlickException {
         entityManager.renderEntities(container, game, g);
         g.setColor(Color.black);
-        g.drawString("Menu", 125, 540);
+        g.drawString("Menu [ESC]", 105, 540);
     }
 
     @Override
