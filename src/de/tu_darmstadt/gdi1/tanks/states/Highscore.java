@@ -1,4 +1,4 @@
-package States;
+package de.tu_darmstadt.gdi1.tanks.states;
 
 import de.tu_darmstadt.gdi1.tanks.ui.Tanks;
 import eea.engine.action.Action;

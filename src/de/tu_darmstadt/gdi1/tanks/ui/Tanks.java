@@ -1,10 +1,10 @@
 package de.tu_darmstadt.gdi1.tanks.ui;
 
-import States.About;
-import States.Control;
-import States.Game;
-import States.Highscore;
-import States.MainMenu;
+import de.tu_darmstadt.gdi1.tanks.states.About;
+import de.tu_darmstadt.gdi1.tanks.states.Control;
+import de.tu_darmstadt.gdi1.tanks.states.Game;
+import de.tu_darmstadt.gdi1.tanks.states.Highscore;
+import de.tu_darmstadt.gdi1.tanks.states.MainMenu;
 import eea.engine.entity.StateBasedEntityManager;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;

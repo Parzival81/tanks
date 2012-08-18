@@ -1,11 +1,13 @@
-package Components;
+package de.tu_darmstadt.gdi1.tanks.components;
 
+import de.tu_darmstadt.gdi1.tanks.entity.Tank;
+import de.tu_darmstadt.gdi1.tanks.entity.Wall;
+import de.tu_darmstadt.gdi1.tanks.entity.Border;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
-import Entity.*;
 
 import de.tu_darmstadt.gdi1.tanks.model.exceptions.SemanticException;
 import de.tu_darmstadt.gdi1.tanks.model.exceptions.SyntaxException;

@@ -1,10 +1,10 @@
-package Components;
+package de.tu_darmstadt.gdi1.tanks.components;
 
-import Entity.Border;
-import Entity.Map;
-import Entity.Tank;
-import Entity.Wall;
-import Level.Level;
+import de.tu_darmstadt.gdi1.tanks.entity.Border;
+import de.tu_darmstadt.gdi1.tanks.entity.Map;
+import de.tu_darmstadt.gdi1.tanks.entity.Tank;
+import de.tu_darmstadt.gdi1.tanks.entity.Wall;
+import de.tu_darmstadt.gdi1.tanks.level.Level;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

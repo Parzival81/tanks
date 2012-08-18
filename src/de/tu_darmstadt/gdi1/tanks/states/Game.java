@@ -1,8 +1,9 @@
-package States;
+package de.tu_darmstadt.gdi1.tanks.states;
 
-import Components.DataReader;
-import Entity.*;
-import Level.Level;
+import de.tu_darmstadt.gdi1.tanks.entity.Tank;
+import de.tu_darmstadt.gdi1.tanks.entity.Wall;
+import de.tu_darmstadt.gdi1.tanks.components.DataReader;
+import de.tu_darmstadt.gdi1.tanks.level.Level;
 import de.tu_darmstadt.gdi1.tanks.ui.Tanks;
 import eea.engine.action.basicactions.*;
 import eea.engine.component.render.*;

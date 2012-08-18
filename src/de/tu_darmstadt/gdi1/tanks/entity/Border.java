@@ -1,4 +1,4 @@
-package Entity;
+package de.tu_darmstadt.gdi1.tanks.entity;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;

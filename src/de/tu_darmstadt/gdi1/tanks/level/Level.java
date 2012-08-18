@@ -1,9 +1,9 @@
-package Level;
+package de.tu_darmstadt.gdi1.tanks.level;
 
-import Entity.Border;
-import Entity.Map;
-import Entity.Tank;
-import Entity.Wall;
+import de.tu_darmstadt.gdi1.tanks.entity.Border;
+import de.tu_darmstadt.gdi1.tanks.entity.Map;
+import de.tu_darmstadt.gdi1.tanks.entity.Tank;
+import de.tu_darmstadt.gdi1.tanks.entity.Wall;
 
 public class Level {
 	private Map gameMap;

@@ -1,4 +1,4 @@
-package Entity;
+package de.tu_darmstadt.gdi1.tanks.entity;
 
 import eea.engine.entity.Entity;
 

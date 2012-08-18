@@ -1,4 +1,4 @@
-package States;
+package de.tu_darmstadt.gdi1.tanks.states;
 
 import de.tu_darmstadt.gdi1.tanks.ui.Tanks;
 import eea.engine.action.Action;
@@ -21,26 +21,28 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Control  extends BasicGameState{
-    private int stateID; 							// Identifier von diesem BasicGameState
-    private StateBasedEntityManager entityManager; 	// zugehoeriger entityManager
+public class About  extends BasicGameState{
+    private int stateID;
+    private StateBasedEntityManager entityManager;
     
     
-	public Control(int id){
+    public About(int id) {
         stateID = id;
         entityManager = StateBasedEntityManager.getInstance();
-	}
+    }
+    
 
-	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1)
-			throws SlickException {
-		
+
+    @Override
+    public void init(GameContainer arg0, StateBasedGame arg1)
+            throws SlickException {
+
         /* ---- Background Entity ---- */
         Entity background = new Entity("menu");
         background.setPosition(new Vector2f(400, 300));
-        background.addComponent(new ImageRenderComponent(new Image("/assets/ui/menu-control.png")));
+        background.addComponent(new ImageRenderComponent(new Image("assets/ui/about_menu.png")));
         entityManager.addEntity(stateID, background);
-        
+
         /* ---- Back Button Entity ---- */
         Entity backEntity = new Entity("Back");
         backEntity.setPosition(new Vector2f(145, 550));
@@ -51,53 +53,41 @@ public class Control  extends BasicGameState{
         backEntity.addComponent(backEvents);
         backEvents.addAction(backAction);
         entityManager.addEntity(this.stateID, backEntity);
-
+        
         /* ---- Escape Listener ---- */
         Entity esc_Listener = new Entity("ESC_Listener");
         KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
         esc_pressed.addAction(new ChangeStateAction(Tanks.MENU));
         esc_Listener.addComponent(esc_pressed);
         entityManager.addEntity(stateID, esc_Listener);
-		
-	}
+    }
 
-	@Override
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
-			throws SlickException {
-		entityManager.renderEntities(arg0, arg1, g);
-		
-		String description = "In Game: \n" +
-				"K - Feuer \n" +
-				"Up - vorwaerts fahren \n" +
-				"Down - rueckwaerts fahren \n" +
-				"Left - nach links drehen \n" +
-				"Right - nach rechts drehen \n" +
-				"ESC - Menu" +
-				"\n \n" +
-				"Menu: \n" +
-				"N - Neues Spiel \n" +
-				"A - About \n" +
-				"S - Steuerung \n" +
-				"H - Highscore \n" +
-				"Q - Beenden";
-		
-		
+    @Override
+    public void render(GameContainer container, StateBasedGame game, Graphics g)
+            throws SlickException {
+        entityManager.renderEntities(container, game, g);
+        String description = "Tank ~out of infinity~ ist ein Projekt der Veranstaltung Grundlage der \n" +
+        					  "Informatik 1 in der TU-Darmstadt, das von der Gruppe 50 erstellt wurde. \n" +
+        					  "\n" +
+        					  "\n" +
+        					  "Version: pre-Alpha";
+        
         g.setColor(Color.black);
         g.drawString("Menu [ESC]", 105, 540);
         
+
         g.setColor(Color.white);
         g.drawString(description, 80, 150);
-	}
+    }
 
-	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
-			throws SlickException {
-		entityManager.updateEntities(arg0, arg1, arg2);
-		
-	}
+    @Override
+    public void update(GameContainer container, StateBasedGame game, int delta)
+            throws SlickException {
+        entityManager.updateEntities(container, game, delta);
+    }
 
-	@Override
-	public int getID() {
-		return stateID;
-	}
+    @Override
+    public int getID() {
+        return stateID;
+    }
 }
