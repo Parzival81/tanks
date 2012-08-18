@@ -1,13 +1,18 @@
 package de.tu_darmstadt.gdi1.tanks.entity;
 
+import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.action.basicactions.MoveForwardAction;
+import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.basicevents.*;
+
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.StateBasedGame;
 
 public class Shot extends Entity {
 
@@ -68,8 +73,10 @@ public class Shot extends Entity {
         /* ---- Destory the shot when it hits something ---- */
         DestroyEntityAction dea = new DestroyEntityAction();
         CollisionEvent ce = new CollisionEvent();
-        ce.addAction(dea);
+        ce.addAction(dea);      
         this.addComponent(ce);
+        
+
     }
 
     public String toString() {

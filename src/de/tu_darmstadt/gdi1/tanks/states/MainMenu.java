@@ -3,6 +3,7 @@ package de.tu_darmstadt.gdi1.tanks.states;
 import de.tu_darmstadt.gdi1.tanks.ui.Tanks;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.*;
+import eea.engine.component.Component;
 import eea.engine.component.render.*;
 import eea.engine.entity.*;
 import eea.engine.event.*;
@@ -150,6 +151,22 @@ public class MainMenu extends BasicGameState {
         q_pressed.addAction(q);
         q_Listener.addComponent(q_pressed);
         entityManager.addEntity(stateID, q_Listener);
+        
+        /* ---- Sound Entity ---- */
+        Entity sound = new Entity("Sound");
+        String soundIcon;
+        if (container.isSoundOn()){
+        	soundIcon = "assets/ui/sound_enabled.png";
+        }else{
+        	soundIcon = "assets/ui/sound_disabled.png";
+        }
+        sound.addComponent(new ImageRenderComponent(new Image (soundIcon)));
+        sound.setPosition(new Vector2f(780,20));
+        sound.setScale(0.05f);
+
+        
+        
+        entityManager.addEntity(stateID, sound);
         
         
     }
