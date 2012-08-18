@@ -52,13 +52,6 @@ public class Shot extends Entity {
         LoopEvent loop = new LoopEvent();
         loop.addAction(new MoveForwardAction(1f));
         this.addComponent(loop);
-
-        /* ---- Destory the shot when it hits something ---- */
-
-        DestroyEntityAction dea = new DestroyEntityAction();
-        CollisionEvent ce = new CollisionEvent();
-        ce.addAction(dea);
-        this.addComponent(ce);
     }
 
     public String toString() {

@@ -88,14 +88,14 @@ public class Game extends BasicGameState {
         // playerTank.addComponent(new CollisionEvent().addAction(new DestroyEntityAction()));
 
         /* ---- Player Tank Controls --- */
-        playerTank.steerForward(new ANDEvent (new KeyDownEvent(Input.KEY_UP), new MovementDoesntCollideEvent(2, new MoveForwardAction(0.05f))));
-        playerTank.steerBack(new ANDEvent (new KeyDownEvent(Input.KEY_DOWN), new MovementDoesntCollideEvent(2,new MoveBackwardAction(0.05f))));
-        playerTank.steerRight(new ANDEvent (new KeyDownEvent(Input.KEY_RIGHT), new MovementDoesntCollideEvent(2, new RotateRightAction(0.1f))));
-        playerTank.steerLeft(new ANDEvent (new KeyDownEvent(Input.KEY_LEFT), new MovementDoesntCollideEvent(2, new RotateLeftAction(0.1f))));
+        playerTank.steerForward(new ANDEvent(new KeyDownEvent(Input.KEY_UP), new MovementDoesntCollideEvent(2, new MoveForwardAction(0.05f))));
+        playerTank.steerBack(new ANDEvent(new KeyDownEvent(Input.KEY_DOWN), new MovementDoesntCollideEvent(2, new MoveBackwardAction(0.05f))));
+        playerTank.steerRight(new ANDEvent(new KeyDownEvent(Input.KEY_RIGHT), new MovementDoesntCollideEvent(2, new RotateRightAction(0.1f))));
+        playerTank.steerLeft(new ANDEvent(new KeyDownEvent(Input.KEY_LEFT), new MovementDoesntCollideEvent(2, new RotateLeftAction(0.1f))));
         entityManager.addEntity(stateID, playerTank);
-        
+
         /* ---- Wall ---- */
-        for (Wall wall : gamelevel.getGameWall()) {            
+        for (Wall wall : gamelevel.getGameWall()) {
             entityManager.addEntity(stateID, wall);
         }
 
@@ -109,25 +109,25 @@ public class Game extends BasicGameState {
     public void render(GameContainer container, StateBasedGame game, Graphics g)
             throws SlickException {
         entityManager.renderEntities(container, game, g);
-        
+
 
         /* ----- PlayerTank Information On-Screen -----*/
-        g.drawImage(new Image ("assets/entry.png"), 0, 500);
+        g.drawImage(new Image("assets/entry.png"), 0, 500);
         g.setColor(Color.black);
         g.drawString("Lebenspunkte: " + gamelevel.getGameTankP().getLife() + " / " + gamelevel.getGameTankP().getMaxLife(), 10, 510);
         g.drawString("Schuesse: " + gamelevel.getGameTankP().getShot() + " / " + gamelevel.getGameTankP().getMaxShot(), 10, 530);
         g.drawString("Mine: " + gamelevel.getGameTankP().getMine() + " / " + gamelevel.getGameTankP().getMaxMine(), 10, 550);
         g.drawString("Power: " + gamelevel.getGameTankP().getStrength(), 10, 570);
-     
+
 
         g.drawString("Map: " + gamelevel.getGameMap().getActualmap(), 450, 510);
-        g.drawString("Anzahl der Gegner: "+ gamelevel.getGameTankO().length, 450, 530);
+        g.drawString("Anzahl der Gegner: " + gamelevel.getGameTankO().length, 450, 530);
         g.drawString("Verbleibende Zeit: " + gamelevel.getGameMap().getElapsedTime() + " / " + gamelevel.getGameMap().getMaxduration(), 450, 550);
-        g.drawString("Position: " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getX() + 
-   		     " / " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getY(), 450, 570);
-        
-        
-        
+        g.drawString("Position: " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getX()
+                + " / " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getY(), 450, 570);
+
+
+
     }
 
     @Override
@@ -141,15 +141,20 @@ public class Game extends BasicGameState {
             /* ---- Get the current positon of the tank form the StateBasedEntityManager ---- */
             gamelevel.getGameTankP().fireShot(
                     entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition(),
-                    entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getRotation()
-                    );
+                    entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getRotation());
             entityManager.addEntity(stateID, gamelevel.getGameTankP().getTankShot());
         }
 
-        entityManager.updateEntities(container, game, delta);
-        
+        /* ---- Destory the shot when it hits something ---- */
+        DestroyEntityAction dea = new DestroyEntityAction();
+        CollisionEvent ce = new CollisionEvent();
+        ce.addAction(dea);
+        entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).addComponent(ce);
 
-        
+        entityManager.updateEntities(container, game, delta);
+
+
+
 
     }
 
