@@ -4,7 +4,6 @@ import eea.engine.action.basicactions.*;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.ANDEvent;
-import eea.engine.event.basicevents.KeyDownEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.newdawn.slick.Image;

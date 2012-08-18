@@ -1,17 +1,13 @@
 package de.tu_darmstadt.gdi1.tanks.entity;
 
+import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.action.basicactions.MoveForwardAction;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.basicevents.*;
-import eea.engine.action.basicactions.DestroyEntityAction;
-import eea.engine.*;
-import eea.engine.component.Component;
-import org.newdawn.slick.*;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.state.StateBasedGame;
 
 public class Shot extends Entity {
 
@@ -30,21 +26,23 @@ public class Shot extends Entity {
         this.strength = strength;
         this.rotation = rotation;
         this.scale = scale;
-        
-        int r = 60;
 
-        float x = position.getX();
-        float y = position.getY();
-        
         /* 
          * calculate the postiton of the shot (infront of the tank entity)
          * via Polar coordinate system (http://en.wikipedia.org/wiki/Polar_coordinate_system)
          */
+
+        /* ----  distance from the tank ---- */
+        int r = 60;
+
+        float x = position.getX();
+        float y = position.getY();
+
         x += (float) r * (java.lang.Math.sin(java.lang.Math.toRadians(rotation)));
         y -= (float) r * (java.lang.Math.cos(java.lang.Math.toRadians(rotation)));
-        
-        this.position = new Vector2f(x,y);
-        
+
+        this.position = new Vector2f(x, y);
+
         this.setPacable(false);
 
         // TODO: Override the map set scale
@@ -53,7 +51,7 @@ public class Shot extends Entity {
 
         /* --- Set the shots initial postiton --- */
         this.setPosition(this.position);
-        
+
 
         /* --- Move the shot in the rotation of the tank --- */
         /* --- add the texture --- */
@@ -67,12 +65,11 @@ public class Shot extends Entity {
         loop.addAction(new MoveForwardAction(1f));
         this.addComponent(loop);
         
-
-        
+        /* ---- Destory the shot when it hits something ---- */
         DestroyEntityAction dea = new DestroyEntityAction();
         CollisionEvent ce = new CollisionEvent();
-    	ce.addAction(dea);
-    	this.addComponent(ce);
+        ce.addAction(dea);
+        this.addComponent(ce);
     }
 
     public String toString() {
