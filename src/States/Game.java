@@ -146,10 +146,10 @@ public class Game extends BasicGameState {
         }
 
         /* ---- Destory the shot when it hits something ---- */
-        DestroyEntityAction dea = new DestroyEntityAction();
-        CollisionEvent ce = new CollisionEvent();
-        ce.addAction(dea);
-        entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).addComponent(ce);
+//        DestroyEntityAction dea = new DestroyEntityAction();
+//        CollisionEvent ce = new CollisionEvent();
+//        ce.addAction(dea);
+//        entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).addComponent(ce);
 
         entityManager.updateEntities(container, game, delta);
 

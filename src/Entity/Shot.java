@@ -30,8 +30,13 @@ public class Shot extends Entity {
         this.strength = strength;
         this.rotation = rotation;
         this.scale = scale;
-        this.position = position;
-
+        
+        int r = 100;
+        float x = (float) (position.getX() + r * Math.cos(rotation));
+        float y = (float) (position.getY() + r * Math.sin(rotation));
+        
+        this.position = new Vector2f(x,y);
+        
         this.setPacable(false);
 
         // TODO: Override the map set scale
@@ -40,6 +45,7 @@ public class Shot extends Entity {
 
         /* --- Set the shots initial postiton --- */
         this.setPosition(this.position);
+        
 
         /* --- Move the shot in the rotation of the tank --- */
         /* --- add the texture --- */
@@ -52,6 +58,13 @@ public class Shot extends Entity {
         LoopEvent loop = new LoopEvent();
         loop.addAction(new MoveForwardAction(1f));
         this.addComponent(loop);
+        
+
+        
+        DestroyEntityAction dea = new DestroyEntityAction();
+        CollisionEvent ce = new CollisionEvent();
+    	ce.addAction(dea);
+    	this.addComponent(ce);
     }
 
     public String toString() {
