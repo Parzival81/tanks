@@ -3,13 +3,12 @@ package States;
 import Components.DataReader;
 import Entity.*;
 import Level.Level;
-import TankMain.Launch;
+import de.tu_darmstadt.gdi1.tanks.ui.Tanks;
 import eea.engine.action.basicactions.*;
 import eea.engine.component.render.*;
 import eea.engine.entity.*;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.*;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -67,7 +66,7 @@ public class Game extends BasicGameState {
         /* ---- Escape Listener ---- */
         Entity esc_Listener = new Entity("ESC_Listener");
         KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
-        esc_pressed.addAction(new ChangeStateAction(Launch.MENU));
+        esc_pressed.addAction(new ChangeStateAction(Tanks.MENU));
         esc_Listener.addComponent(esc_pressed);
         entityManager.addEntity(stateID, esc_Listener);
 
@@ -144,12 +143,6 @@ public class Game extends BasicGameState {
                     entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getRotation());
             entityManager.addEntity(stateID, gamelevel.getGameTankP().getTankShot());
         }
-
-        /* ---- Destory the shot when it hits something ---- */
-//        DestroyEntityAction dea = new DestroyEntityAction();
-//        CollisionEvent ce = new CollisionEvent();
-//        ce.addAction(dea);
-//        entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).addComponent(ce);
 
         entityManager.updateEntities(container, game, delta);
 

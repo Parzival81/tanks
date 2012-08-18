@@ -1,14 +1,12 @@
 package States;
 
-import TankMain.Launch;
+import de.tu_darmstadt.gdi1.tanks.ui.Tanks;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.*;
-import eea.engine.component.Component;
 import eea.engine.component.render.*;
 import eea.engine.entity.*;
 import eea.engine.event.*;
 import eea.engine.event.basicevents.*;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -50,7 +48,7 @@ public class MainMenu extends BasicGameState {
         new_Game_Entity.setScale(0.15f);
         new_Game_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent mainEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
-        Action new_Game_Action = new ChangeStateInitAction(Launch.GAME);
+        Action new_Game_Action = new ChangeStateInitAction(Tanks.GAME);
         new_Game_Entity.addComponent(mainEvents);
         mainEvents.addAction(new_Game_Action);
         entityManager.addEntity(this.stateID, new_Game_Entity);
@@ -63,7 +61,7 @@ public class MainMenu extends BasicGameState {
         scoreEntity.setScale(0.15f);
         scoreEntity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent scoreEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
-        Action scoreAction = new ChangeStateInitAction(Launch.HIGHSCORE);
+        Action scoreAction = new ChangeStateInitAction(Tanks.HIGHSCORE);
         scoreEntity.addComponent(scoreEvents);
         scoreEvents.addAction(scoreAction);
         entityManager.addEntity(this.stateID, scoreEntity);
@@ -75,7 +73,7 @@ public class MainMenu extends BasicGameState {
         control_Entity.setScale(0.15f);
         control_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent controlEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
-        Action control_Action = new ChangeStateInitAction(Launch.CONTROL);
+        Action control_Action = new ChangeStateInitAction(Tanks.CONTROL);
         control_Entity.addComponent(controlEvents);
         controlEvents.addAction(control_Action);
         entityManager.addEntity(this.stateID, control_Entity);
@@ -86,7 +84,7 @@ public class MainMenu extends BasicGameState {
         about_Entity.setScale(0.15f);
         about_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent aboutEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
-        Action about_Action = new ChangeStateInitAction(Launch.ABOUT);
+        Action about_Action = new ChangeStateInitAction(Tanks.ABOUT);
         about_Entity.addComponent(aboutEvents);
         aboutEvents.addAction(about_Action);
         entityManager.addEntity(this.stateID, about_Entity);
@@ -107,7 +105,7 @@ public class MainMenu extends BasicGameState {
         /* ---- N Listener Entity ---- */
         Entity n_Listener = new Entity("N_Listener");
         KeyPressedEvent n_pressed = new KeyPressedEvent(Input.KEY_N);
-        Action loadFirstLevel = new ChangeStateInitAction(Launch.GAME);
+        Action loadFirstLevel = new ChangeStateInitAction(Tanks.GAME);
         n_pressed.addAction(loadFirstLevel);
         n_Listener.addComponent(n_pressed);
         entityManager.addEntity(stateID, n_Listener);
@@ -116,7 +114,7 @@ public class MainMenu extends BasicGameState {
         /* ---- Escape Listener Entity ---- */
         Entity esc_Listener = new Entity("ESC_Listener");
         KeyPressedEvent esc_pressed = new KeyPressedEvent (Input.KEY_ESCAPE);
-        esc_pressed.addAction(new ChangeStateAction(Launch.GAME));
+        esc_pressed.addAction(new ChangeStateAction(Tanks.GAME));
         esc_Listener.addComponent(esc_pressed);
         entityManager.addEntity(stateID, esc_Listener);
         
@@ -124,7 +122,7 @@ public class MainMenu extends BasicGameState {
         /* ---- S Listener Entity ---- */
         Entity s_Listener = new Entity("S_Listener");
         KeyPressedEvent s_pressed = new KeyPressedEvent(Input.KEY_S);
-        Action s = new ChangeStateInitAction(Launch.CONTROL);
+        Action s = new ChangeStateInitAction(Tanks.CONTROL);
         s_pressed.addAction(s);
         s_Listener.addComponent(s_pressed);
         entityManager.addEntity(stateID, s_Listener);
@@ -132,7 +130,7 @@ public class MainMenu extends BasicGameState {
         /* ---- A Listener Entity ---- */
         Entity a_Listener = new Entity("A_Listener");
         KeyPressedEvent a_pressed = new KeyPressedEvent(Input.KEY_A);
-        Action a = new ChangeStateInitAction(Launch.ABOUT);
+        Action a = new ChangeStateInitAction(Tanks.ABOUT);
         a_pressed.addAction(a);
         a_Listener.addComponent(a_pressed);
         entityManager.addEntity(stateID, a_Listener);
@@ -140,7 +138,7 @@ public class MainMenu extends BasicGameState {
         /* ---- H Listener Entity ---- */
         Entity h_Listener = new Entity("H_Listener");
         KeyPressedEvent h_pressed = new KeyPressedEvent(Input.KEY_H);
-        Action h = new ChangeStateInitAction(Launch.HIGHSCORE);
+        Action h = new ChangeStateInitAction(Tanks.HIGHSCORE);
         h_pressed.addAction(h);
         h_Listener.addComponent(h_pressed);
         entityManager.addEntity(stateID, h_Listener);

@@ -1,16 +1,6 @@
 package States;
 
-import TankMain.Launch;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.StateBasedGame;
-
+import de.tu_darmstadt.gdi1.tanks.ui.Tanks;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.ChangeStateAction;
 import eea.engine.action.basicactions.ChangeStateInitAction;
@@ -21,6 +11,15 @@ import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.KeyPressedEvent;
 import eea.engine.event.basicevents.MouseClickedEvent;
 import eea.engine.event.basicevents.MouseEnteredEvent;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
 
 public class Control  extends BasicGameState{
     private int stateID; 							// Identifier von diesem BasicGameState
@@ -48,7 +47,7 @@ public class Control  extends BasicGameState{
         backEntity.setScale(0.15f);
         backEntity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent backEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
-        Action backAction = new ChangeStateInitAction(Launch.MENU);
+        Action backAction = new ChangeStateInitAction(Tanks.MENU);
         backEntity.addComponent(backEvents);
         backEvents.addAction(backAction);
         entityManager.addEntity(this.stateID, backEntity);
@@ -56,7 +55,7 @@ public class Control  extends BasicGameState{
         /* ---- Escape Listener ---- */
         Entity esc_Listener = new Entity("ESC_Listener");
         KeyPressedEvent esc_pressed = new KeyPressedEvent(Input.KEY_ESCAPE);
-        esc_pressed.addAction(new ChangeStateAction(Launch.MENU));
+        esc_pressed.addAction(new ChangeStateAction(Tanks.MENU));
         esc_Listener.addComponent(esc_pressed);
         entityManager.addEntity(stateID, esc_Listener);
 		
