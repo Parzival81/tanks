@@ -31,9 +31,17 @@ public class Shot extends Entity {
         this.rotation = rotation;
         this.scale = scale;
         
-        int r = 100;
-        float x = (float) (position.getX() + r * Math.cos(rotation));
-        float y = (float) (position.getY() + r * Math.sin(rotation));
+        int r = 60;
+
+        float x = position.getX();
+        float y = position.getY();
+        
+        /* 
+         * calculate the postiton of the shot (infront of the tank entity)
+         * via Polar coordinate system (http://en.wikipedia.org/wiki/Polar_coordinate_system)
+         */
+        x += (float) r * (java.lang.Math.sin(java.lang.Math.toRadians(rotation)));
+        y -= (float) r * (java.lang.Math.cos(java.lang.Math.toRadians(rotation)));
         
         this.position = new Vector2f(x,y);
         
