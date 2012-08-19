@@ -49,9 +49,9 @@ public class Game extends BasicGameState {
     }
 
     @Override
-    public void init(GameContainer arg0, StateBasedGame arg1)
+    public void init(GameContainer container, StateBasedGame arg1)
             throws SlickException {
-
+    	
         // DataReader reads a data and converts the String into a level object
         DataReader dr = new DataReader(currentMap);
         gamelevel = dr.getLevel();

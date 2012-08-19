@@ -35,6 +35,7 @@ public class MainMenu extends BasicGameState {
      */
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException {
+    	container.setMouseCursor(new Image("assets/mouse.png"), 0, 0);
     	
         /* ---- Background Entity ---- */
         Entity background = new Entity("menu");
@@ -54,18 +55,7 @@ public class MainMenu extends BasicGameState {
         mainEvents.addAction(new_Game_Action);
         entityManager.addEntity(this.stateID, new_Game_Entity);
         
-        
-        /* ---- Highscore Button Entity ---- */
-        String highscore = "Highscore";
-        Entity scoreEntity = new Entity(highscore);
-        scoreEntity.setPosition(new Vector2f(700, 330));
-        scoreEntity.setScale(0.15f);
-        scoreEntity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
-        ANDEvent scoreEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
-        Action scoreAction = new ChangeStateInitAction(Tanks.HIGHSCORE);
-        scoreEntity.addComponent(scoreEvents);
-        scoreEvents.addAction(scoreAction);
-        entityManager.addEntity(this.stateID, scoreEntity);
+       
         
                 
         /* ---- Control Button Entity ---- */
@@ -79,6 +69,18 @@ public class MainMenu extends BasicGameState {
         controlEvents.addAction(control_Action);
         entityManager.addEntity(this.stateID, control_Entity);
         
+        /* ---- Highscore Button Entity ---- */
+        String highscore = "Highscore";
+        Entity scoreEntity = new Entity(highscore);
+        scoreEntity.setPosition(new Vector2f(700, 330));
+        scoreEntity.setScale(0.15f);
+        scoreEntity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
+        ANDEvent scoreEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+        Action scoreAction = new ChangeStateInitAction(Tanks.HIGHSCORE);
+        scoreEntity.addComponent(scoreEvents);
+        scoreEvents.addAction(scoreAction);
+        entityManager.addEntity(this.stateID, scoreEntity);
+        
         /* ---- About Button Entity ---- */
         Entity about_Entity = new Entity("About");
         about_Entity.setPosition(new Vector2f(700, 370));
@@ -90,10 +92,21 @@ public class MainMenu extends BasicGameState {
         aboutEvents.addAction(about_Action);
         entityManager.addEntity(this.stateID, about_Entity);
         
+        /* ---- Config Button Entity ---- */
+        Entity config_Entity = new Entity("Config");
+        config_Entity.setPosition(new Vector2f(700, 410));
+        config_Entity.setScale(0.15f);
+        config_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
+        ANDEvent configEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+        Action config_Action = new ChangeStateInitAction(Tanks.CONFIG);
+        config_Entity.addComponent(configEvents);
+        configEvents.addAction(config_Action);
+        entityManager.addEntity(this.stateID, config_Entity);
+        
 
         /* ---- Quit Button Entity ---- */
         Entity quit_Entity = new Entity("Beenden");
-        quit_Entity.setPosition(new Vector2f(700, 410));
+        quit_Entity.setPosition(new Vector2f(700, 450));
         quit_Entity.setScale(0.15f);
         quit_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent mainEvents_q = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
@@ -103,15 +116,6 @@ public class MainMenu extends BasicGameState {
         entityManager.addEntity(this.stateID, quit_Entity);
         
         
-        /* ---- N Listener Entity ---- */
-        Entity n_Listener = new Entity("N_Listener");
-        KeyPressedEvent n_pressed = new KeyPressedEvent(Input.KEY_N);
-        Action loadFirstLevel = new ChangeStateInitAction(Tanks.GAME);
-        n_pressed.addAction(loadFirstLevel);
-        n_Listener.addComponent(n_pressed);
-        entityManager.addEntity(stateID, n_Listener);
-        
-        
         /* ---- Escape Listener Entity ---- */
         Entity esc_Listener = new Entity("ESC_Listener");
         KeyPressedEvent esc_pressed = new KeyPressedEvent (Input.KEY_ESCAPE);
@@ -119,7 +123,14 @@ public class MainMenu extends BasicGameState {
         esc_Listener.addComponent(esc_pressed);
         entityManager.addEntity(stateID, esc_Listener);
         
-        
+        /* ---- N Listener Entity ---- */
+        Entity n_Listener = new Entity("N_Listener");
+        KeyPressedEvent n_pressed = new KeyPressedEvent(Input.KEY_N);
+        Action loadFirstLevel = new ChangeStateInitAction(Tanks.GAME);
+        n_pressed.addAction(loadFirstLevel);
+        n_Listener.addComponent(n_pressed);
+        entityManager.addEntity(stateID, n_Listener);
+            
         /* ---- S Listener Entity ---- */
         Entity s_Listener = new Entity("S_Listener");
         KeyPressedEvent s_pressed = new KeyPressedEvent(Input.KEY_S);
@@ -152,6 +163,14 @@ public class MainMenu extends BasicGameState {
         q_Listener.addComponent(q_pressed);
         entityManager.addEntity(stateID, q_Listener);
         
+        /* ---- C Listener Entity ---- */
+        Entity c_Listener = new Entity("C_Listener");
+        KeyPressedEvent c_pressed = new KeyPressedEvent(Input.KEY_C);
+        Action c = new ChangeStateAction(Tanks.CONFIG);
+        c_pressed.addAction(c);
+        c_Listener.addComponent(c_pressed);
+        entityManager.addEntity(stateID, c_Listener);
+        
         /* ---- Sound Entity ---- */
         Entity sound = new Entity("Sound");
         String soundIcon;
@@ -178,6 +197,8 @@ public class MainMenu extends BasicGameState {
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
         entityManager.updateEntities(container, game, delta);
+
+        
     }
 
     /**
@@ -197,6 +218,8 @@ public class MainMenu extends BasicGameState {
         g.drawString("Highscore [H]", 620, start_Position + counter * distance);
         counter++;
         g.drawString("About [A]", 620, start_Position + counter * distance);
+        counter++;
+        g.drawString("Config [C]", 620, start_Position + counter * distance);
         counter++;
         g.drawString("Beenden [Q]", 620, start_Position + counter * distance);
         counter++;

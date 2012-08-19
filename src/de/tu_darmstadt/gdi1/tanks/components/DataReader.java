@@ -55,7 +55,6 @@ public class DataReader {
 
                 // depend on what kind of tuple it is, there will be an instantiation of the respective class
                 if (line.contains("Map")) {
-                    System.out.println(ll.toString());
                     m = new Map("Map" + j, ll.get(1), ll.get(2), ll.get(3),
                             Integer.valueOf(ll.get(4)), Integer.valueOf(ll
                             .get(5)), Integer.valueOf(ll.get(6)));

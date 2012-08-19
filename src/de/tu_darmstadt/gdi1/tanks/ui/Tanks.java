@@ -1,6 +1,7 @@
 package de.tu_darmstadt.gdi1.tanks.ui;
 
 import de.tu_darmstadt.gdi1.tanks.states.About;
+import de.tu_darmstadt.gdi1.tanks.states.Configuration;
 import de.tu_darmstadt.gdi1.tanks.states.Control;
 import de.tu_darmstadt.gdi1.tanks.states.Game;
 import de.tu_darmstadt.gdi1.tanks.states.Highscore;
@@ -19,6 +20,7 @@ public class Tanks extends StateBasedGame {
     public static final int CONTROL = 2;
     public static final int HIGHSCORE = 3;
     public static final int ABOUT = 4;
+    public static final int CONFIG = 5;
     
     //TODO Weitere Konstanten, die einen State identifizieren, einfuegen
     // Fuer die automatisierten Tests muessen Sie sicher stellen, dass ihr
@@ -85,6 +87,7 @@ public class Tanks extends StateBasedGame {
         addState (new Control(CONTROL));
         addState (new Highscore(HIGHSCORE));
         addState (new About(ABOUT));
+        addState (new Configuration(CONFIG));
 
         // Add the states
         StateBasedEntityManager.getInstance().addState(MENU);
@@ -92,5 +95,6 @@ public class Tanks extends StateBasedGame {
         StateBasedEntityManager.getInstance().addState(CONTROL);
         StateBasedEntityManager.getInstance().addState(HIGHSCORE);
         StateBasedEntityManager.getInstance().addState(ABOUT);
+        StateBasedEntityManager.getInstance().addState(CONFIG);
     }
 }
