@@ -1,5 +1,6 @@
 package de.tu_darmstadt.gdi1.tanks.states;
 
+import de.tu_darmstadt.gdi1.tanks.entity.Border;
 import de.tu_darmstadt.gdi1.tanks.entity.Tank;
 import de.tu_darmstadt.gdi1.tanks.entity.Wall;
 import de.tu_darmstadt.gdi1.tanks.components.DataReader;
@@ -99,9 +100,9 @@ public class Game extends BasicGameState {
         }
 
         /* ---- Border ---- */
-//        for (Border border : gamelevel.getGameBorder()){
-//        	entityManager.addEntity(stateID, border);
-//        }
+        for (Border border : gamelevel.getGameBorder()){
+        	entityManager.addEntity(stateID, border);
+        }
     }
 
     @Override
@@ -110,7 +111,9 @@ public class Game extends BasicGameState {
         entityManager.renderEntities(container, game, g);
         
         if(container.isPaused()){
-        	g.drawString("PAUSED", 380, 280);
+        	g.fillRect(0, 250, 800, 60);
+        	g.setColor(Color.white);
+        	g.drawString("PAUSE", 370, 270);
         }
 
 

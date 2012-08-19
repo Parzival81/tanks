@@ -24,18 +24,8 @@ public class Border extends Entity {
         this.height = height;
         this.setScale(1f);
         
-        this.setPacable(true);
-        this.setSize(new Vector2f(0,0));
-        
-        try {
-            this.addComponent(new ImageRenderComponent(new Image("assets/ui/munipack.png")));
-
-        } catch (SlickException e) {
-            System.out.println("The asset can't be found!");
-        }
-
-        this.setSize(new Vector2f (height, width));
         this.setPacable(false);
+        this.setSize(new Vector2f(width,height));
         
     }
 

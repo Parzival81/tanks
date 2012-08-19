@@ -72,6 +72,7 @@ public class Control  extends BasicGameState{
 				"Down - rueckwaerts fahren \n" +
 				"Left - nach links drehen \n" +
 				"Right - nach rechts drehen \n" +
+				"P - Pause \n" +
 				"ESC - Menu" +
 				"\n \n" +
 				"Menu: \n" +
@@ -87,6 +88,7 @@ public class Control  extends BasicGameState{
         
         g.setColor(Color.white);
         g.drawString(description, 80, 150);
+
 	}
 
 	@Override
