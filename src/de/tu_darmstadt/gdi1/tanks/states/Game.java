@@ -74,13 +74,12 @@ public class Game extends BasicGameState {
         /* ---- Opponents Entity ---- */
         int i = 0;
         for (Tank opponents : gamelevel.getGameTankO()) {
-            Tank opponentTank = gamelevel.getGameTankO()[i];
             try {
-                opponentTank.setTexture("assets/tankBg/tankOppenent" + i + ".png");
+                opponents.setTexture("assets/tankBg/tankOppenent" + i + ".png");
             } catch (Exception e) {
-                opponentTank.setTexture("assets/tankBg/tankOppenent0.png");
+                opponents.setTexture("assets/tankBg/tankOppenent0.png");
             }
-            entityManager.addEntity(stateID, opponentTank);
+            entityManager.addEntity(stateID, opponents);
             i++;
         }
         /* ---- Player Tank Entity ---- */
@@ -109,6 +108,10 @@ public class Game extends BasicGameState {
     public void render(GameContainer container, StateBasedGame game, Graphics g)
             throws SlickException {
         entityManager.renderEntities(container, game, g);
+        
+        if(container.isPaused()){
+        	g.drawString("PAUSED", 380, 280);
+        }
 
 
         /* ----- PlayerTank Information On-Screen -----*/
@@ -135,15 +138,22 @@ public class Game extends BasicGameState {
             throws SlickException {
 
         /* --- Fire tank shot ---*/
-        Input fireInput = container.getInput();
-
-        if (fireInput.isKeyPressed(Input.KEY_F)) {
+        if (container.getInput().isKeyPressed(Input.KEY_F)) {
             /* ---- Get the current positon of the tank form the StateBasedEntityManager ---- */
             gamelevel.getGameTankP().fireShot(
                     entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition(),
                     entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getRotation());
             entityManager.addEntity(stateID, gamelevel.getGameTankP().getTankShot());
         }
+        
+        if (container.getInput().isKeyPressed(Input.KEY_P)) {
+        	if (container.isPaused()){
+        		container.resume();
+        	}else{
+        		container.pause();
+        	}
+        }
+
 
         entityManager.updateEntities(container, game, delta);
 
