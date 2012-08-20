@@ -1,5 +1,7 @@
 package de.tu_darmstadt.gdi1.tanks.entity;
 
+import java.awt.Container;
+
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.action.basicactions.MoveForwardAction;
@@ -75,6 +77,8 @@ public class Shot extends Entity {
         CollisionEvent ce = new CollisionEvent();
         ce.addAction(dea);      
         this.addComponent(ce);
+        
+        
         
     }
 
