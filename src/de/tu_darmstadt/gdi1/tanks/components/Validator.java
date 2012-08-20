@@ -89,7 +89,7 @@ public class Validator {
 		DataReader dr = new DataReader (path);
 
 		for (Border b : dr.getLevel().getGameBorder()){
-			if (tank.getX() == b.getX0() && tank.getY() == b.getY0()){
+			if (tank.getX() == b.getX() && tank.getY() == b.getY()){
 				throw new SemanticException ("Tank at the same position as border(s).");
 			}
 		}
