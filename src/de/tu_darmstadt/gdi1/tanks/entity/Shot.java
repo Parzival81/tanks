@@ -77,8 +77,12 @@ public class Shot extends Entity {
         CollisionEvent ce = new CollisionEvent();
         ce.addAction(dea);      
         this.addComponent(ce);
-        
-        
+                
+        /* ---- Destroy the shot when it leaves the screen ---- */
+        // Should be working correctly
+        LeavingScreenEvent lse = new LeavingScreenEvent();
+        lse.addAction(dea);
+        this.addComponent(lse);
         
     }
 
