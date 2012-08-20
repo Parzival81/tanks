@@ -3,6 +3,7 @@ package de.tu_darmstadt.gdi1.tanks.states;
 import de.tu_darmstadt.gdi1.tanks.entity.Border;
 import de.tu_darmstadt.gdi1.tanks.entity.Tank;
 import de.tu_darmstadt.gdi1.tanks.entity.Wall;
+import de.tu_darmstadt.gdi1.tanks.components.AiBasic;
 import de.tu_darmstadt.gdi1.tanks.components.DataReader;
 import de.tu_darmstadt.gdi1.tanks.level.Level;
 import de.tu_darmstadt.gdi1.tanks.ui.Tanks;
@@ -102,6 +103,10 @@ public class Game extends BasicGameState {
         /* ---- Border ---- */
         for (Border border : gamelevel.getGameBorder()){
         	entityManager.addEntity(stateID, border);
+        }
+        
+        for (Tank tank : gamelevel.getGameTankO()){
+        	AiBasic ab = new AiBasic (tank, 1);
         }
     }
 
