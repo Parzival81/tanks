@@ -17,9 +17,9 @@ public class Border extends Entity {
 
     private int width, height;
 
-    public Border(String id, int x0, int y0, int width, int height) {
+    public Border(String id, int x, int y, int width, int height) {
         super(id);
-        this.setPosition(new Vector2f(x0,y0));
+        this.setPosition(new Vector2f(x,y));
         this.width = width;
         this.height = height;
         this.setScale(1f);
@@ -31,20 +31,19 @@ public class Border extends Entity {
 
     
     public String toString() {
-    	//TODO
-    	return "";
-//        StringBuffer sb = new StringBuffer();
-//        sb.append("Border").append(" ").append(this.).append(" ").append(this.y0).append(" ").append(this.width)
-//                .append(" ").append(this.height);
-//
-//        return sb.toString();
+    	
+        StringBuffer sb = new StringBuffer();
+        sb.append("Border").append(" ").append(this.getX()).append(" ").append(this.getY()).append(" ").append(this.width)
+                .append(" ").append(this.height);
+
+        return sb.toString();
     }
 
-    public int getX0() {
+    public int getX() {
         return (int) this.getPosition().getX();
     }
 
-    public int getY0() {
+    public int getY() {
         return (int) this.getPosition().getY();
     }
 

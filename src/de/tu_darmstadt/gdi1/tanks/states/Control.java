@@ -24,6 +24,23 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Control  extends BasicGameState{
     private int stateID; 							// Identifier von diesem BasicGameState
     private StateBasedEntityManager entityManager; 	// zugehoeriger entityManager
+	private String description = 
+			
+			"In Game: \n" +
+			"K - Feuer \n" +
+			"Up - vorwaerts fahren \n" +
+			"Down - rueckwaerts fahren \n" +
+			"Left - nach links drehen \n" +
+			"Right - nach rechts drehen \n" +
+			"P - Pause \n" +
+			"ESC - Menu" +
+			"\n \n" +
+			"Menu: \n" +
+			"N - Neues Spiel \n" +
+			"A - About \n" +
+			"S - Steuerung \n" +
+			"H - Highscore \n" +
+			"Q - Beenden";
     
     
 	public Control(int id){
@@ -65,23 +82,6 @@ public class Control  extends BasicGameState{
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		entityManager.renderEntities(arg0, arg1, g);
-		
-		String description = "In Game: \n" +
-				"K - Feuer \n" +
-				"Up - vorwaerts fahren \n" +
-				"Down - rueckwaerts fahren \n" +
-				"Left - nach links drehen \n" +
-				"Right - nach rechts drehen \n" +
-				"P - Pause \n" +
-				"ESC - Menu" +
-				"\n \n" +
-				"Menu: \n" +
-				"N - Neues Spiel \n" +
-				"A - About \n" +
-				"S - Steuerung \n" +
-				"H - Highscore \n" +
-				"Q - Beenden";
-		
 		
         g.setColor(Color.black);
         g.drawString("Menu [ESC]", 105, 540);

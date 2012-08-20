@@ -76,7 +76,6 @@ public class Shot extends Entity {
         ce.addAction(dea);      
         this.addComponent(ce);
         
-
     }
 
     public String toString() {
