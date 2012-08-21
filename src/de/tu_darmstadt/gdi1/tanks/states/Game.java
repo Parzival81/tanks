@@ -25,7 +25,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class Game extends BasicGameState {
 
     private int stateID;
-    private StateBasedEntityManager entityManager;
+    public static StateBasedEntityManager entityManager;
     private Level gamelevel;
     // The current map. Should be set via a GUI
     private String currentMap = "maps/BattleOfTheSeelowHeights.tanks";
@@ -153,6 +153,9 @@ public class Game extends BasicGameState {
                     entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getRotation());
             entityManager.addEntity(stateID, gamelevel.getGameTankP().getTankShot());
         }
+        
+
+        
         
         if (container.getInput().isKeyPressed(Input.KEY_P)) {
         	if (container.isPaused()){

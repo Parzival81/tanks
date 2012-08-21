@@ -48,7 +48,24 @@ public class AiBasic {
 
 			((Tank) tank).steerLeft(new ANDEvent
 					(new LoopEvent(),new MovementDoesntCollideEvent(2, new RotateLeftAction(0.05f))));
-			    	
+			
+			
+			LoopEvent le = new LoopEvent();
+			le.addAction(new Action(){
+
+				@Override
+				public void update(GameContainer gc, StateBasedGame sb,
+						int delta, Component event) {
+					if (Game.entityManager.getEntity(1, tank.getId()).getRotation() > 180){
+						((Tank) Game.entityManager.getEntity(1, tank.getId())).fireShot(tank.getPosition(), tank.getRotation());
+						Game.entityManager.addEntity(1, ((Tank) tank).getTankShot());
+					}
+				}
+				
+			});
+			((Tank) tank).addComponent(le);
+			
+
     }
     public void normal(){
     	
