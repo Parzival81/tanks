@@ -1,5 +1,6 @@
 package de.tu_darmstadt.gdi1.tanks.entity;
 
+import de.tu_darmstadt.gdi1.tanks.states.Game;
 import java.awt.Container;
 
 import eea.engine.action.Action;
@@ -85,6 +86,16 @@ public class Shot extends Entity {
             public void update(GameContainer gc, StateBasedGame sb, int delta, Component event) {
                 CollisionEvent ce = (CollisionEvent) event;
                 System.out.println(ce.getColidedEntity());
+
+                Tank t = (Tank) Game.entityManager.getEntity(delta, ce.getColidedEntity().getId());
+                Shot s = (Shot) Game.entityManager.getEntity(delta, ce.getOwnerEntity().getId());
+                if (t.getLife() <= 0) {
+                    t.setLife((int) t.getLife() - (int) t.getStrength());
+                } else {
+                    DestroyEntityAction dea = new DestroyEntityAction();
+                    ce.addAction(dea);
+                    t.addComponent(ce);
+                }
             }
         });
         this.addComponent(ce1);
