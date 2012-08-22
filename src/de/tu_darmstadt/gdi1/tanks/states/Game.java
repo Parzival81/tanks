@@ -118,11 +118,12 @@ public class Game extends BasicGameState {
         	entityManager.addEntity(stateID, border);
         }
         
+        /* ---- Adding AI ---- */
         for (Tank tank : gamelevel.getGameTankO()){
         	AiBasic ab = new AiBasic (tank, 1);
         }
         
-        
+        /* ---- Quicksave ---- */
         Entity save_Game_Entity = new Entity("Spiel speichern");
         save_Game_Entity.setPosition(new Vector2f(700, 20));
         save_Game_Entity.setScale(0.15f);
@@ -146,7 +147,7 @@ public class Game extends BasicGameState {
 					if (!gc.isPaused()){
 						gc.pause();
 					}
-					JOptionPane.showMessageDialog( null, "done");
+					JOptionPane.showMessageDialog( null, "Spielstand erfolgreich gespeichert!");
 				}catch(Exception e){
 				}
 			}
