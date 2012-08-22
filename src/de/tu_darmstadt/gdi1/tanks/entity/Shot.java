@@ -95,6 +95,18 @@ public class Shot extends Entity {
                         ce.addAction(dea);
                         t.addComponent(ce);
                         
+                        /* Removing the Tank from gamelevel */
+                    	Tank[] newTankArray = new Tank[Game.gamelevel.getGameTankO().length-1];
+                    	int counter = 0;
+                        for (int i = 0; Game.gamelevel.getGameTankO().length > i ;i++){
+                        	if (!t.getId().equals(Game.gamelevel.getGameTankO()[i].getId())){
+                        		newTankArray[counter] = Game.gamelevel.getGameTankO()[i];
+                        		counter++;
+                        	}
+                        }
+                        Game.gamelevel.setGameTankO(newTankArray);
+                        
+                        
                     }
                 }
                 if (ce.getColidedEntity() instanceof Wall) {

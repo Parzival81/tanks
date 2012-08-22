@@ -32,10 +32,10 @@ public class Wall extends Entity {
         StringBuffer sb = new StringBuffer();
         sb.append("Wall ").append(this.maxlife).append(" ")
                 .append(this.life).append(" ")
-                .append(this.getRotation()).append(" ")
-                .append(this.getScale()).append(" ")
-                .append(this.getPosition().getX()).append(" ")
-                .append(this.getPosition().getY());
+                .append((int) this.getRotation()).append(" ")
+                .append((int) this.getScale()).append(" ")
+                .append((int) this.getPosition().getX()).append(" ")
+                .append((int) this.getPosition().getY());
         return sb.toString();
     }
 

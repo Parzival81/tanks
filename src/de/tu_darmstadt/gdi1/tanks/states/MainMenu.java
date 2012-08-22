@@ -56,11 +56,35 @@ public class MainMenu extends BasicGameState {
         entityManager.addEntity(this.stateID, new_Game_Entity);
         
        
-        
+        /* ---- Load Button Entity ---- */
+        Entity load_Entity = new Entity("Laden");
+        load_Entity.setPosition(new Vector2f(700, 290));
+        load_Entity.setScale(0.15f);
+        load_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
+        ANDEvent loadEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+        Action load_Action = new ChangeStateInitAction(Tanks.GAME);
+        Action changeMap = new Action(){
+			@Override
+			public void update(GameContainer gc, StateBasedGame sb, int delta,
+					Component event) {
+				Game.setCurrentMap("save/quicksave.tank");
+				try {
+					gc.reinit();
+				} catch (SlickException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+        	
+        };
+        loadEvents.addAction(changeMap);
+        load_Entity.addComponent(loadEvents);
+//        loadEvents.addAction(load_Action);
+        entityManager.addEntity(this.stateID, load_Entity);
                 
         /* ---- Control Button Entity ---- */
         Entity control_Entity = new Entity("Steuerung");
-        control_Entity.setPosition(new Vector2f(700, 290));
+        control_Entity.setPosition(new Vector2f(700, 330));
         control_Entity.setScale(0.15f);
         control_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent controlEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
@@ -72,7 +96,7 @@ public class MainMenu extends BasicGameState {
         /* ---- Highscore Button Entity ---- */
         String highscore = "Highscore";
         Entity scoreEntity = new Entity(highscore);
-        scoreEntity.setPosition(new Vector2f(700, 330));
+        scoreEntity.setPosition(new Vector2f(700, 370));
         scoreEntity.setScale(0.15f);
         scoreEntity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent scoreEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
@@ -83,7 +107,7 @@ public class MainMenu extends BasicGameState {
         
         /* ---- About Button Entity ---- */
         Entity about_Entity = new Entity("About");
-        about_Entity.setPosition(new Vector2f(700, 370));
+        about_Entity.setPosition(new Vector2f(700, 410));
         about_Entity.setScale(0.15f);
         about_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent aboutEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
@@ -94,7 +118,7 @@ public class MainMenu extends BasicGameState {
         
         /* ---- Config Button Entity ---- */
         Entity config_Entity = new Entity("Config");
-        config_Entity.setPosition(new Vector2f(700, 410));
+        config_Entity.setPosition(new Vector2f(700, 450));
         config_Entity.setScale(0.15f);
         config_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent configEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
@@ -106,7 +130,7 @@ public class MainMenu extends BasicGameState {
 
         /* ---- Quit Button Entity ---- */
         Entity quit_Entity = new Entity("Beenden");
-        quit_Entity.setPosition(new Vector2f(700, 450));
+        quit_Entity.setPosition(new Vector2f(700, 490));
         quit_Entity.setScale(0.15f);
         quit_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
         ANDEvent mainEvents_q = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
@@ -212,6 +236,8 @@ public class MainMenu extends BasicGameState {
         int counter = 0;
         g.setColor(Color.black);
         g.drawString("Neues Spiel [N]", 620, start_Position + counter * distance);
+        counter++;
+        g.drawString("Schnellladen [L]", 620, start_Position + counter * distance);
         counter++;
         g.drawString("Steuerung [S]", 620, start_Position + counter * distance);
         counter++;

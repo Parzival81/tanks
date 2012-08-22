@@ -38,9 +38,9 @@ public class Game extends BasicGameState {
 
     private int stateID;
     public static StateBasedEntityManager entityManager;
-    private Level gamelevel;
+    public static Level gamelevel;
     // The current map. Should be set via a GUI
-    private String currentMap = "maps/BattleOfTheSeelowHeights.tanks";
+    public static String currentMap = "maps/BattleOfTheSeelowHeights.tanks";
 
     public Game(int id) {
         stateID = id;
@@ -58,8 +58,8 @@ public class Game extends BasicGameState {
         return currentMap;
     }
 
-    public void setCurrentMap(String currentMap) {
-        this.currentMap = currentMap;
+    public static void setCurrentMap(String currentMap2) {
+        currentMap = currentMap2;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class Game extends BasicGameState {
         DataReader dr = new DataReader(currentMap);
         gamelevel = dr.getLevel();
 
-
+        
         /* ---- Background Entity ---- */
         Entity background = new Entity("menu");
         background.setPosition(new Vector2f(400, 300));
@@ -133,6 +133,7 @@ public class Game extends BasicGameState {
 			@Override
 			public void update(GameContainer gc, StateBasedGame sb,
 					int delta, Component event) {
+			
 				try{
 					File save = new File("save/" + "quicksave.tank");
 					BufferedReader br = new BufferedReader(new StringReader(gamelevel.toString()));
@@ -198,6 +199,12 @@ public class Game extends BasicGameState {
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
 
+    	if (gamelevel.getGameTankO().length == 0){
+    		JOptionPane.showMessageDialog( null, "Sie haben alle Gegner erfolgreich vernichtet!");
+    		game.enterState(Tanks.MENU);
+    	}
+    	
+    	
         /* --- Fire tank shot ---*/
         if (container.getInput().isKeyPressed(Input.KEY_F)) {
             /* ---- Get the current positon of the tank form the StateBasedEntityManager ---- */

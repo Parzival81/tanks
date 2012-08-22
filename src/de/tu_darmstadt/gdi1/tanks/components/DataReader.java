@@ -77,7 +77,7 @@ public class DataReader {
                                 Integer.valueOf(ll.get(3)), Integer.valueOf(ll.get(4)),
                                 Integer.valueOf(ll.get(5)), Integer.valueOf(ll.get(6)),
                                 Integer.valueOf(ll.get(7)), Integer.valueOf(ll.get(8)),
-                                Integer.valueOf(ll.get(9)), Integer.valueOf(ll.get(10)),
+                                Integer.valueOf(ll.get(9)),Integer.valueOf(ll.get(10)),
                                 Integer.valueOf(ll.get(11)), Integer.valueOf(ll.get(12)),
                                 Integer.valueOf(ll.get(13)));
                         tanklist.add(ta);
@@ -110,7 +110,7 @@ public class DataReader {
         return toReturn;
 
     }
-
+    
     /**
      * Setting a new path
      */
