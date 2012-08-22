@@ -1,5 +1,14 @@
 package de.tu_darmstadt.gdi1.tanks.states;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.StringReader;
+
+import javax.swing.JOptionPane;
+
 import de.tu_darmstadt.gdi1.tanks.entity.Border;
 import de.tu_darmstadt.gdi1.tanks.entity.Tank;
 import de.tu_darmstadt.gdi1.tanks.entity.Wall;
@@ -7,11 +16,14 @@ import de.tu_darmstadt.gdi1.tanks.components.AiBasic;
 import de.tu_darmstadt.gdi1.tanks.components.DataReader;
 import de.tu_darmstadt.gdi1.tanks.level.Level;
 import de.tu_darmstadt.gdi1.tanks.ui.Tanks;
+import eea.engine.action.Action;
 import eea.engine.action.basicactions.*;
+import eea.engine.component.Component;
 import eea.engine.component.render.*;
 import eea.engine.entity.*;
 import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.*;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -53,6 +65,7 @@ public class Game extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame arg1)
             throws SlickException {
+
     	
         // DataReader reads a data and converts the String into a level object
         DataReader dr = new DataReader(currentMap);
@@ -108,12 +121,50 @@ public class Game extends BasicGameState {
         for (Tank tank : gamelevel.getGameTankO()){
         	AiBasic ab = new AiBasic (tank, 1);
         }
+        
+        
+        Entity save_Game_Entity = new Entity("Spiel speichern");
+        save_Game_Entity.setPosition(new Vector2f(700, 20));
+        save_Game_Entity.setScale(0.15f);
+        save_Game_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry.png")));
+        ANDEvent saveEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+        Action save_Game_Action = new Action(){
+			@Override
+			public void update(GameContainer gc, StateBasedGame sb,
+					int delta, Component event) {
+				try{
+					File save = new File("save/" + "quicksave.tank");
+					BufferedReader br = new BufferedReader(new StringReader(gamelevel.toString()));
+					BufferedWriter bw = new BufferedWriter(new FileWriter (save));
+					String line = br.readLine();
+					while(line != null){
+						bw.write(line);
+						bw.newLine();
+						line=br.readLine();
+					}
+					bw.close();
+					if (!gc.isPaused()){
+						gc.pause();
+					}
+					JOptionPane.showMessageDialog( null, "done");
+				}catch(Exception e){
+				}
+			}
+        };
+        save_Game_Entity.addComponent(saveEvents);
+        saveEvents.addAction(save_Game_Action);
+        entityManager.addEntity(this.stateID, save_Game_Entity);
+        
+
+        
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g)
             throws SlickException {
         entityManager.renderEntities(container, game, g);
+        
+        g.drawString("Schnellspeichern", 630, 10);
         
         if(container.isPaused()){
         	g.fillRect(0, 250, 800, 60);

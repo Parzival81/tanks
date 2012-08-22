@@ -18,7 +18,6 @@ public class Level {
 		this.gameTankO = o;
 		this.gameTankP = p;
 		this.gameWall = w;
-		System.out.println(this.toString());
 	}
 	
 	public String toString(){
