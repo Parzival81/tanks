@@ -74,6 +74,9 @@ public class Shot extends Entity {
         loop.addAction(new MoveForwardAction(1f));
         this.addComponent(loop);
 
+        
+
+        
         /* ---- Destroy hit object ---- */
         CollisionEvent ce1 = new CollisionEvent();
         ce1.addAction(new Action() {
@@ -83,18 +86,21 @@ public class Shot extends Entity {
                 if (ce.getColidedEntity() instanceof Tank) {
                     Tank t = (Tank) ce.getColidedEntity();
                     Shot s = (Shot) ce.getOwnerEntity();
-                    if (t.getLife() < 0) {
+                    if (t.getLife() > 0) {
                         t.setLife((int) t.getLife() - (int) s.getStrength());
+                        
+                        
                     } else {
                         DestroyEntityAction dea = new DestroyEntityAction();
                         ce.addAction(dea);
                         t.addComponent(ce);
+                        
                     }
                 }
                 if (ce.getColidedEntity() instanceof Wall) {
                     Wall w = (Wall) ce.getColidedEntity();
                     Shot s = (Shot) ce.getOwnerEntity();
-                    if (w.getLife() < 0) {
+                    if (w.getLife() > 0) {
                         w.setLife((int) w.getLife() - (int) s.getStrength());
                     } else {
                         DestroyEntityAction dea = new DestroyEntityAction();
@@ -104,6 +110,7 @@ public class Shot extends Entity {
                 }
             }
         });
+        ce1.addAction(new DestroyEntityAction());
         this.addComponent(ce1);
 
         /* ---- Destroy the shot when it leaves the screen ---- */
@@ -112,6 +119,8 @@ public class Shot extends Entity {
         DestroyEntityAction dea = new DestroyEntityAction();
         lse.addAction(dea);
         this.addComponent(lse);
+        
+
 
     }
 

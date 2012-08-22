@@ -57,7 +57,7 @@ public class AiBasic {
 				public void update(GameContainer gc, StateBasedGame sb,
 						int delta, Component event) {
 					Random rg = new Random();
-					int number = rg.nextInt(360);
+					int number = rg.nextInt(2000);
 					if (Math.round(Game.entityManager.getEntity(1, tank.getId()).getRotation()) == number ){
 						((Tank) Game.entityManager.getEntity(1, tank.getId())).fireShot(tank.getPosition(), tank.getRotation());
 						Game.entityManager.addEntity(1, ((Tank) tank).getTankShot());
