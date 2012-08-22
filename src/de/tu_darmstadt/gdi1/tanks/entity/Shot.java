@@ -71,19 +71,30 @@ public class Shot extends Entity {
         LoopEvent loop = new LoopEvent();
         loop.addAction(new MoveForwardAction(1f));
         this.addComponent(loop);
-        
+
         /* ---- Destory the shot when it hits something ---- */
         DestroyEntityAction dea = new DestroyEntityAction();
         CollisionEvent ce = new CollisionEvent();
-        ce.addAction(dea);      
+        ce.addAction(dea);
         this.addComponent(ce);
-                
+
+        /* ---- Destroy hit object ---- */
+        CollisionEvent ce1 = new CollisionEvent();
+        ce1.addAction(new Action() {
+            @Override
+            public void update(GameContainer gc, StateBasedGame sb, int delta, Component event) {
+                CollisionEvent ce = (CollisionEvent) event;
+                System.out.println(ce.getColidedEntity());
+            }
+        });
+        this.addComponent(ce1);
+
         /* ---- Destroy the shot when it leaves the screen ---- */
         // Should be working correctly
         LeavingScreenEvent lse = new LeavingScreenEvent();
         lse.addAction(dea);
         this.addComponent(lse);
-        
+
     }
 
     public String toString() {
