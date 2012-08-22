@@ -68,18 +68,12 @@ public class MainMenu extends BasicGameState {
 			public void update(GameContainer gc, StateBasedGame sb, int delta,
 					Component event) {
 				Game.setCurrentMap("save/quicksave.tank");
-				try {
-					gc.reinit();
-				} catch (SlickException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
         	
         };
         loadEvents.addAction(changeMap);
         load_Entity.addComponent(loadEvents);
-//        loadEvents.addAction(load_Action);
+        loadEvents.addAction(load_Action);
         entityManager.addEntity(this.stateID, load_Entity);
                 
         /* ---- Control Button Entity ---- */

@@ -40,12 +40,12 @@ public class Game extends BasicGameState {
     public static StateBasedEntityManager entityManager;
     public static Level gamelevel;
     // The current map. Should be set via a GUI
-    public static String currentMap = "maps/BattleOfTheSeelowHeights.tanks";
+    public static String currentMap;
 
     public Game(int id) {
         stateID = id;
         entityManager = StateBasedEntityManager.getInstance();
-
+        currentMap = "maps/BattleOfTheSeelowHeights.tanks";
     }
 
     /* ---- toString method ---- */

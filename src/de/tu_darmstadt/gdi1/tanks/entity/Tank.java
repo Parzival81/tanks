@@ -42,7 +42,7 @@ public class Tank extends Entity {
 	 * @param x
 	 * @param y
 	 */
-	public Tank(String id, String name, int maxlife, int life, int maxshot,
+	public Tank(String id,String name, int maxlife, int life, int maxshot,
 			int shot, int maxmine, int mine, int strength, int speed,
 			int rotation, int scale, int x, int y) {
 		super(id);
@@ -71,7 +71,7 @@ public class Tank extends Entity {
 
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
-		sb.append(this.name).append(" ").append(this.maxlife).append(" ")
+		sb.append("Tank ").append(this.name).append(" ").append(this.maxlife).append(" ")
 				.append(this.life).append(" ").append(this.maxshot).append(" ")
 				.append(this.shot).append(" ").append(this.maxmine).append(" ")
 				.append(this.mine).append(" ").append(this.strength)
