@@ -68,16 +68,11 @@ public class Shot extends Entity {
         } catch (SlickException e) {
             System.out.println("The asset can't be found!");
         }
+        /* ---- Shoot moving forward ---- */
         this.setRotation(rotation);
         LoopEvent loop = new LoopEvent();
         loop.addAction(new MoveForwardAction(1f));
         this.addComponent(loop);
-
-        /* ---- Destory the shot when it hits something ---- */
-        DestroyEntityAction dea = new DestroyEntityAction();
-        CollisionEvent ce = new CollisionEvent();
-        ce.addAction(dea);
-        this.addComponent(ce);
 
         /* ---- Destroy hit object ---- */
         CollisionEvent ce1 = new CollisionEvent();
@@ -85,16 +80,16 @@ public class Shot extends Entity {
             @Override
             public void update(GameContainer gc, StateBasedGame sb, int delta, Component event) {
                 CollisionEvent ce = (CollisionEvent) event;
-                System.out.println(ce.getColidedEntity());
-
-                Tank t = (Tank) Game.entityManager.getEntity(delta, ce.getColidedEntity().getId());
-                Shot s = (Shot) Game.entityManager.getEntity(delta, ce.getOwnerEntity().getId());
-                if (t.getLife() <= 0) {
-                    t.setLife((int) t.getLife() - (int) t.getStrength());
-                } else {
-                    DestroyEntityAction dea = new DestroyEntityAction();
-                    ce.addAction(dea);
-                    t.addComponent(ce);
+                if (ce.getColidedEntity() instanceof Tank) {
+                    Tank t = (Tank) ce.getColidedEntity();
+                    Shot s = (Shot) ce.getOwnerEntity();
+                    if (t.getLife() < 0) {
+                        t.setLife((int) t.getLife() - (int) s.getStrength());
+                    } else {
+                        DestroyEntityAction dea = new DestroyEntityAction();
+                        ce.addAction(dea);
+                        t.addComponent(ce);
+                    }
                 }
             }
         });
@@ -103,6 +98,7 @@ public class Shot extends Entity {
         /* ---- Destroy the shot when it leaves the screen ---- */
         // Should be working correctly
         LeavingScreenEvent lse = new LeavingScreenEvent();
+        DestroyEntityAction dea = new DestroyEntityAction();
         lse.addAction(dea);
         this.addComponent(lse);
 
