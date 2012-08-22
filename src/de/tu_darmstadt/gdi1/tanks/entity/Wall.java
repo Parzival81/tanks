@@ -46,6 +46,10 @@ public class Wall extends Entity {
     public int getLife() {
         return life;
     }
+    
+    public void setLife(int life) {
+        this.life = life;
+    }
 
     public int getX() {
         // TODO: finde solution for flaot to int conversion error

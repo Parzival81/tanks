@@ -91,6 +91,17 @@ public class Shot extends Entity {
                         t.addComponent(ce);
                     }
                 }
+                if (ce.getColidedEntity() instanceof Wall) {
+                    Wall w = (Wall) ce.getColidedEntity();
+                    Shot s = (Shot) ce.getOwnerEntity();
+                    if (w.getLife() < 0) {
+                        w.setLife((int) w.getLife() - (int) s.getStrength());
+                    } else {
+                        DestroyEntityAction dea = new DestroyEntityAction();
+                        ce.addAction(dea);
+                        w.addComponent(ce);
+                    }
+                }
             }
         });
         this.addComponent(ce1);
