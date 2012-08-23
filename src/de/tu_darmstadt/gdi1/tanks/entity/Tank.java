@@ -318,26 +318,37 @@ public class Tank extends Entity {
 
     /**
      * Lay a mine at the tanks current position
-     * 
-     * @param position 
+     *
+     * @param position
      */
-    public void layMine(Vector2f position) {
+    public void layMine(Vector2f position, float rotation) {
+
+        int r = 100;
+
+        float x = position.getX();
+        float y = position.getY();
+
+        x += (float) r * (java.lang.Math.sin(java.lang.Math.toRadians(rotation)));
+        y -= (float) r * (java.lang.Math.cos(java.lang.Math.toRadians(rotation)));
+
+        position = new Vector2f(x, y);
+
         if (this.mine > 0) {
-            this.mine --;
+            this.mine--;
             this.tankMine = new Mine(
                     "PlayerTankMine",
                     100,
                     1,
                     // TODO: Postition has to be calculated to be behinde the tank!
                     position.getX(),
-                    position.getY()
-                    );
+                    position.getY());
         }
     }
+
     /**
      * Get the tanks mine as entity (get Mine gets the number of mines left
-     * 
-     * @return 
+     *
+     * @return
      */
     public Entity getTankMine() {
         return this.tankMine;

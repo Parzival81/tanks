@@ -222,7 +222,8 @@ public class Game extends BasicGameState {
         if (container.getInput().isKeyPressed(Input.KEY_M)) {
             /* ---- Get the current positon of the tank form the StateBasedEntityManager ---- */
             gamelevel.getGameTankP().layMine(
-                    entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition());
+                    entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition(),
+                    entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getRotation());
             entityManager.addEntity(stateID, gamelevel.getGameTankP().getTankMine());
         }
         
