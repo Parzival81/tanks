@@ -40,7 +40,7 @@ public class Mine extends Entity {
         this.Strenght = strenght;
         this.setScale(scale);
         this.setPosition(new Vector2f(x, y));
-        this.setPacable(false);
+        this.setPacable(true);
 
         /* ---- Set the texture ---- */
         try {
