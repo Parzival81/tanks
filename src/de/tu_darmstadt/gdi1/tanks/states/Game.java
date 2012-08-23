@@ -217,7 +217,16 @@ public class Game extends BasicGameState {
                     entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getRotation());
             entityManager.addEntity(stateID, gamelevel.getGameTankP().getTankShot());
         }
-
+        
+        /* ---- lay a mine ---- */
+        if (container.getInput().isKeyPressed(Input.KEY_M)) {
+            /* ---- Get the current positon of the tank form the StateBasedEntityManager ---- */
+            gamelevel.getGameTankP().layMine(
+                    entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition());
+            entityManager.addEntity(stateID, gamelevel.getGameTankP().getTankMine());
+        }
+        
+        /* ---- Pause game ---- */
         if (container.getInput().isKeyPressed(Input.KEY_P)) {
             if (container.isPaused()) {
                 container.resume();

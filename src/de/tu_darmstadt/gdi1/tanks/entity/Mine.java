@@ -35,7 +35,7 @@ public class Mine extends Entity {
      * @param x
      * @param y
      */
-    public Mine(String id, int strenght, int scale, int x, int y) {
+    public Mine(String id, int strenght, int scale, float x, float y) {
         super(id);
         this.Strenght = strenght;
         this.setScale(scale);

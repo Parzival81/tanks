@@ -21,25 +21,26 @@ public class Tank extends Entity {
     private int maxlife, life, maxshot, shot, maxmine, mine, strength, speed;
     private String texture = "assets/tankBg/tankPlayer.png";											// texture
     private Entity tankShot;
+    private Entity tankMine;
 
     /**
      * Constructor for the tank class. Gets all parameters from the level
      * object.
      *
-     * @param id        The tanks id
-     * @param name      The tanks name
-     * @param maxlife   The tanks full life points
-     * @param life      The tanks current life points
-     * @param maxshot   The tanks max shot number
-     * @param shot      The number of shots the tank still has
-     * @param maxmine   The maximum number of mines the tank has
-     * @param mine      The number of mines the tank currently has
-     * @param strength  The tanks shot power
-     * @param speed     The tanks speed
-     * @param rotation  The tanks initial rotation
-     * @param scale     The tanks scale
-     * @param x         The tanks initial x position
-     * @param y         The tanks initial y position
+     * @param id The tanks id
+     * @param name The tanks name
+     * @param maxlife The tanks full life points
+     * @param life The tanks current life points
+     * @param maxshot The tanks max shot number
+     * @param shot The number of shots the tank still has
+     * @param maxmine The maximum number of mines the tank has
+     * @param mine The number of mines the tank currently has
+     * @param strength The tanks shot power
+     * @param speed The tanks speed
+     * @param rotation The tanks initial rotation
+     * @param scale The tanks scale
+     * @param x The tanks initial x position
+     * @param y The tanks initial y position
      */
     public Tank(String id, String name, int maxlife, int life, int maxshot,
             int shot, int maxmine, int mine, int strength, int speed,
@@ -203,11 +204,11 @@ public class Tank extends Entity {
     public int getMine() {
         return mine;
     }
-    
+
     /**
      * Get the tanks shot power
-     * 
-     * @return 
+     *
+     * @return
      */
     public int getStrength() {
         return strength;
@@ -215,17 +216,17 @@ public class Tank extends Entity {
 
     /**
      * Set the tanks name
-     * 
-     * @param name 
+     *
+     * @param name
      */
     public void setName(String name) {
         this.name = name;
     }
-    
+
     /**
      * Set the tanks max life
-     * 
-     * @param maxlife 
+     *
+     * @param maxlife
      */
     public void setMaxlife(int maxlife) {
         this.maxlife = maxlife;
@@ -233,8 +234,8 @@ public class Tank extends Entity {
 
     /**
      * Set the tanks current life (health points as int)
-     * 
-     * @param life 
+     *
+     * @param life
      */
     public void setLife(int life) {
         this.life = life;
@@ -242,62 +243,62 @@ public class Tank extends Entity {
 
     /**
      * Set the tanks max shots
-     * 
-     * @param maxshot 
+     *
+     * @param maxshot
      */
     public void setMaxshot(int maxshot) {
         this.maxshot = maxshot;
     }
-    
+
     /**
      * Set the tanks current number of shots
-     * 
-     * @param shot 
+     *
+     * @param shot
      */
     public void setShot(int shot) {
         this.shot = shot;
     }
-    
+
     /**
      * Set the tanks number of max mines
-     * 
-     * @param maxmine 
+     *
+     * @param maxmine
      */
     public void setMaxmine(int maxmine) {
         this.maxmine = maxmine;
     }
-    
+
     /**
      * Set the tanks current number of mines
-     * 
-     * @param mine 
+     *
+     * @param mine
      */
     public void setMine(int mine) {
         this.mine = mine;
     }
-    
+
     /**
      * Set the tanks current strength (as int)
-     * 
-     * @param strength 
+     *
+     * @param strength
      */
     public void setStrength(int strength) {
         this.strength = strength;
     }
-    
+
     /**
      * Set the tanks speed
-     * 
-     * @param speed 
+     *
+     * @param speed
      */
     public void setSpeed(int speed) {
         this.speed = speed;
     }
-    
+
     /**
      * Get the tanks speed
-     * 
-     * @return 
+     *
+     * @return
      */
     public int getSpeed() {
         return speed;
@@ -314,29 +315,55 @@ public class Tank extends Entity {
                     1, position);
         }
     }
-    
+
     /**
-     * Get the tanks INITAL x position
+     * Lay a mine at the tanks current position
+     * 
+     * @param position 
+     */
+    public void layMine(Vector2f position) {
+        if (this.mine > 0) {
+            this.mine --;
+            this.tankMine = new Mine(
+                    "PlayerTankMine",
+                    100,
+                    1,
+                    position.getX(),
+                    position.getY()
+                    );
+        }
+    }
+    /**
+     * Get the tanks mine as entity (get Mine gets the number of mines left
      * 
      * @return 
      */
+    public Entity getTankMine() {
+        return this.tankMine;
+    }
+
+    /**
+     * Get the tanks INITAL x position
+     *
+     * @return
+     */
     public float getX() {
         return this.getPosition().getX();
-    }  
-    
+    }
+
     /**
      * Get the tanks INITAL y position
-     * 
-     * @return 
+     *
+     * @return
      */
     public float getY() {
         return this.getPosition().getY();
     }
-    
+
     /**
      * Get the tanks shot entity
-     * 
-     * @return 
+     *
+     * @return
      */
     public Entity getTankShot() {
         return this.tankShot;
