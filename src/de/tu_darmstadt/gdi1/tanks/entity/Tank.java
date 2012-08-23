@@ -328,6 +328,7 @@ public class Tank extends Entity {
                     "PlayerTankMine",
                     100,
                     1,
+                    // TODO: Postition has to be calculated to be behinde the tank!
                     position.getX(),
                     position.getY()
                     );
