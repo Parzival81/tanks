@@ -63,15 +63,15 @@ public class Validator {
 					}
 				} else if (line.contains("Tank")) {
 					if (line.contains("PlayerOne")) {
-						if (ll.size() != 13){
+						if (ll.size() != 14){
 							validateParameterSize = false;
-							validateExistencePlayer = true;
 						} 
+						validateExistencePlayer = true;
 					}else {
-						if (ll.size() != 13){
+						if (ll.size() != 14){
 							validateParameterSize = false;
-							validateExistenceOpponent = true;
 						}
+						validateExistenceOpponent = true;
 					}
 					
 				} else if (line.contains("Wall")) {
@@ -95,7 +95,7 @@ public class Validator {
 		if (!validateParameterSize){
 			throw new SyntaxException("Syntax exception -> parameter number incorrect.");
 		}
-		if (!validateExistenceOpponent || !validateExistencePlayer){
+		if (!(validateExistenceOpponent && validateExistencePlayer)){
 			throw new SemanticException("Semantic error -> tank player / tank opponent not available.");
 		}
 	}
