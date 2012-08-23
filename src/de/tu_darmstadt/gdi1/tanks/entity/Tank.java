@@ -1,5 +1,6 @@
 package de.tu_darmstadt.gdi1.tanks.entity;
 
+import de.tu_darmstadt.gdi1.tanks.states.Game;
 import eea.engine.action.basicactions.*;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
@@ -323,7 +324,7 @@ public class Tank extends Entity {
      */
     public void layMine(Vector2f position, float rotation) {
 
-        int r = 100;
+        int r = -100;
 
         float x = position.getX();
         float y = position.getY();
@@ -339,7 +340,6 @@ public class Tank extends Entity {
                     "PlayerTankMine",
                     100,
                     1,
-                    // TODO: Postition has to be calculated to be behinde the tank!
                     position.getX(),
                     position.getY());
         }

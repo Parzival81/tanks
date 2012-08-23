@@ -38,7 +38,7 @@ public class Mine extends Entity {
     public Mine(String id, int strenght, int scale, float x, float y) {
         super(id);
         this.Strenght = strenght;
-        this.setScale(scale);
+        this.setScale(scale*0.1f);
         this.setPosition(new Vector2f(x, y));
         this.setPacable(true);
 
@@ -55,14 +55,14 @@ public class Mine extends Entity {
         ce.addAction(new Action() {
             @Override
             public void update(GameContainer gc, StateBasedGame sb, int delta, Component event) {
-                
+
                 CollisionEvent ce = (CollisionEvent) event;
 
-                if (ce.getColidedEntity() instanceof Tank) {
-                    
+                if (ce.getColidedEntity() instanceof Tank && ce.getOwnerEntity() instanceof Mine) {
+
                     Tank t = (Tank) ce.getColidedEntity();
                     Mine m = (Mine) ce.getOwnerEntity();
-                    
+
                     if (t.getLife() > 0) {
                         t.setLife((int) t.getLife() - (int) m.getStrength());
                     } else {
@@ -102,11 +102,11 @@ public class Mine extends Entity {
         sb.append(this.getId()).append(this.Strenght).append(this.getScale()).append(this.getPosition().getX()).append(this.getPosition().getY());
         return sb.toString();
     }
-    
+
     /**
      * Get the damage the mine dose
-     * 
-     * @return 
+     *
+     * @return
      */
     public int getStrength() {
         return this.Strenght;
