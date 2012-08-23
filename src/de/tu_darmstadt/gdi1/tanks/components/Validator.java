@@ -78,10 +78,14 @@ public class Validator {
 					if (ll.size() != 7){
 						validateParameterSize = false;
 					}
-				} else if (line.contains("Shot")) {
-					// TODO has to be implemented
+				} else if (line.contains("Mine")) {
+					if (ll.size() != 5){
+						validateParameterSize = false;
+					}
 				} else if (line.contains("Pickup")) {
-					// TODO has to be implemented
+					if (ll.size() != 7){
+						validateParameterSize = false;
+					}
 				}
 			}		
 		} catch (IOException e) {
