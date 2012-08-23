@@ -118,6 +118,7 @@ public class Shot extends Entity {
                             Game.gamelevel.setGameTankO(newTankArray);
 
                         }
+
                     }
                 }
                 if (ce.getColidedEntity() instanceof Wall) {
@@ -129,6 +130,17 @@ public class Shot extends Entity {
                         DestroyEntityAction dea = new DestroyEntityAction();
                         ce.addAction(dea);
                         w.addComponent(ce);
+
+
+                        Wall[] newWallArray = new Wall[Game.gamelevel.getGameWall().length - 1];
+                        int counter = 0;
+                        for (int i = 0; Game.gamelevel.getGameWall().length > i; i++) {
+                            if (!w.getId().equals(Game.gamelevel.getGameWall()[i].getId())) {
+                                newWallArray[counter] = Game.gamelevel.getGameWall()[i];
+                                counter++;
+                            }
+                        }
+                        Game.gamelevel.setGameWall(newWallArray);
                     }
                 }
             }
