@@ -21,6 +21,10 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * About menu screen
+ * 
+ */
 public class About  extends BasicGameState{
     private int stateID;
     private StateBasedEntityManager entityManager;
@@ -32,13 +36,23 @@ public class About  extends BasicGameState{
 			  "\n" +
 			  "Version: pre-Alpha";
     
+    /**
+     * Constructor. Adds state to the StateBasedEntityManager
+     * 
+     * @param id 
+     */
     public About(int id) {
         stateID = id;
         entityManager = StateBasedEntityManager.getInstance();
     }
-    
 
-
+    /**
+     * Add menu points and event listener to the menu
+     * 
+     * @param arg0
+     * @param arg1
+     * @throws SlickException 
+     */
     @Override
     public void init(GameContainer arg0, StateBasedGame arg1)
             throws SlickException {
@@ -67,7 +81,15 @@ public class About  extends BasicGameState{
         esc_Listener.addComponent(esc_pressed);
         entityManager.addEntity(stateID, esc_Listener);
     }
-
+    
+    /**
+     * Set text color
+     * 
+     * @param container
+     * @param game
+     * @param g
+     * @throws SlickException 
+     */
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g)
             throws SlickException {
@@ -80,13 +102,24 @@ public class About  extends BasicGameState{
         g.setColor(Color.white);
         g.drawString(description, 80, 150);
     }
-
+    /**
+     * Add render the menu components 
+     * 
+     * @param container
+     * @param game
+     * @param delta
+     * @throws SlickException 
+     */
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
         entityManager.updateEntities(container, game, delta);
     }
-
+    /**
+     * Get the state ID
+     * 
+     * @return 
+     */
     @Override
     public int getID() {
         return stateID;

@@ -21,6 +21,10 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * Controls menu screen
+ * 
+ */
 public class Control  extends BasicGameState{
     private int stateID; 							// Identifier von diesem BasicGameState
     private StateBasedEntityManager entityManager; 	// zugehoeriger entityManager

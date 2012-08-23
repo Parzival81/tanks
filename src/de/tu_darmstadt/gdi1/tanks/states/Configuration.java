@@ -1,15 +1,5 @@
 package de.tu_darmstadt.gdi1.tanks.states;
 
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.StateBasedGame;
-
 import de.tu_darmstadt.gdi1.tanks.ui.Tanks;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.ChangeStateAction;
@@ -22,7 +12,20 @@ import eea.engine.event.ANDEvent;
 import eea.engine.event.basicevents.KeyPressedEvent;
 import eea.engine.event.basicevents.MouseClickedEvent;
 import eea.engine.event.basicevents.MouseEnteredEvent;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * Configuration menu
+ * 
+ */
 public class Configuration extends BasicGameState{
     private int stateID;
     private StateBasedEntityManager entityManager;
@@ -31,9 +34,7 @@ public class Configuration extends BasicGameState{
 	        stateID = id;
 	        entityManager = StateBasedEntityManager.getInstance();
 	    }
-	    
-
-
+           
 	    @Override
 	    public void init(GameContainer container, StateBasedGame arg1)
 	            throws SlickException {
@@ -90,10 +91,6 @@ public class Configuration extends BasicGameState{
 	        screen_Entity.addComponent(screenEvents);
 	        screenEvents.addAction(screen_Action);
 	        entityManager.addEntity(this.stateID, screen_Entity);
-	        
-
-	        
-	        
 	    }
 
 	    @Override

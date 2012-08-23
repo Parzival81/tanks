@@ -21,6 +21,10 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * Highscore menu screen
+ * 
+ */
 public class Highscore  extends BasicGameState{
     private int stateID;
     private StateBasedEntityManager entityManager;
@@ -30,8 +34,6 @@ public class Highscore  extends BasicGameState{
         entityManager = StateBasedEntityManager.getInstance();
 
     }
-    
-
 
     @Override
     public void init(GameContainer arg0, StateBasedGame arg1)
