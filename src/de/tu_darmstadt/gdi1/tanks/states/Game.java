@@ -2,12 +2,15 @@ package de.tu_darmstadt.gdi1.tanks.states;
 
 import de.tu_darmstadt.gdi1.tanks.components.AiBasic;
 import de.tu_darmstadt.gdi1.tanks.components.DataReader;
+import de.tu_darmstadt.gdi1.tanks.components.Validator;
 import de.tu_darmstadt.gdi1.tanks.entity.Border;
 import de.tu_darmstadt.gdi1.tanks.entity.Mine;
 import de.tu_darmstadt.gdi1.tanks.entity.Pickup;
 import de.tu_darmstadt.gdi1.tanks.entity.Tank;
 import de.tu_darmstadt.gdi1.tanks.entity.Wall;
 import de.tu_darmstadt.gdi1.tanks.level.Level;
+import de.tu_darmstadt.gdi1.tanks.model.exceptions.SemanticException;
+import de.tu_darmstadt.gdi1.tanks.model.exceptions.SyntaxException;
 import de.tu_darmstadt.gdi1.tanks.ui.Tanks;
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.*;
@@ -69,6 +72,14 @@ public class Game extends BasicGameState {
     public void init(GameContainer container, StateBasedGame arg1)
             throws SlickException {
 
+    	Validator v = new Validator(currentMap);
+    	try {
+			v.validate();
+		} catch (SemanticException e1) {
+			e1.printStackTrace();
+		} catch (SyntaxException e1) {
+			e1.printStackTrace();
+		}
         // DataReader reads a data and converts the String into a level object
         DataReader dr = new DataReader(currentMap);
         gamelevel = dr.getLevel();
