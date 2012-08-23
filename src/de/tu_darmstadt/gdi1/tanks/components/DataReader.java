@@ -3,6 +3,7 @@ package de.tu_darmstadt.gdi1.tanks.components;
 import de.tu_darmstadt.gdi1.tanks.entity.Border;
 import de.tu_darmstadt.gdi1.tanks.entity.Map;
 import de.tu_darmstadt.gdi1.tanks.entity.Mine;
+import de.tu_darmstadt.gdi1.tanks.entity.Pickup;
 import de.tu_darmstadt.gdi1.tanks.entity.Tank;
 import de.tu_darmstadt.gdi1.tanks.entity.Wall;
 import de.tu_darmstadt.gdi1.tanks.level.Level;
@@ -46,6 +47,7 @@ public class DataReader {
             LinkedList<Tank> tanklist = new LinkedList<Tank>();
             LinkedList<Wall> walllist = new LinkedList<Wall>();
             LinkedList<Mine> minelist = new LinkedList<Mine>();
+            LinkedList<Pickup> pickuplist = new LinkedList<Pickup>();
             Map m = null;
             Tank p = null;
             int j = 0;
@@ -99,9 +101,11 @@ public class DataReader {
                     Mine mine = new Mine("Mine" + j, Integer.valueOf(ll.get(1)), Integer.valueOf(ll.get(2)),
                             Integer.valueOf(ll.get(3)), Integer.valueOf(ll.get(4)));
                     minelist.add(mine);
-                } else if (line.contains("Shot")) {
-                    // TODO has to be implemented
                 } else if (line.contains("Pickup")) {
+                    Pickup pickup = new Pickup("Pickup" + j, String.valueOf(ll.get(1)), Integer.valueOf(ll.get(2)),
+                            Integer.valueOf(ll.get(3)), Integer.valueOf(ll.get(4)), Integer.valueOf(ll.get(5)), Integer.valueOf(ll.get(6)));
+                            pickuplist.add(pickup);
+                } else if (line.contains("Shot")) {
                     // TODO has to be implemented
                 }
                 j++;
@@ -111,10 +115,11 @@ public class DataReader {
             Wall[] w = walllist.toArray(new Wall[walllist.size()]);
             Border[] b = borderlist.toArray(new Border[borderlist.size()]);
             Mine[] mine = minelist.toArray(new Mine[minelist.size()]);
+            Pickup[] pickup = pickuplist.toArray(new Pickup[minelist.size()]);
 
 
             // instantiation of level
-            toReturn = new Level(m, b, p, o, w, mine);
+            toReturn = new Level(m, b, p, o, w, mine, pickup);
         } catch (IOException e) {
             e.printStackTrace();
         }

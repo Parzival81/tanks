@@ -4,6 +4,7 @@ import de.tu_darmstadt.gdi1.tanks.components.AiBasic;
 import de.tu_darmstadt.gdi1.tanks.components.DataReader;
 import de.tu_darmstadt.gdi1.tanks.entity.Border;
 import de.tu_darmstadt.gdi1.tanks.entity.Mine;
+import de.tu_darmstadt.gdi1.tanks.entity.Pickup;
 import de.tu_darmstadt.gdi1.tanks.entity.Tank;
 import de.tu_darmstadt.gdi1.tanks.entity.Wall;
 import de.tu_darmstadt.gdi1.tanks.level.Level;
@@ -122,10 +123,15 @@ public class Game extends BasicGameState {
         for (Tank tank : gamelevel.getGameTankO()) {
             AiBasic ab = new AiBasic(tank, 1);
         }
-        
+
         /* ---- Add mine ---- */
         for (Mine mine : gamelevel.getGameMine()) {
              entityManager.addEntity(stateID, mine);
+        }
+
+        /* ---- Add pickup ---- */
+        for (Pickup pickup : gamelevel.getGamePickup()) {
+             entityManager.addEntity(stateID, pickup);
         }
 
         /* ---- Quicksave ---- */
@@ -217,7 +223,7 @@ public class Game extends BasicGameState {
                     entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getRotation());
             entityManager.addEntity(stateID, gamelevel.getGameTankP().getTankShot());
         }
-        
+
         /* ---- lay a mine ---- */
         if (container.getInput().isKeyPressed(Input.KEY_M)) {
             /* ---- Get the current positon of the tank form the StateBasedEntityManager ---- */
@@ -226,7 +232,7 @@ public class Game extends BasicGameState {
                     entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getRotation());
             entityManager.addEntity(stateID, gamelevel.getGameTankP().getTankMine());
         }
-        
+
         /* ---- Pause game ---- */
         if (container.getInput().isKeyPressed(Input.KEY_P)) {
             if (container.isPaused()) {
