@@ -38,7 +38,7 @@ public class Mine extends Entity {
     public Mine(String id, int strenght, int scale, float x, float y) {
         super(id);
         this.Strenght = strenght;
-        this.setScale(scale*0.1f);
+        this.setScale(scale);
         this.setPosition(new Vector2f(x, y));
         this.setPacable(true);
 
