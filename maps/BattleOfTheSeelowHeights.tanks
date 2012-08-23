@@ -18,3 +18,4 @@ Wall 30 30 0 1 400 400
 Shot 1 5 1 1 292 132
 Pickup "Healthpack" 10 0 30 100 100
 Pickup "Ammopack" 10 0 30 200 100
+Mine 100 1 40 40

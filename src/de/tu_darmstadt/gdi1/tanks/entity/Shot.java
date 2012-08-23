@@ -93,13 +93,12 @@ public class Shot extends Entity {
             @Override
             public void update(GameContainer gc, StateBasedGame sb, int delta, Component event) {
                 CollisionEvent ce = (CollisionEvent) event;
+                /* ---- collision  with tank ---- */
                 if (ce.getColidedEntity() instanceof Tank) {
                     Tank t = (Tank) ce.getColidedEntity();
                     Shot s = (Shot) ce.getOwnerEntity();
                     if (t.getLife() > 0) {
                         t.setLife((int) t.getLife() - (int) s.getStrength());
-
-
                     } else {
                         DestroyEntityAction dea = new DestroyEntityAction();
                         ce.addAction(dea);
@@ -120,8 +119,8 @@ public class Shot extends Entity {
                         }
 
                     }
-                }
-                if (ce.getColidedEntity() instanceof Wall) {
+                    /* ---- Wall collision ---- */
+                } else if (ce.getColidedEntity() instanceof Wall) {
                     Wall w = (Wall) ce.getColidedEntity();
                     Shot s = (Shot) ce.getOwnerEntity();
                     if (w.getLife() > 0) {
@@ -141,6 +140,28 @@ public class Shot extends Entity {
                             }
                         }
                         Game.gamelevel.setGameWall(newWallArray);
+                    }
+                /* ---- collision with a mine ---- */
+                } else if (ce.getColidedEntity() instanceof Mine) {
+                    Mine m = (Mine) ce.getColidedEntity();
+                    Shot s = (Shot) ce.getOwnerEntity();
+                    if (m.getLife() > 0) {
+                        m.setLife((int) m.getLife() - (int) s.getStrength());
+                    } else {
+                        DestroyEntityAction dea = new DestroyEntityAction();
+                        ce.addAction(dea);
+                        m.addComponent(ce);
+
+
+                        Mine[] newMineArray = new Mine[Game.gamelevel.getGameMine().length - 1];
+                        int counter = 0;
+                        for (int i = 0; Game.gamelevel.getGameMine().length > i; i++) {
+                            if (!m.getId().equals(Game.gamelevel.getGameMine()[i].getId())) {
+                                newMineArray[counter] = Game.gamelevel.getGameMine()[i];
+                                counter++;
+                            }
+                        }
+                        Game.gamelevel.setGameMine(newMineArray);
                     }
                 }
             }

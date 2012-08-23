@@ -4,6 +4,7 @@ import de.tu_darmstadt.gdi1.tanks.entity.Border;
 import de.tu_darmstadt.gdi1.tanks.entity.Map;
 import de.tu_darmstadt.gdi1.tanks.entity.Tank;
 import de.tu_darmstadt.gdi1.tanks.entity.Wall;
+import de.tu_darmstadt.gdi1.tanks.entity.Mine;
 
 /**
  * Represents the game level with all its entities, like tanks, walls, etc.
@@ -16,7 +17,8 @@ public class Level {
 	private Tank gameTankP; // Spieler
 	private Tank[] gameTankO; // Gegner
 	private Wall[] gameWall;
-	
+        private Mine[] gameMine;
+ 	
         /**
          * Constructor. Add all elements to the level
          * 
@@ -26,12 +28,13 @@ public class Level {
          * @param o     The levels opponent tank (as array)
          * @param w     The levels walls (as array)
          */
-	public Level(Map m, Border[] b, Tank p, Tank[] o, Wall[] w) {
+	public Level(Map m, Border[] b, Tank p, Tank[] o, Wall[] w, Mine[] mine) {
 		this.gameBorder = b;
 		this.gameMap = m;
 		this.gameTankO = o;
 		this.gameTankP = p;
 		this.gameWall = w;
+                this.gameMine = mine;
 	}
 	
         /**
@@ -55,6 +58,9 @@ public class Level {
 		for (Wall w : this.gameWall){
 			sb.append("\n").append(w.toString());
 		}
+                for (Mine m : this.gameMine) {
+                    sb.append("\n").append(m.toString());
+                }
 		
 		return sb.toString();
 	}
@@ -141,6 +147,13 @@ public class Level {
 	}
         
         /**
+         * Get the levels mine (as array)
+         * 
+         */
+        public Mine[] getGameMine() {
+            return this.gameMine;
+        }
+        /**
          * Set the levels wall
          * 
          * @param gameWall 
@@ -148,5 +161,14 @@ public class Level {
 	public void setGameWall(Wall[] gameWall) {
 		this.gameWall = gameWall;
 	}
+        
+        /**
+         * Set the levels mine 
+         * 
+         * @param gameMine 
+         */
+        public void setGameMine(Mine[] gameMine) {
+            this.gameMine = gameMine;
+        } 
 
 }

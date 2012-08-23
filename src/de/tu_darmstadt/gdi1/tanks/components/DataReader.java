@@ -2,6 +2,7 @@ package de.tu_darmstadt.gdi1.tanks.components;
 
 import de.tu_darmstadt.gdi1.tanks.entity.Border;
 import de.tu_darmstadt.gdi1.tanks.entity.Map;
+import de.tu_darmstadt.gdi1.tanks.entity.Mine;
 import de.tu_darmstadt.gdi1.tanks.entity.Tank;
 import de.tu_darmstadt.gdi1.tanks.entity.Wall;
 import de.tu_darmstadt.gdi1.tanks.level.Level;
@@ -13,7 +14,7 @@ import java.util.LinkedList;
 /**
  * Reads all the parameters from the map file and initializes the level object
  * with all its entities (tanks, walls, etc.)
- * 
+ *
  * @version 1.0
  */
 public class DataReader {
@@ -31,7 +32,7 @@ public class DataReader {
 
     /**
      * Accessing the file, and returning an instance of the level-class
-     * 
+     *
      * @return Level
      */
     public Level getLevel() {
@@ -44,6 +45,7 @@ public class DataReader {
             LinkedList<Border> borderlist = new LinkedList<Border>();
             LinkedList<Tank> tanklist = new LinkedList<Tank>();
             LinkedList<Wall> walllist = new LinkedList<Wall>();
+            LinkedList<Mine> minelist = new LinkedList<Mine>();
             Map m = null;
             Tank p = null;
             int j = 0;
@@ -83,7 +85,7 @@ public class DataReader {
                                 Integer.valueOf(ll.get(3)), Integer.valueOf(ll.get(4)),
                                 Integer.valueOf(ll.get(5)), Integer.valueOf(ll.get(6)),
                                 Integer.valueOf(ll.get(7)), Integer.valueOf(ll.get(8)),
-                                Integer.valueOf(ll.get(9)),Integer.valueOf(ll.get(10)),
+                                Integer.valueOf(ll.get(9)), Integer.valueOf(ll.get(10)),
                                 Integer.valueOf(ll.get(11)), Integer.valueOf(ll.get(12)),
                                 Integer.valueOf(ll.get(13)));
                         tanklist.add(ta);
@@ -93,6 +95,10 @@ public class DataReader {
                             Integer.valueOf(ll.get(3)), Integer.valueOf(ll.get(4)),
                             Integer.valueOf(ll.get(5)), Integer.valueOf(ll.get(6)));
                     walllist.add(wa);
+                } else if (line.contains("Mine")) {
+                    Mine mine = new Mine("Mine" + j, Integer.valueOf(ll.get(1)), Integer.valueOf(ll.get(2)),
+                            Integer.valueOf(ll.get(3)), Integer.valueOf(ll.get(4)));
+                    minelist.add(mine);
                 } else if (line.contains("Shot")) {
                     // TODO has to be implemented
                 } else if (line.contains("Pickup")) {
@@ -104,10 +110,11 @@ public class DataReader {
             Tank[] o = tanklist.toArray(new Tank[tanklist.size()]);
             Wall[] w = walllist.toArray(new Wall[walllist.size()]);
             Border[] b = borderlist.toArray(new Border[borderlist.size()]);
+            Mine[] mine = minelist.toArray(new Mine[minelist.size()]);
 
 
             // instantiation of level
-            toReturn = new Level(m, b, p, o, w);
+            toReturn = new Level(m, b, p, o, w, mine);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -116,11 +123,11 @@ public class DataReader {
         return toReturn;
 
     }
-    
+
     /**
      * Setting a new path
-     * 
-     * @param newPath 
+     *
+     * @param newPath
      */
     public void setPath(String newPath) {
         this.path = newPath;
