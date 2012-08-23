@@ -69,9 +69,9 @@ public class Pickup extends Entity {
                     Pickup p = (Pickup) ce.getOwnerEntity();
 
                     if (t.getId().contains("Player")) {
-                        if (p.getType().contains("Ammopack")) {
+                        if (p.getType().contains("Ammopack") && t.getMaxShot() > t.getShot()) {
                             t.setShot(t.getShot() + p.getStrength());
-                        } else {
+                        } else if (t.getMaxLife() > t.getLife()) {
                             t.setLife(t.getLife() + p.getStrength());
                         }
                         Pickup[] newPickupArray = new Pickup[Game.gamelevel.getGamePickup().length - 1];
