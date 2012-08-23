@@ -187,7 +187,6 @@ public class Game extends BasicGameState {
         g.drawString("Map: " + gamelevel.getGameMap().getActualmap(), 450, 510);
         g.drawString("Anzahl der Gegner: " + gamelevel.getGameTankO().length, 450, 530);
         g.drawString("Verbleibende Zeit: " + gamelevel.getGameMap().getElapsedTime() + " / " + gamelevel.getGameMap().getMaxduration(), 450, 550);
-        // TODO: Causes NullPointerException when player tank is destroyed
         if (entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()) != null) {
         g.drawString("Position: " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getX()
                 + " / " + entityManager.getEntity(stateID, gamelevel.getGameTankP().getName()).getPosition().getY(), 450, 570);

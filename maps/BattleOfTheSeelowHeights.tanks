@@ -15,6 +15,6 @@ Wall 30 30 0 1 100 100
 Wall 30 30 0 1 125 25
 Wall 30 30 0 1 400 124
 Wall 30 30 0 1 400 400
-Shot 1 5 1 4 292 132
+Shot 1 5 1 1 292 132
 Pickup "Healthpack" 10 0 30 100 100
 Pickup "Ammopack" 10 0 30 200 100

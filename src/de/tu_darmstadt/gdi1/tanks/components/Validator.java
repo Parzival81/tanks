@@ -79,9 +79,9 @@ public class Validator {
 						validateParameterSize = false;
 					}
 				} else if (line.contains("Shot")) {
-					// TODO something has to be done here
+					// TODO has to be implemented
 				} else if (line.contains("Pickup")) {
-					// TODO something has to be done here
+					// TODO has to be implemented
 				}
 			}		
 		} catch (IOException e) {

@@ -22,11 +22,6 @@ public class Tanks extends StateBasedGame {
     public static final int ABOUT = 4;
     public static final int CONFIG = 5;
     
-    //TODO Weitere Konstanten, die einen State identifizieren, einfuegen
-    // Fuer die automatisierten Tests muessen Sie sicher stellen, dass ihr
-    // Spiel auch ohne UI starten kann. Ist debug auf true gesetzt, so soll
-    // das geschehen. Nutzen Sie diese Variable zur Abfrage in den anderen
-    // Klassen, wenn Sie moechten.
     public static boolean debug = false;
 
     public static void setDebug(boolean debuging) {
@@ -63,7 +58,6 @@ public class Tanks extends StateBasedGame {
         app.setShowFPS(false); // ohne Anzeige der FPS-Rate
 
         // Fuehren Sie hier (falls noetig), weitere Initialisierungen ein
-        //TODO Initialisierungen
         
         // Set the game window
         AppGameContainer window = new AppGameContainer(new Tanks(false));
@@ -74,13 +68,6 @@ public class Tanks extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
-        // Fuege dem StateBasedGame die State's hinzu
-        // TODO State's hinzu fuegen, z.B. this.addState(new MainMenuState(MAINMENUSTATE));
-        // Fuege dem StateBasedEntityManager die State's hinzu
-        // TODO State's hinzu fuegen, z.B. StateBasedEntityManager.getInstance().addState(MAINMENUSTATE);
-                /* Add the states (menu and game) to the StateBasedGame
-        The two states are set in there own classes (MainMenu and Game)
-        The first state is run first (so menu has to come first) */
  
         addState(new MainMenu(MENU));
         addState(new Game(GAME));

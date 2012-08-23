@@ -92,10 +92,8 @@ public class Wall extends Entity {
      * 
      * @return 
      */
-    public int getX() {
-        // TODO: finde solution for flaot to int conversion error
-        // return this.getPosition().getX();
-        return 1;
+    public float getX() {
+        return this.getPosition().getX();
     }
     
     /**
@@ -103,9 +101,7 @@ public class Wall extends Entity {
      * 
      * @return 
      */
-    public int getY() {
-        // TODO: finde solution for flaot to int conversion error
-        // return this.getPosition().getY();
-        return 1;
+    public float getY() {
+        return this.getPosition().getY();
     }
 }

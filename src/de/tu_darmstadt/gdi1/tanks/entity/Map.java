@@ -17,7 +17,7 @@ public class Map extends Entity {
      * 
      * @param id            The maps id
      * @param background    The maps background image
-     * @param actualmap     TODO: What is this? 
+     * @param actualmap     The name of current map
      * @param nextmap       The next map to play
      * @param maxduration   The play time for the map
      * @param elapsedTime   The time the player has played
@@ -59,7 +59,7 @@ public class Map extends Entity {
     }
     
     /**
-     * TODO: What?
+     * Get the name of the current map
      * 
      * @return 
      */

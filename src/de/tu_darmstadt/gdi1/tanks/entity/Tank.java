@@ -26,20 +26,20 @@ public class Tank extends Entity {
      * Constructor for the tank class. Gets all parameters from the level
      * object.
      *
-     * @param id The tanks id
-     * @param name The tanks name
-     * @param maxlife TODO: What?
-     * @param life The tanks life
-     * @param maxshot TODO: What?
-     * @param shot The number of shots the tank can fire
-     * @param maxmine TODO: What?
-     * @param mine The number of mines the tank can lay
-     * @param strength The strength (health points) the tank has
-     * @param speed The tanks speed
-     * @param rotation The tanks initial rotation
-     * @param scale The tanks scale
-     * @param x The tanks initial x position
-     * @param y The tanks initial y position
+     * @param id        The tanks id
+     * @param name      The tanks name
+     * @param maxlife   The tanks full life points
+     * @param life      The tanks current life points
+     * @param maxshot   The tanks max shot number
+     * @param shot      The number of shots the tank still has
+     * @param maxmine   The maximum number of mines the tank has
+     * @param mine      The number of mines the tank currently has
+     * @param strength  The tanks shot power
+     * @param speed     The tanks speed
+     * @param rotation  The tanks initial rotation
+     * @param scale     The tanks scale
+     * @param x         The tanks initial x position
+     * @param y         The tanks initial y position
      */
     public Tank(String id, String name, int maxlife, int life, int maxshot,
             int shot, int maxmine, int mine, int strength, int speed,
@@ -151,7 +151,7 @@ public class Tank extends Entity {
     }
 
     /**
-     * Get the tanks max life
+     * Get the tanks max life points
      *
      * @return
      */
@@ -169,7 +169,7 @@ public class Tank extends Entity {
     }
 
     /**
-     * Get the tanks max shot
+     * Get the tanks max number of shots
      *
      * @return
      */
@@ -178,7 +178,7 @@ public class Tank extends Entity {
     }
 
     /**
-     * Get the tanks number of shots
+     * Get the tanks current number of shots
      *
      * @return
      */
@@ -187,7 +187,7 @@ public class Tank extends Entity {
     }
 
     /**
-     * Get the tanks number of mines
+     * Get the tanks max number of mines
      *
      * @return
      */
@@ -196,7 +196,7 @@ public class Tank extends Entity {
     }
 
     /**
-     * Get the tanks number of mines
+     * Get the tanks current number of mines
      *
      * @return
      */
@@ -205,7 +205,7 @@ public class Tank extends Entity {
     }
     
     /**
-     * Get the tanks strength (health points as int)
+     * Get the tanks shot power
      * 
      * @return 
      */
@@ -232,7 +232,7 @@ public class Tank extends Entity {
     }
 
     /**
-     * Set the tanks life (health points as int)
+     * Set the tanks current life (health points as int)
      * 
      * @param life 
      */
@@ -250,7 +250,7 @@ public class Tank extends Entity {
     }
     
     /**
-     * Set the tanks number of shots
+     * Set the tanks current number of shots
      * 
      * @param shot 
      */
@@ -268,7 +268,7 @@ public class Tank extends Entity {
     }
     
     /**
-     * Set the tans number of mines
+     * Set the tanks current number of mines
      * 
      * @param mine 
      */
@@ -277,7 +277,7 @@ public class Tank extends Entity {
     }
     
     /**
-     * Set the tanks strength (as int)
+     * Set the tanks current strength (as int)
      * 
      * @param strength 
      */
@@ -311,7 +311,7 @@ public class Tank extends Entity {
         if (this.shot > 0) {
             this.shot--;
             this.tankShot = new Shot("tankShot", this.getStrength(), rotation,
-                    this.getScale(), position);
+                    1, position);
         }
     }
     

@@ -63,13 +63,12 @@ public class Shot extends Entity {
         y -= (float) r * (java.lang.Math.cos(java.lang.Math.toRadians(rotation)));
 
         this.position = new Vector2f(x, y);
-
         this.setPacable(false);
-
-        // TODO: Override the map set scale
-        // this.setScale(this.scale);
-        this.setScale(0.1f);
-
+        /* 
+         * Shot scale is set manualy in the tank class, as all othe shot 
+         * properties are set in the map file in the tank entity
+         */
+        this.setScale(this.scale*0.1f);
         /* --- Set the shots initial postiton --- */
         this.setPosition(this.position);
 

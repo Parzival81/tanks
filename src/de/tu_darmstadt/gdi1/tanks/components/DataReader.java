@@ -94,9 +94,9 @@ public class DataReader {
                             Integer.valueOf(ll.get(5)), Integer.valueOf(ll.get(6)));
                     walllist.add(wa);
                 } else if (line.contains("Shot")) {
-                    // TODO something has to be done here
+                    // TODO has to be implemented
                 } else if (line.contains("Pickup")) {
-                    // TODO something has to be done here
+                    // TODO has to be implemented
                 }
                 j++;
             }
