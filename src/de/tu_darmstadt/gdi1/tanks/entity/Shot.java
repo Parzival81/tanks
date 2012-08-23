@@ -141,28 +141,6 @@ public class Shot extends Entity {
                         }
                         Game.gamelevel.setGameWall(newWallArray);
                     }
-                /* ---- collision with a mine ---- */
-                } else if (ce.getColidedEntity() instanceof Mine) {
-                    Mine m = (Mine) ce.getColidedEntity();
-                    Shot s = (Shot) ce.getOwnerEntity();
-                    if (m.getLife() > 0) {
-                        m.setLife((int) m.getLife() - (int) s.getStrength());
-                    } else {
-                        DestroyEntityAction dea = new DestroyEntityAction();
-                        ce.addAction(dea);
-                        m.addComponent(ce);
-
-
-                        Mine[] newMineArray = new Mine[Game.gamelevel.getGameMine().length - 1];
-                        int counter = 0;
-                        for (int i = 0; Game.gamelevel.getGameMine().length > i; i++) {
-                            if (!m.getId().equals(Game.gamelevel.getGameMine()[i].getId())) {
-                                newMineArray[counter] = Game.gamelevel.getGameMine()[i];
-                                counter++;
-                            }
-                        }
-                        Game.gamelevel.setGameMine(newMineArray);
-                    }
                 }
             }
         });
