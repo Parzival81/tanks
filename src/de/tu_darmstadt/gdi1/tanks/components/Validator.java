@@ -1,25 +1,37 @@
 package de.tu_darmstadt.gdi1.tanks.components;
 
+import de.tu_darmstadt.gdi1.tanks.entity.Border;
 import de.tu_darmstadt.gdi1.tanks.entity.Tank;
 import de.tu_darmstadt.gdi1.tanks.entity.Wall;
-import de.tu_darmstadt.gdi1.tanks.entity.Border;
+import de.tu_darmstadt.gdi1.tanks.model.exceptions.SemanticException;
+import de.tu_darmstadt.gdi1.tanks.model.exceptions.SyntaxException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
-
-import de.tu_darmstadt.gdi1.tanks.model.exceptions.SemanticException;
-import de.tu_darmstadt.gdi1.tanks.model.exceptions.SyntaxException;
-
-
+/**
+ * Validate a map for correct syntax and content
+ * 
+ * @version 1.0
+ */
 public class Validator {
 	private String path;
-
+        
+        /**
+         * Constructor method. Set the for the file to validate
+         * 
+         * @param path 
+         */
 	public Validator (String path){
 		this.path = path;
 	}
-	
+	/**
+         * Validate a map file
+         * 
+         * @throws SemanticException
+         * @throws SyntaxException 
+         */
 	public void validate() throws SemanticException, SyntaxException{
 		boolean validateParameterSize = true; // true: the size is correct
 		boolean validateExistenceOpponent = false; // true: there exist at least one player
@@ -84,7 +96,13 @@ public class Validator {
 		}
 	}
 	
-	
+	/**
+         * Validate the position of objects and check if they are on top of each
+         * other
+         * 
+         * @param tank
+         * @throws SemanticException 
+         */
 	public void validatePosition(Tank tank) throws SemanticException{
 		DataReader dr = new DataReader (path);
 
@@ -121,10 +139,19 @@ public class Validator {
 	}
 	
 
+        /**
+         * Get the current file path
+         * 
+         * @return 
+         */
 	public String getPath() {
-		return path;
+		return this.path;
 	}
-
+        /**
+         * Set the current file path
+         * 
+         * @param path 
+         */
 	public void setPath(String path) {
 		this.path = path;
 	}

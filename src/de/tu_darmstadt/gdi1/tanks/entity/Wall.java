@@ -6,10 +6,26 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+/**
+ * Represents a wall entity in the game
+ * 
+ * @version 1.0
+ */
 public class Wall extends Entity {
 
     private int maxlife, life;
-
+    
+    /**
+     * Constructor. Set all the mandatory properties and set the texture
+     * 
+     * @param id        The walls id
+     * @param maxlife   The walls max life
+     * @param life      The walls life
+     * @param rotation  The walls rotation
+     * @param scale     The walls scale
+     * @param x         The walls x position
+     * @param y         The walls y position
+     */
     public Wall(String id, int maxlife, int life, int rotation, int scale, int x, int y) {
         super(id);
         this.maxlife = maxlife;
@@ -27,7 +43,12 @@ public class Wall extends Entity {
             System.out.println("The asset can't be found!");
         }
     }
-
+    
+    /**
+     * Converts the wall into a single string
+     * 
+     * @return 
+     */
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("Wall ").append(this.maxlife).append(" ")
@@ -38,25 +59,50 @@ public class Wall extends Entity {
                 .append((int) this.getPosition().getY());
         return sb.toString();
     }
-
+    
+    /**
+     * Get the walls max life
+     * 
+     * @return 
+     */
     public int getMaxlife() {
         return maxlife;
     }
-
+    
+    /**
+     * Get the walls life
+     * 
+     * @return 
+     */
     public int getLife() {
         return life;
     }
     
+    /**
+     * Set the walls life
+     * 
+     * @param life 
+     */
     public void setLife(int life) {
         this.life = life;
     }
-
+    
+    /**
+     * Get the walls x position
+     * 
+     * @return 
+     */
     public int getX() {
         // TODO: finde solution for flaot to int conversion error
         // return this.getPosition().getX();
         return 1;
     }
-
+    
+    /**
+     * Get the walls y position
+     * 
+     * @return 
+     */
     public int getY() {
         // TODO: finde solution for flaot to int conversion error
         // return this.getPosition().getY();

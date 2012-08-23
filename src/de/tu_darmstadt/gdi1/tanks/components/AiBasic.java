@@ -1,28 +1,22 @@
 package de.tu_darmstadt.gdi1.tanks.components;
 
-import java.util.Random;
-import java.util.Timer;
-
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.state.StateBasedGame;
-
 import de.tu_darmstadt.gdi1.tanks.entity.Tank;
 import de.tu_darmstadt.gdi1.tanks.states.Game;
 import eea.engine.action.Action;
-import eea.engine.action.basicactions.MoveBackwardAction;
 import eea.engine.action.basicactions.MoveForwardAction;
 import eea.engine.action.basicactions.RotateLeftAction;
 import eea.engine.component.Component;
 import eea.engine.entity.Entity;
 import eea.engine.event.ANDEvent;
-import eea.engine.event.Event;
 import eea.engine.event.basicevents.*;
+import java.util.Random;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * Basic AI for the game
+ * Basic AI for the enemy tanks
  *
- * @author Patrick
+ * @version 1.0
  */
 public class AiBasic {
 	private int difficulty;

@@ -1,8 +1,6 @@
 package de.tu_darmstadt.gdi1.tanks.entity;
 
 import de.tu_darmstadt.gdi1.tanks.states.Game;
-import java.awt.Container;
-
 import eea.engine.action.Action;
 import eea.engine.action.basicactions.DestroyEntityAction;
 import eea.engine.action.basicactions.MoveForwardAction;
@@ -10,18 +8,33 @@ import eea.engine.component.Component;
 import eea.engine.component.render.ImageRenderComponent;
 import eea.engine.entity.Entity;
 import eea.engine.event.basicevents.*;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * Represents a tank shot in the game
+ * 
+ * @version 1.5
+ */
 public class Shot extends Entity {
 
     float strength, rotation, scale;
     Vector2f position;
-
+    
+    /**
+     * Constructor. Set all the mandatory properties, create a new shot entity,
+     * place it in front of the tank and check for collision with other objects.
+     * Shot is destroyed when it leaves the screen
+     * 
+     * @param id            The shots id
+     * @param strength      The shots strength (how much it will subtract form the hit objects health
+     * @param rotation      The shots rotation
+     * @param scale         The shots scale
+     * @param position      The shots initial position
+     */
     public Shot(
             String id,
             float strength,
@@ -74,9 +87,6 @@ public class Shot extends Entity {
         loop.addAction(new MoveForwardAction(1f));
         this.addComponent(loop);
 
-        
-
-        
         /* ---- Destroy hit object ---- */
         CollisionEvent ce1 = new CollisionEvent();
         ce1.addAction(new Action() {
@@ -126,23 +136,29 @@ public class Shot extends Entity {
         this.addComponent(ce1);
 
         /* ---- Destroy the shot when it leaves the screen ---- */
-        // Should be working correctly
         LeavingScreenEvent lse = new LeavingScreenEvent();
         DestroyEntityAction dea = new DestroyEntityAction();
         lse.addAction(dea);
         this.addComponent(lse);
-        
-
-
     }
-
+    
+    /**
+     * Convert a shot into a single String
+     * 
+     * @return 
+     */
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("Shot ").append(this.strength).append(" ").append(this.rotation).append(" ").append(this.scale)
                 .append(" ").append(this.position.getX()).append(" ").append(this.position.getY());
         return sb.toString();
     }
-
+    
+    /**
+     * Get the shots strength
+     * 
+     * @return 
+     */
     public float getStrength() {
         return strength;
     }

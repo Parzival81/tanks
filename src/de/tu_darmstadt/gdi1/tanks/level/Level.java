@@ -5,6 +5,11 @@ import de.tu_darmstadt.gdi1.tanks.entity.Map;
 import de.tu_darmstadt.gdi1.tanks.entity.Tank;
 import de.tu_darmstadt.gdi1.tanks.entity.Wall;
 
+/**
+ * Represents the game level with all its entities, like tanks, walls, etc.
+ * 
+ * @version 1.0
+ */
 public class Level {
 	private Map gameMap;
 	private Border[] gameBorder;
@@ -12,6 +17,15 @@ public class Level {
 	private Tank[] gameTankO; // Gegner
 	private Wall[] gameWall;
 	
+        /**
+         * Constructor. Add all elements to the level
+         * 
+         * @param m     The levels map
+         * @param b     The levels boarders (as array)
+         * @param p     The levels player tank
+         * @param o     The levels opponent tank (as array)
+         * @param w     The levels walls (as array)
+         */
 	public Level(Map m, Border[] b, Tank p, Tank[] o, Wall[] w) {
 		this.gameBorder = b;
 		this.gameMap = m;
@@ -20,6 +34,11 @@ public class Level {
 		this.gameWall = w;
 	}
 	
+        /**
+         * Convert the complete map into a single string
+         * 
+         * @return 
+         */
 	public String toString(){
 		StringBuffer sb = new StringBuffer ();
 		
@@ -39,43 +58,93 @@ public class Level {
 		
 		return sb.toString();
 	}
-
+        
+        /**
+         * Set the levels get (as map entity)
+         * 
+         * @return 
+         */
 	public Map getGameMap() {
-		return gameMap;
+		return this.gameMap;
 	}
-
+        
+        /**
+         * Set the levels game map
+         * 
+         * @param gameMap 
+         */
 	public void setGameMap(Map gameMap) {
 		this.gameMap = gameMap;
 	}
-
+        
+        /**
+         * Get the levels boarders
+         * 
+         * @return 
+         */
 	public Border[] getGameBorder() {
 		return gameBorder;
 	}
-
+        
+        /**
+         * Set the levels map
+         * 
+         * @param gameBorder 
+         */
 	public void setGameBorder(Border[] gameBorder) {
 		this.gameBorder = gameBorder;
 	}
-
+        
+        /**
+         * Get the levels player tank
+         * 
+         * @return 
+         */
 	public Tank getGameTankP() {
 		return gameTankP;
 	}
-
+        
+        /**
+         * Set the levels player tank
+         * 
+         * @param gameTankP 
+         */
 	public void setGameTankP(Tank gameTankP) {
 		this.gameTankP = gameTankP;
 	}
-
+        
+        /**
+         * Get the levels opponent tanks
+         * 
+         * @return 
+         */
 	public Tank[] getGameTankO() {
 		return gameTankO;
 	}
-
+        
+        /**
+         * Set the levels opponent tank
+         * 
+         * @param gameTankO 
+         */
 	public void setGameTankO(Tank[] gameTankO) {
 		this.gameTankO = gameTankO;
 	}
-
+        
+        /**
+         * Get the levels wall
+         * 
+         * @return 
+         */
 	public Wall[] getGameWall() {
 		return gameWall;
 	}
-
+        
+        /**
+         * Set the levels wall
+         * 
+         * @param gameWall 
+         */
 	public void setGameWall(Wall[] gameWall) {
 		this.gameWall = gameWall;
 	}

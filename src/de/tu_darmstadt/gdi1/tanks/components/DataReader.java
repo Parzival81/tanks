@@ -10,6 +10,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
+/**
+ * Reads all the parameters from the map file and initializes the level object
+ * with all its entities (tanks, walls, etc.)
+ * 
+ * @version 1.0
+ */
 public class DataReader {
 
     private String path;
@@ -25,8 +31,8 @@ public class DataReader {
 
     /**
      * Accessing the file, and returning an instance of the level-class
-     *
-     * @return
+     * 
+     * @return Level
      */
     public Level getLevel() {
         Level toReturn = null;
@@ -113,6 +119,8 @@ public class DataReader {
     
     /**
      * Setting a new path
+     * 
+     * @param newPath 
      */
     public void setPath(String newPath) {
         this.path = newPath;
