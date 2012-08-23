@@ -91,27 +91,105 @@ public class Configuration extends BasicGameState{
 	        screen_Entity.addComponent(screenEvents);
 	        screenEvents.addAction(screen_Action);
 	        entityManager.addEntity(this.stateID, screen_Entity);
+	        
+	        /* ---- Music Volume Plus ---- */
+	        Entity mvp_Entity = new Entity("Screen");
+	        mvp_Entity.setPosition(new Vector2f(82, 190));
+	        mvp_Entity.setScale(0.1f);
+	        mvp_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry2.png")));
+	        ANDEvent mvpEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+	        Action mvp_Action = new Action(){
+				@Override
+				public void update(GameContainer gc, StateBasedGame sb,
+						int delta, Component event) {
+					gc.setMusicVolume(gc.getMusicVolume() + 1);
+				}
+	        };
+	        mvp_Entity.addComponent(mvpEvents);
+	        mvpEvents.addAction(mvp_Action);
+	        entityManager.addEntity(this.stateID, mvp_Entity);
+	        
+	        /* ---- Music Volume Minus ---- */
+	        Entity mvm_Entity = new Entity("Screen");
+	        mvm_Entity.setPosition(new Vector2f(100, 190));
+	        mvm_Entity.setScale(0.1f);
+	        mvm_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry2.png")));
+	        ANDEvent mvmEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+	        Action mvm_Action = new Action(){
+				@Override
+				public void update(GameContainer gc, StateBasedGame sb,
+						int delta, Component event) {
+					gc.setMusicVolume(gc.getMusicVolume() - 1);
+				}
+	        };
+	        mvm_Entity.addComponent(mvmEvents);
+	        mvmEvents.addAction(mvm_Action);
+	        entityManager.addEntity(this.stateID, mvm_Entity);
+	        
+	        /* ---- Sound Volume Plus ---- */
+	        Entity svp_Entity = new Entity("Screen");
+	        svp_Entity.setPosition(new Vector2f(82, 220));
+	        svp_Entity.setScale(0.1f);
+	        svp_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry2.png")));
+	        ANDEvent svpEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+	        Action svp_Action = new Action(){
+				@Override
+				public void update(GameContainer gc, StateBasedGame sb,
+						int delta, Component event) {
+					gc.setSoundVolume(gc.getSoundVolume() + 1);
+				}
+	        };
+	        svp_Entity.addComponent(svpEvents);
+	        svpEvents.addAction(svp_Action);
+	        entityManager.addEntity(this.stateID, svp_Entity);
+	        
+	        /* ---- Sound Volume Minus ---- */
+	        Entity svm_Entity = new Entity("Screen");
+	        svm_Entity.setPosition(new Vector2f(100, 220));
+	        svm_Entity.setScale(0.1f);
+	        svm_Entity.addComponent(new ImageRenderComponent(new Image("assets/entry2.png")));
+	        ANDEvent svmEvents = new ANDEvent(new MouseEnteredEvent(), new MouseClickedEvent());
+	        Action svm_Action = new Action(){
+				@Override
+				public void update(GameContainer gc, StateBasedGame sb,
+						int delta, Component event) {
+					gc.setSoundVolume(gc.getSoundVolume() - 1);
+				}
+	        };
+	        svm_Entity.addComponent(svmEvents);
+	        svmEvents.addAction(svm_Action);
+	        entityManager.addEntity(this.stateID, svm_Entity);
 	    }
 
 	    @Override
 	    public void render(GameContainer container, StateBasedGame game, Graphics g)
 	            throws SlickException {
 	        entityManager.renderEntities(container, game, g);
+	        int counter = 0;
+	        
 	        String screen;
 	        if (container.isFullscreen()){
 	        	screen = "Vollbild";
 	        }else{
 	        	screen = "Fenster";
-	        }
-	        
-	        String description = "Bildschirm: " + screen;
-	        
+	        }        
+   
 	        g.setColor(Color.black);
 	        g.drawString("Menu [ESC]", 105, 540);
 	        
-
+	        
 	        g.setColor(Color.white);
-	        g.drawString(description, 80, 150);
+	        g.drawString("+", 77, 180);
+	        g.drawString("-", 95, 180);
+	        
+	        g.drawString("+", 77, 210);
+	        g.drawString("-", 95, 210);
+	        
+	        g.drawString("Bildschirm: " + screen, 80, 150 + 30 * counter);
+	        counter++;
+	        g.drawString("Musicvolume: " + container.getMusicVolume(), 120, 150 + 30 * counter);
+	        counter++;
+	        g.drawString("Soundvolume: " + container.getSoundVolume(), 120, 150 + 30 * counter);
 	    }
 
 	    @Override
