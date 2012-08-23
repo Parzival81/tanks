@@ -51,7 +51,13 @@ public class AiBasic {
 				public void update(GameContainer gc, StateBasedGame sb,
 						int delta, Component event) {
 					Random rg = new Random();
-					int number = rg.nextInt(2000);
+                                        /*
+                                         * Create a new number. If the number is belowe 360,
+                                         * the tank shots, if it is over 360, it will not shoot
+                                         * Also, the tank only shoots if the random number is
+                                         * equal to the current rotation of the tank
+                                         */
+					int number = rg.nextInt(500);
 					if (Math.round(Game.entityManager.getEntity(1, tank.getId()).getRotation()) == number ){
 						((Tank) Game.entityManager.getEntity(1, tank.getId())).fireShot(tank.getPosition(), tank.getRotation());
 						Game.entityManager.addEntity(1, ((Tank) tank).getTankShot());

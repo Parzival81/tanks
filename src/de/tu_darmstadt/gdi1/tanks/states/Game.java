@@ -195,9 +195,11 @@ public class Game extends BasicGameState {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
-
         if (gamelevel.getGameTankO().length == 0) {
             JOptionPane.showMessageDialog(null, "Sie haben alle Gegner erfolgreich vernichtet!");
+            game.enterState(Tanks.MENU);
+        } else if (gamelevel.getGameTankP().getLife() <= 0) {
+            JOptionPane.showMessageDialog(null, "Sie wurden vernichtet!");
             game.enterState(Tanks.MENU);
         }
 

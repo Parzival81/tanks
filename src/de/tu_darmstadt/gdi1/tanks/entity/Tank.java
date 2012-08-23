@@ -58,7 +58,7 @@ public class Tank extends Entity {
         this.setRotation(rotation);
         this.setScale(scale * 0.1f);
         this.setPosition(new Vector2f(x, y));
-        // TODO: What dose this do?
+        /* ---- Set the size of the entity in pixel so the collison is correct ---- */
         this.setSize(new Vector2f(40, 80));
         /* --- Add the default texture --- */
         try {

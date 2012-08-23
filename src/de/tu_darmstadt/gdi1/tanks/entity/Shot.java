@@ -16,24 +16,25 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * Represents a tank shot in the game
- * 
+ *
  * @version 1.5
  */
 public class Shot extends Entity {
 
     float strength, rotation, scale;
     Vector2f position;
-    
+
     /**
      * Constructor. Set all the mandatory properties, create a new shot entity,
      * place it in front of the tank and check for collision with other objects.
      * Shot is destroyed when it leaves the screen
-     * 
-     * @param id            The shots id
-     * @param strength      The shots strength (how much it will subtract form the hit objects health
-     * @param rotation      The shots rotation
-     * @param scale         The shots scale
-     * @param position      The shots initial position
+     *
+     * @param id The shots id
+     * @param strength The shots strength (how much it will subtract form the
+     * hit objects health
+     * @param rotation The shots rotation
+     * @param scale The shots scale
+     * @param position The shots initial position
      */
     public Shot(
             String id,
@@ -68,7 +69,7 @@ public class Shot extends Entity {
          * Shot scale is set manualy in the tank class, as all othe shot 
          * properties are set in the map file in the tank entity
          */
-        this.setScale(this.scale*0.1f);
+        this.setScale(this.scale * 0.1f);
         /* --- Set the shots initial postiton --- */
         this.setPosition(this.position);
 
@@ -97,25 +98,26 @@ public class Shot extends Entity {
                     Shot s = (Shot) ce.getOwnerEntity();
                     if (t.getLife() > 0) {
                         t.setLife((int) t.getLife() - (int) s.getStrength());
-                        
-                        
+
+
                     } else {
                         DestroyEntityAction dea = new DestroyEntityAction();
                         ce.addAction(dea);
                         t.addComponent(ce);
-                        
+
                         /* Removing the Tank from gamelevel */
-                    	Tank[] newTankArray = new Tank[Game.gamelevel.getGameTankO().length-1];
-                    	int counter = 0;
-                        for (int i = 0; Game.gamelevel.getGameTankO().length > i ;i++){
-                        	if (!t.getId().equals(Game.gamelevel.getGameTankO()[i].getId())){
-                        		newTankArray[counter] = Game.gamelevel.getGameTankO()[i];
-                        		counter++;
-                        	}
+                        if (t.getId().contains("Oppenent")) {
+                            Tank[] newTankArray = new Tank[Game.gamelevel.getGameTankO().length - 1];
+                            int counter = 0;
+                            for (int i = 0; Game.gamelevel.getGameTankO().length > i; i++) {
+                                if (!t.getId().equals(Game.gamelevel.getGameTankO()[i].getId())) {
+                                    newTankArray[counter] = Game.gamelevel.getGameTankO()[i];
+                                    counter++;
+                                }
+                            }
+                            Game.gamelevel.setGameTankO(newTankArray);
+
                         }
-                        Game.gamelevel.setGameTankO(newTankArray);
-                        
-                        
                     }
                 }
                 if (ce.getColidedEntity() instanceof Wall) {
@@ -140,11 +142,11 @@ public class Shot extends Entity {
         lse.addAction(dea);
         this.addComponent(lse);
     }
-    
+
     /**
      * Convert a shot into a single String
-     * 
-     * @return 
+     *
+     * @return
      */
     public String toString() {
         StringBuffer sb = new StringBuffer();
@@ -152,11 +154,11 @@ public class Shot extends Entity {
                 .append(" ").append(this.position.getX()).append(" ").append(this.position.getY());
         return sb.toString();
     }
-    
+
     /**
      * Get the shots strength
-     * 
-     * @return 
+     *
+     * @return
      */
     public float getStrength() {
         return strength;
