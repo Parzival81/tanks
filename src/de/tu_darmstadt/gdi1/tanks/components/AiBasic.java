@@ -36,6 +36,10 @@ public class AiBasic {
     	
     }
     
+    /**
+     * Easy AI opponent tank
+     * 
+     */
     public void easy(){
     		((Tank) tank).steerForward(new ANDEvent
     				(new LoopEvent(),new MovementDoesntCollideEvent(2, new MoveForwardAction(0.05f))));
@@ -69,11 +73,19 @@ public class AiBasic {
 			
 
     }
+    /*
+     * Normal opponent AI
+     * 
+     */
     public void normal(){
-    	
+        // TODO: Has to be implemented
     }
+    /**
+     * Hard opponent AI
+     * 
+     */
     public void hard(){
-    	
+    	// TODO: Has to be implemented
     }
     
 }
