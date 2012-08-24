@@ -80,11 +80,20 @@ public class Game extends BasicGameState {
 		} catch (SyntaxException e1) {
 			e1.printStackTrace();
 		}
+    	
         // DataReader reads a data and converts the String into a level object
         DataReader dr = new DataReader(currentMap);
         gamelevel = dr.getLevel();
 
-
+    	for (Tank tank : gamelevel.getGameTankO()){
+    		try {
+				v.validatePosition(tank);
+			} catch (SemanticException e) {
+				e.printStackTrace();
+			}
+    	}
+        
+        
         /* ---- Background Entity ---- */
         Entity background = new Entity("menu");
         background.setPosition(new Vector2f(400, 300));
