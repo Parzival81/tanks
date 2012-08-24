@@ -4,7 +4,7 @@ Border 400 10 800 100
 Border 400 610 800 100
 Border -10 300 100 600
 Border 800 410 100 600
-Tank "PlayerOne" 100 100 100 100 3 3 100 20 0 3 300 300
+Tank "PlayerOne" 100 100 100 100 3 3 100 20 0 3 400 300
 Tank "OpponentTank0" 100 100 1000 1000 0 0 50 5 23 3 100 200
 Tank "OpponentTank1" 100 100 1000 1000 0 0 50 5 190 3 100 400
 Tank "OpponentTank3" 100 100 1000 1000 0 0 50 5 234 3 500 200
@@ -16,7 +16,7 @@ Wall 30 30 0 1 125 25
 Wall 30 30 0 1 400 124
 Wall 30 30 0 1 400 400
 Shot 1 5 1 1 292 132
-Pickup "Healthpack" 10 0 1 100 100
+Pickup "Healthpack" 10 0 1 500 500
 Pickup "Ammopack" 10 0 1 200 100
 Mine 20 1 650 450
 Mine 20 1 550 350
