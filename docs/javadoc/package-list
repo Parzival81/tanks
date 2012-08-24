@@ -1,0 +1,9 @@
+de.tu_darmstadt.gdi1.tanks.components
+de.tu_darmstadt.gdi1.tanks.entity
+de.tu_darmstadt.gdi1.tanks.level
+de.tu_darmstadt.gdi1.tanks.model.exceptions
+de.tu_darmstadt.gdi1.tanks.states
+de.tu_darmstadt.gdi1.tanks.tests.adapter
+de.tu_darmstadt.gdi1.tanks.tests.students.suites
+de.tu_darmstadt.gdi1.tanks.tests.students.testcases
+de.tu_darmstadt.gdi1.tanks.ui

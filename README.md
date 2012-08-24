@@ -1,16 +1,17 @@
 # Tanks TU Darmstadt GdI 1 Project
 
-## Ordnerstruktur
+## File structure
 
-* __SS12_GDI1_PJT_Tank__
-	* Projektordner, der in Eclipse als Projekt importiert werden sollte.
-Enthält alle .jar Dateien die für das Projekt benötigt werden
-* __SS12_GDI1_PJT_Tank/docs__
+* __docs__
 	* Dokuente zum Projekt, wie PDFs, etc.
-* __SS12_GDI1_PJT_Tank/assets__
+* __dist/javadoc__
+	* Tanks API documentation and UML (integrated into JavaDoc)
+* __assets__
 	* Bilder für das Spiel
 * __assets-master__
-	* Originaldateien der Master, z.B. .PSD Dateien, etc.
+	* Original asset files, like .PSD files
+* __third-party__
+	* Jar files, Slick2d, eea
 
 ## Wiki
 
@@ -18,7 +19,8 @@ Enthält alle .jar Dateien die für das Projekt benötigt werden
 	* [Aufgaben](https://github.com/Parzival81/tanks/wiki/Aufgaben)
 	* [Zeitplan](https://github.com/Parzival81/tanks/wiki/Zeitplan)
 	
-## Api Dokumentation
+## Api Documentation
 
 * [Slick 2D](http://slick.cokeandcode.com/javadoc/)
 * [EEE Framework](https://moodle.informatik.tu-darmstadt.de/mod/forum/discuss.php?d=16449)
+* Tanks: __dist/javadoc__
